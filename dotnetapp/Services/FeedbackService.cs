@@ -1,7 +1,10 @@
 using dotnetapp.Models;
+using dotnetapp.Data;
 
 namespace dotnetapp.Services{
     public class FeedbackService{
+
+        private ApplicationDbContext _context;
 
         public FeedbackService(ApplicationDbContext context){
             _context=context;
@@ -11,8 +14,8 @@ namespace dotnetapp.Services{
             return _context.Feedbacks.ToList();
         }
 
-        public async Task<IEnumerable<Feedback>> GetFeedbacksBysUserId(int userId){
-            var feedbacks = _context.Feedbacks.ToList().FindAll(i=>i.userId == userId);
+        public async Task<IEnumerable<Feedback>> GetFeedbacksByUserId(int userId){
+            var feedbacks = _context.Feedbacks.ToList().FindAll(i=>i.UserId == userId);
             return feedbacks.ToList();
         }
 
@@ -26,7 +29,7 @@ namespace dotnetapp.Services{
         }
         
         public async Task<bool> DeleteFeedback(int feedbackId){
-            Feedback f = _context.Feedbacks.Find(i=>i.feedbackId == feedbackId);
+            Feedback f = _context.Feedbacks.Find(feedbackId);
             if(f!=null){
                 _context.Feedbacks.Remove(f);
                 _context.SaveChanges();

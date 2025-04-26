@@ -1,5 +1,5 @@
 using dotnetapp.Models;
-using Microsoft.EntityframeworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnetapp.Data{
     public class ApplicationDbContext:DbContext{
