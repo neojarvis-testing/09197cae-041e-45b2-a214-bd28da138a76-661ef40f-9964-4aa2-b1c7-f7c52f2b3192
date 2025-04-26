@@ -1,4 +1,3 @@
-import System.Text.Serialization
 
 namespace dotnetapp.Models{
     public class User{
