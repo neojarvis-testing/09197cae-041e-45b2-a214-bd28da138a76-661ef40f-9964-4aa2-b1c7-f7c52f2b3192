@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using dotnetapp.Models.EventRequirement;
+using dotnetapp.Models;
+using dotnetapp.Data;
 
 namespace dotnetapp.Services
 {

@@ -15,6 +15,7 @@ namespace dotnetapp.Controllers{
             _service = service;
         }
 
+[HttpGet]
         public async Task<ActionResult<IEnumerable<Feedback>>>GetAllFeedbacks(){
             try{
 
@@ -25,6 +26,7 @@ namespace dotnetapp.Controllers{
                 }
         }
 
+        [HttpGet("user/{userId}")]
         public async Task<ActionResult<IEnumerable<Feedback>>>GetFeedbacksByUserId(int userId){
             try{
                 var f = _service.GetFeedbacksByUserId(userId);
@@ -40,6 +42,7 @@ namespace dotnetapp.Controllers{
                 }
         }
 
+[HttpPost]
         public async Task<ActionResult>AddFeedback([FromBody] Feedback feedback){
             try{
                 
@@ -60,6 +63,7 @@ namespace dotnetapp.Controllers{
             }
         }
 
+        [HttpDelete("user/{feedbackId}")]
         public async Task<ActionResult>DeleteFeedback(int feedbackId){
             try{
                 var f = _service.GetFeedbacksByUserId(feedbackId);
