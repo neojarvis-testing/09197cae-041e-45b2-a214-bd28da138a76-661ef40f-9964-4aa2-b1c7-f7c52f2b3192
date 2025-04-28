@@ -1,8 +1,11 @@
 using dotnetapp.Models;
-using Microsoft.EntityframeworkCore;
+using Microsoft.EntityFrameworkCore;
 
-namespace dotnetapp.Data{
-    public class ApplicationDbContext:DbContext{
+
+namespace dotnetapp.Data
+{
+    public class ApplicationDbContext: DbContext
+    {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options):base(options){}
         public ApplicationDbContext(){}
 

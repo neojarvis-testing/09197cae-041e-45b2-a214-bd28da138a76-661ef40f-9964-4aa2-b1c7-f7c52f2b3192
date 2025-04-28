@@ -1,6 +1,6 @@
 using dotnetapp.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityframeworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnetapp.Controllers{
     [ApiController]
