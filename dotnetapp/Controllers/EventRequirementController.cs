@@ -42,7 +42,7 @@ namespace dotnetapp.Controllers
                 var eventRequirement = await _eventRequirementService.GetEventRequirementByIdAsync(eventRequirementId);
                 if (eventRequirement == null)
                 {
-                    return NotFound(new {message="Event Requirement not found"});
+                    return NotFound(new {message = "Event Requirement not found"});
                 }
                 return Ok(new {message = "Successfully fetched the event requirement.", data = eventRequirement});
             }
@@ -112,9 +112,9 @@ namespace dotnetapp.Controllers
                 var result = await _eventRequirementService.DeleteEventRequirementAsync(eventRequirementId);
                 if (result)
                 {
-                    return Ok(new {message="Event Requirement deleted successfully"});
+                    return Ok(new {message = "Event Requirement deleted successfully"});
                 }
-                return NotFound(new {message="Event Requirement not found"});
+                return NotFound(new {message = "Event Requirement not found"});
             }
             catch (Exception ex)
             {

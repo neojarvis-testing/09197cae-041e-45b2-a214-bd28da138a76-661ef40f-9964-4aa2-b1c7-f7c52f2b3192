@@ -7,7 +7,7 @@ using dotnetapp.Data;
 
 namespace dotnetapp.Services
 {
-    public class EventRequirementService
+    public class EventRequirementService: 
     {
         private readonly ApplicationDbContext _context;
 

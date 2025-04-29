@@ -28,9 +28,10 @@ namespace dotnetapp.Services{
             return false;
         }
         
-        public async Task<bool> DeleteFeedback(int feedbackId){
-            Feedback f = _context.Feedbacks.Find(feedbackId);
-            if(f!=null){
+        public async Task<bool> DeleteFeedback(int feedbackId)
+        {
+            var f = await  _context.Feedbacks.FindAsync(feedbackId);
+            if(f != null){
                 _context.Feedbacks.Remove(f);
                 _context.SaveChanges();
                 return true;
