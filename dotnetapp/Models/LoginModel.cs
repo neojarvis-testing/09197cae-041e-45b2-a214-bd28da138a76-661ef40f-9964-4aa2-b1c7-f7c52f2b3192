@@ -1,6 +1,15 @@
-namespace dotnetapp.Models{
-    public class LoginModel{
-        public string Email{get;set;}
-        public string Password{get;set;}
+
+using System.ComponentModel.DataAnnotations;
+
+namespace dotnetapp.Models
+{
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Invalid email address")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        public string Password { get; set; }
     }
 }
