@@ -1,1 +1,37 @@
-<p>user-view-event works!</p>
+<h2 class="text-center">Events</h2>
+ 
+<div class="form-group mb-3">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Search..."
+    [(ngModel)]="searchText"
+  />
+</div>
+ 
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>S.No</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Date</th>
+      <th>Organizer Name</th>
+      <th>Contact Info</th>
+      <th>Posted Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of events; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ event.title }}</td>
+      <td>{{ event.description }}</td>
+      <td>{{ event.location }}</td>
+      <td>{{ event.date | date:'mediumDate' }}</td>
+      <td>{{ event.organizerName }}</td>
+      <td>{{ event.contactInfo }}</td>
+      <td>{{ event.postedDate | date:'mediumDate' }}</td>
+    </tr>
+  </tbody>
+</table>
