@@ -1,5 +1,4 @@
-namespace dotnetapp.Models
-{
+namespace dotnetapp.Models{
     public class EventRequirement
     {
         public int EventRequirementId{get;set;}

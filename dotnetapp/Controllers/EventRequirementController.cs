@@ -49,7 +49,7 @@ namespace dotnetapp.Controllers
             catch (Exception ex)
             {
                 //catches the exceptions and displays the message.
-                return StatusCode(500, new {message = $"Internal server error: {ex.Message}"});
+                return StatusCode(500, new {message=$"Internal server error: {ex.Message}"});
             }
         }
 
@@ -61,7 +61,7 @@ namespace dotnetapp.Controllers
                 //Checking if the input is in valid format
                 if(!ModelState.IsValid)
                 {
-                    return BadRequest(new {message = "Invalid event requirement data."});
+                    return StatusCode(400, new {message = "Invalid event requirement data."});
                 }
 
                 //adding the input into the database
@@ -76,7 +76,7 @@ namespace dotnetapp.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new {message = $"Internal server error: {ex.Message}"});
+                return StatusCode(500, new {message=$"Internal server error: {ex.Message}"});
             }
         }
 

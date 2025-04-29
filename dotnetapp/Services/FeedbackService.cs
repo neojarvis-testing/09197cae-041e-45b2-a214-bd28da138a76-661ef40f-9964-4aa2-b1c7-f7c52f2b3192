@@ -14,7 +14,7 @@ namespace dotnetapp.Services{
             return _context.Feedbacks.ToList();
         }
 
-        public async Task<IEnumerable<Feedback>> GetFeedbacksBysUserId(int userId){
+        public async Task<IEnumerable<Feedback>> GetFeedbacksByUserId(int userId){
             var feedbacks = _context.Feedbacks.ToList().FindAll(i=>i.UserId == userId);
             return feedbacks.ToList();
         }
