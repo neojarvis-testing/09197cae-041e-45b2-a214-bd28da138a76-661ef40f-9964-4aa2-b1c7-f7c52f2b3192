@@ -1,31 +1,37 @@
 <div class="form-container">
   <h2>Add New Event</h2>
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()"  #eventForm="ngForm">
       <div>
           <label>Title:</label>
-          <input type="text" name="title" [(ngModel)]="event.Title" required />
+          <input type="text" name="title" [(ngModel)]="event.Title" #title="ngModel" required />
+          <div class="error-message" *ngIf="title.touched && title.invalid">Title is Required</div>
       </div>
       <div>
           <label>Description:</label>
-          <input type="text" name="description" [(ngModel)]="event.Description" required />
+          <input type="text" name="description" [(ngModel)]="event.Description" #desc="ngModel"   required />
+          <div class="error-message" *ngIf="desc.touched && desc.invalid">Description is Required</div>
       </div>
       <div>
           <label>Location:</label>
-          <input type="text" name="location" [(ngModel)]="event.Location" required />
+          <input type="text" name="location" [(ngModel)]="event.Location" #loc="ngModel" required />
+          <div class="error-message" *ngIf="loc.touched && loc.invalid">Location is Required</div>
       </div>
       <div>
           <label>Date:</label>
-          <input type="date" name="date" [(ngModel)]="event.Date" required />
+          <input type="date" name="date" [(ngModel)]="event.Date" #da="ngModel" required />
+          <div class="error-message" *ngIf="da.touched && da.invalid">Date is Required</div>
       </div>
       <div>
           <label>Organizer Name:</label>
-          <input type="text" name="organizerName" [(ngModel)]="event.OrganizerName" required />
+          <input type="text" name="organizerName" [(ngModel)]="event.OrganizerName" #Onam="ngModel" required />
+          <div class="error-message" *ngIf="Onam.touched && Onam.invalid">Organizer Name is Required</div>
       </div>
       <div>
           <label>Contact Info:</label>
-          <input type="text" name="contactInfo" [(ngModel)]="event.ContactInfo" required />
+          <input type="text" name="contactInfo" [(ngModel)]="event.ContactInfo" #cinfo="ngModel" required />
+          <div class="error-message" *ngIf="cinfo.touched && cinfo.invalid">Contact Info is Required</div>
       </div>
-      <button type="submit">Submit</button>
-      <!-- <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div> -->
+      <button type="submit" class="green-button">Submit</button>
+     
   </form>
 </div>
