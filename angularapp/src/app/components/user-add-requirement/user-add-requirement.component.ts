@@ -29,7 +29,7 @@ export class UserAddRequirementComponent implements OnInit {
 
   ngOnInit(): void {
     this.requirementService.getAllEventRequirements().subscribe((data) => {
-      this.temp_Requirements = data;
+      this.temp_Requirements = data["data"];
     });
 
     const id = this.route.snapshot.paramMap.get('id');
@@ -45,7 +45,7 @@ export class UserAddRequirementComponent implements OnInit {
   onSubmit(form: NgForm): void {
     if (form.invalid) return;
 
-    const exists = this.temp_Requirements.some(req => req.Title.toLowerCase() === this.newRequirement.Title.toLowerCase());
+    const exists = this.temp_Requirements.find(req => req.Title.toLowerCase() === this.newRequirement.Title.toLowerCase());
 
     if (exists) {
       this.errorMessage = 'Requirement already exists!';
