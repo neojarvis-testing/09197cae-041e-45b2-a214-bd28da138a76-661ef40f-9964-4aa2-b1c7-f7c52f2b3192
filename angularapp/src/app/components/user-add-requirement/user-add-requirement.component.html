@@ -1,41 +1,42 @@
-<div class="container">
-    <h2>{{ isEditMode ? 'Edit newRequirement' : 'Add New newRequirement' }}</h2>
-
-    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-        <div class="form-group">
-            <label>Title*</label>
-            <input type="text" name="title" class="form-control" required [(ngModel)]="newRequirement.Title" />
-        </div>
-
-        <div class="form-group">
-            <label>Description*</label>
-            <textarea name="description" class="form-control" required [(ngModel)]="newRequirement.Description"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label>Location*</label>
-            <input type="text" name="location" class="form-control" required [(ngModel)]="newRequirement.Location" />
-        </div>
-
-        <div class="form-group">
-            <label>Date*</label>
-            <input type="date" name="date" class="form-control" required [(ngModel)]="newRequirement.Date" />
-        </div>
-
-        <div *ngIf="errorMessage" class="alert alert-danger mt-2">
-            {{ errorMessage }}
-        </div>
-
-        <button type="submit" class="btn btn-success mt-3">
-            {{ isEditMode ? 'Update' : 'Submit' }}
-        </button>
-    </form>
-</div>
-
-<!-- Success Popup -->
-<div *ngIf="showSuccessPopup" class="popup">
-    <div class="popup-content">
-        <p>newRequirement {{ isEditMode ? 'Updated' : 'Added' }} Successfully!</p>
-        <button class="btn btn-primary" (click)="closePopup()">OK</button>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="form-group">
+      <label>Title*</label>
+      <input type="text" name="title" class="form-control"
+             [(ngModel)]="newRequirement.Title"
+             #titleField="ngModel"
+             required />
+      <div *ngIf="titleField.touched && !newRequirement.Title" class="text-danger">Title is required</div>
     </div>
-</div>
+  
+    <div class="form-group">
+      <label>Description*</label>
+      <textarea name="description" class="form-control"
+                [(ngModel)]="newRequirement.Description"
+                #descriptionField="ngModel"
+                required></textarea>
+      <div *ngIf="descriptionField.touched && !newRequirement.Description" class="text-danger">Description is required</div>
+    </div>
+  
+    <div class="form-group">
+      <label>Location*</label>
+      <input type="text" name="location" class="form-control"
+             [(ngModel)]="newRequirement.Location"
+             #locationField="ngModel"
+             required />
+      <div *ngIf="locationField.touched && !newRequirement.Location" class="text-danger">Location is required</div>
+    </div>
+  
+    <div class="form-group">
+      <label>Date*</label>
+      <input type="date" name="date" class="form-control"
+             [(ngModel)]="newRequirement.Date"
+             #dateField="ngModel"
+             required />
+      <div *ngIf="dateField.touched && !newRequirement.Date" class="text-danger">Date is required</div>
+    </div>
+  
+    <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+  
+    <button type="submit" class="btn btn-success mt-3">{{ isEditMode ? 'Update' : 'Submit' }}</button>
+  </form>
+  

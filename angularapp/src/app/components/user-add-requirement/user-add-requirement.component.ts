@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { EventRequirement } from 'src/app/models/event-requirement.model';
 import { EventRequirementService } from 'src/app/services/event-requirement.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { EventRequirement } from 'src/app/models/event-requirement.model';
 
 @Component({
   selector: 'app-user-add-requirement',
   templateUrl: './user-add-requirement.component.html',
-  styleUrls: ['./user-add-requirement.component.css'],
+  styleUrls: ['./user-add-requirement.component.css']
 })
 export class UserAddRequirementComponent implements OnInit {
   newRequirement: EventRequirement = {
@@ -16,23 +16,22 @@ export class UserAddRequirementComponent implements OnInit {
     Description: '',
     Location: '',
     Date: null,
-    PostedDate: null,
-    Status: '',
+    PostedDate: new Date(),
+    Status: 'Pending'
   };
 
   isEditMode = false;
   requirementId!: number;
-  showSuccessPopup = false;
-  errorMessage = '';
   temp_Requirements: EventRequirement[] = [];
+  errorMessage = '';
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private requirementService: EventRequirementService
-  ) {}
+  constructor(private route: ActivatedRoute, private router: Router, private requirementService: EventRequirementService) {}
 
   ngOnInit(): void {
+    this.requirementService.getAllEventRequirements().subscribe((data) => {
+      this.temp_Requirements = data;
+    });
+
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.requirementId = +id;
@@ -41,34 +40,31 @@ export class UserAddRequirementComponent implements OnInit {
         this.newRequirement = data;
       });
     }
-    this.requirementService.getAllEventRequirements().subscribe((data) => {
-      this.temp_Requirements = data;
-    });
   }
 
   onSubmit(form: NgForm): void {
     if (form.invalid) return;
 
-    if (this.isEditMode) {
-      this.requirementService.updateEventRequirement(this.requirementId, this.newRequirement).subscribe(() => {
-        this.showSuccessPopup = true;
-      });
-    } else {
-      if (!this.temp_Requirements.some((req) => req.Title === this.newRequirement.Title)) {
-        this.requirementService.addEventRequirement(this.newRequirement).subscribe({
-          next: () => {
-            this.showSuccessPopup = true;
-            form.resetForm();
-          },
-        });
-      } else {
-        this.errorMessage = 'A requirement with the same title already exists';
-      }
-    }
-  }
+    const exists = this.temp_Requirements.some(req => req.Title.toLowerCase() === this.newRequirement.Title.toLowerCase());
 
-  closePopup(): void {
-    this.showSuccessPopup = false;
-    this.router.navigate(['/']);
+    if (exists) {
+      this.errorMessage = 'Requirement already exists!';
+      return;
+    }
+
+    const request = this.isEditMode
+      ? this.requirementService.updateEventRequirement(this.requirementId, this.newRequirement)
+      : this.requirementService.addEventRequirement(this.newRequirement);
+
+    request.subscribe({
+      next: () => {
+        alert(this.isEditMode ? 'Requirement Updated Successfully!' : 'Requirement Added Successfully!');
+        form.resetForm();
+        this.router.navigate(['/']); 
+      },
+      error: () => {
+        this.errorMessage = 'An error occurred while submitting the requirement.';
+      }
+    });
   }
 }

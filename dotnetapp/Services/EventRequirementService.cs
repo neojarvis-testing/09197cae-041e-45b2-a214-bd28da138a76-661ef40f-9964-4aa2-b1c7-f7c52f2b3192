@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using dotnetapp.Models;
 using dotnetapp.Data;
+using dotnetapp.Exceptions;
 
 namespace dotnetapp.Services
 {
@@ -35,6 +36,14 @@ namespace dotnetapp.Services
             {
                 return false;
             }
+
+            var requirement = await _context.EventRequirements.Where(r => r.Title == eventRequirement.Title).FirstOrDefaultAsync();
+            if(requirement != null)
+            {
+                throw new RequirementException("A requirement with the title already exists");
+                return false;
+            }
+
             await _context.EventRequirements.AddAsync(eventRequirement);
             await _context.SaveChangesAsync();
             return true;
