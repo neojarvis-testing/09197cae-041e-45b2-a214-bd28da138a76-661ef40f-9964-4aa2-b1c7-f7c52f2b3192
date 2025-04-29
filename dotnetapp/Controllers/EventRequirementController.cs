@@ -23,7 +23,7 @@ namespace dotnetapp.Controllers
             try
             {
                 //fetching all the event requirements
-                var eventRequirements = await _eventRequirementService.GetAllEventRequirementsAsync();
+                var eventRequirements = await _eventRequirementService.GetAllEventRequirements();
                 return Ok(new {message = "Successfully fetched all the event requirements.", data = eventRequirements});
             }
             catch (Exception ex)
@@ -39,10 +39,10 @@ namespace dotnetapp.Controllers
             try
             {
                 //fetches the specific event requirement
-                var eventRequirement = await _eventRequirementService.GetEventRequirementByIdAsync(eventRequirementId);
+                var eventRequirement = await _eventRequirementService.GetEventRequirementById(eventRequirementId);
                 if (eventRequirement == null)
                 {
-                    return NotFound(new {message="Event Requirement not found"});
+                    return NotFound(new {message = "Event Requirement not found"});
                 }
                 return Ok(new {message = "Successfully fetched the event requirement.", data = eventRequirement});
             }
@@ -65,7 +65,7 @@ namespace dotnetapp.Controllers
                 }
 
                 //adding the input into the database
-                var result = await _eventRequirementService.AddEventRequirementAsync(eventRequirement);
+                var result = await _eventRequirementService.AddEventRequirement(eventRequirement);
                 if (result)
                 {                    
                     return Ok(new {message = "Successfully added."});
@@ -90,7 +90,7 @@ namespace dotnetapp.Controllers
                     return BadRequest( new {message = "Got invalid event requirement argument"});
                 }
 
-                var result = await _eventRequirementService.UpdateEventRequirementAsync(eventRequirementId, eventRequirement);
+                var result = await _eventRequirementService.UpdateEventRequirement(eventRequirementId, eventRequirement);
                 if (result)
                 {
                     return Ok(new {message = "Event Requirement updated successfully"});
@@ -109,12 +109,12 @@ namespace dotnetapp.Controllers
             try
             {
                 //deletes the event requirement
-                var result = await _eventRequirementService.DeleteEventRequirementAsync(eventRequirementId);
+                var result = await _eventRequirementService.DeleteEventRequirement(eventRequirementId);
                 if (result)
                 {
-                    return Ok(new {message="Event Requirement deleted successfully"});
+                    return Ok(new {message = "Event Requirement deleted successfully"});
                 }
-                return NotFound(new {message="Event Requirement not found"});
+                return NotFound(new {message = "Event Requirement not found"});
             }
             catch (Exception ex)
             {
