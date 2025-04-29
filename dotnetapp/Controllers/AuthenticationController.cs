@@ -115,7 +115,8 @@ namespace dotnetapp.Controllers
             if (status == 409)
                 return Conflict(message);
 
-            return Created("api/auth/register", message);
+            // return Created("api/auth/register", message);
+            return Ok(message);
         }
     }
 }
