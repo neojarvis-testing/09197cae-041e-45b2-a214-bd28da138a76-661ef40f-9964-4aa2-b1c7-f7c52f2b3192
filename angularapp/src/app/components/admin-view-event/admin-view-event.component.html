@@ -1,30 +1,40 @@
-<div>
-    <h2>Events</h2>
-    <input [(ngModel)]="searchTitle" placeholder="Search by Title" />
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Location</th>
-          <th>Date</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let event of filteredEvents()">
-          <td>{{ event.title }}</td>
-          <td>{{ event.description }}</td>
-          <td>{{ event.location }}</td>
-          <td>{{ event.date | date }}</td>
-          <td>{{ event.status }}</td>
-          <td>
-            <button (click)="editEvent(event)">Edit</button>
-            <button (click)="deleteEvent(event.eventId)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div class="events-container">
+  <h2>Events</h2>
+ 
+  <div class="search-bar">
+    <input type="text" placeholder="Search..." [(ngModel)]="searchTitle" />
   </div>
-  
+ 
+  <table>
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Date</th>
+        <th>Organizer</th>
+        <th>Contact Info</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of events;let i=index">
+        <td>{{i + 1}}</td>
+        <td>{{event.Title}}</td>
+        <td>{{event.Description}}</td>
+        <td>{{event.Location}}</td>
+        <td>{{event.Date}}</td>
+        <td>{{event.Organizer}}</td>
+        <td>{{event.ContactInfo}}</td>
+        <td>{{event.Status}}</td>
+        <td class="actions">
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+          <button class="close-btn">Mark as Closed</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

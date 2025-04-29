@@ -82,7 +82,7 @@ using dotnetapp.Models;
 namespace dotnetapp.Controllers
 {
     [ApiController]
-    [Route("api/auth")]
+    [Route("api")]
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthService _authService;
@@ -115,7 +115,8 @@ namespace dotnetapp.Controllers
             if (status == 409)
                 return Conflict(message);
 
-            return Created("api/auth/register", message);
+            // return Created("api/auth/register", message);
+            return Ok(message);
         }
     }
 }
