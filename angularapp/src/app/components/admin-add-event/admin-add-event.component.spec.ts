@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AdminAddEventComponent } from './admin-add-event.component';
 
@@ -8,6 +11,7 @@ describe('AdminAddEventComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, RouterTestingModule, HttpClientTestingModule, FormsModule],
       declarations: [ AdminAddEventComponent ]
     })
     .compileComponents();
@@ -19,7 +23,9 @@ describe('AdminAddEventComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+
+  fit('Frontend_should_create_admin_add_event_component', () => {
     expect(component).toBeTruthy();
   });
+
 });

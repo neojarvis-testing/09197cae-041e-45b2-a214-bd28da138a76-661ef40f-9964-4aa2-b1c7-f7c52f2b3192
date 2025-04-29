@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AdminNavbarComponent } from './admin-navbar.component';
 
@@ -8,6 +11,7 @@ describe('AdminNavbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, RouterTestingModule, HttpClientTestingModule, FormsModule],
       declarations: [ AdminNavbarComponent ]
     })
     .compileComponents();
@@ -19,7 +23,7 @@ describe('AdminNavbarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  fit('Frontend_should_create_admin_navbar_component', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,20 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EventService } from './event.service';
-
+import { FeedbackService } from './feedback.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('EventService', () => {
-  let service: EventService;
+describe('FeedbackService', () => {
+  let service: FeedbackService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
     });
-    service = TestBed.inject(EventService);
+    service = TestBed.inject(FeedbackService);
   });
 
-  it('Frontend_should_create_event_service', () => {
+  fit('Frontend_should_create_feedback_service', () => {
     expect(service).toBeTruthy();
   });
 });

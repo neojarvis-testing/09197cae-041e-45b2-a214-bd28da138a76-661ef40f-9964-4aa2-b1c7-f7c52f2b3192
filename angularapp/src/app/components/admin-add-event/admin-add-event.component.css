@@ -1,0 +1,13 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px;
+  }
+  
