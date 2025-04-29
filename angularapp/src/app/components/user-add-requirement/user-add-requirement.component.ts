@@ -28,8 +28,8 @@ export class UserAddRequirementComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private requirementService: EventRequirementService) {}
 
   ngOnInit(): void {
-    this.requirementService.getAllEventRequirements().subscribe((data) => {
-      this.temp_Requirements = data["data"];
+    this.requirementService.getAllEventRequirements().subscribe((response) => {
+      this.temp_Requirements = response["data"];
     });
 
     const id = this.route.snapshot.paramMap.get('id');
