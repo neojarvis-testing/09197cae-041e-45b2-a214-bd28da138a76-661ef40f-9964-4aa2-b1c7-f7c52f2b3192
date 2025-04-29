@@ -33,7 +33,7 @@ namespace dotnetapp.Services
             _db.Users.Add(model);
             await _db.SaveChangesAsync();
 
-            return (201, "Registration successful.");
+            return (200, "Registration successful.");
         }
 
         public async Task<(int, string)> Login(LoginModel model)
