@@ -7,29 +7,43 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-user-add-requirement',
   templateUrl: './user-add-requirement.component.html',
-  styleUrls: ['./user-add-requirement.component.css']
+  styleUrls: ['./user-add-requirement.component.css'],
 })
 export class UserAddRequirementComponent implements OnInit {
   newRequirement: EventRequirement = {
+    EventRequirementId: 0,
     Title: '',
     Description: '',
     Location: '',
-    Date: ''
-  }
+    Date: null,
+    PostedDate: null,
+    Status: '',
+  };
+
   isEditMode = false;
-  requirementId: number;
+  requirementId!: number;
   showSuccessPopup = false;
   errorMessage = '';
+  temp_Requirements: EventRequirement[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router, private requirementService: EventRequirementService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private requirementService: EventRequirementService
+  ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.requirementId = +id;
       this.isEditMode = true;
-      this.requirementService.getEventRequirementById(+id).subscribe(data => { this.newRequirement = data });
+      this.requirementService.getEventRequirementById(this.requirementId).subscribe((data) => {
+        this.newRequirement = data;
+      });
     }
+    this.requirementService.getAllEventRequirements().subscribe((data) => {
+      this.temp_Requirements = data;
+    });
   }
 
   onSubmit(form: NgForm): void {
@@ -39,19 +53,17 @@ export class UserAddRequirementComponent implements OnInit {
       this.requirementService.updateEventRequirement(this.requirementId, this.newRequirement).subscribe(() => {
         this.showSuccessPopup = true;
       });
-    } 
-    else {
-      this.requirementService.addEventRequirement(this.newRequirement).subscribe({
-        next: () => {
-          this.showSuccessPopup = true;
-          form.resetForm();
-        },
-        error: err => {
-          if (err.status === 400) {
-            this.errorMessage = err.error.message; // handle duplicate title error
-          }
-        }
-      });
+    } else {
+      if (!this.temp_Requirements.some((req) => req.Title === this.newRequirement.Title)) {
+        this.requirementService.addEventRequirement(this.newRequirement).subscribe({
+          next: () => {
+            this.showSuccessPopup = true;
+            form.resetForm();
+          },
+        });
+      } else {
+        this.errorMessage = 'A requirement with the same title already exists';
+      }
     }
   }
 
@@ -60,9 +72,3 @@ export class UserAddRequirementComponent implements OnInit {
     this.router.navigate(['/']);
   }
 }
-
-
-
-
-
-

@@ -25,7 +25,9 @@ export class AdminViewRequirementComponent implements OnInit {
 
   searchByName()
   {
-    this.filteredEventRequirements = this.eventRequirements.filter( a => a.Title.toLowerCase().includes(this.searchTerm.toLowerCase));
+    this.filteredEventRequirements = this.eventRequirements.filter(a => 
+      a.Title.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );    
   }
 
   approveButton()

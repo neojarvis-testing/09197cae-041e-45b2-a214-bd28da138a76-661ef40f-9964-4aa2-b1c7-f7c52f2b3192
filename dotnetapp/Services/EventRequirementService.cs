@@ -7,29 +7,29 @@ using dotnetapp.Data;
 
 namespace dotnetapp.Services
 {
-    public class EventRequirementService: 
+    public class EventRequirementService 
     {
         private readonly ApplicationDbContext _context;
 
-        public EventRequirementService(ApplicationDbContext context, ILogger<EventRequirementService> logger)
+        public EventRequirementService(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // Get all event requirements
-        public async Task<IEnumerable<EventRequirement>> GetAllEventRequirementsAsync()
+        public async Task<IEnumerable<EventRequirement>> GetAllEventRequirements()
         {
             return await _context.EventRequirements.ToListAsync();
         }
 
         // Get event requirement by ID
-        public async Task<EventRequirement> GetEventRequirementByIdAsync(int eventRequirementId)
+        public async Task<EventRequirement> GetEventRequirementById(int eventRequirementId)
         {
             return await _context.EventRequirements.FindAsync(eventRequirementId);
         }
 
         // Add new event requirement
-        public async Task<bool> AddEventRequirementAsync(EventRequirement eventRequirement)
+        public async Task<bool> AddEventRequirement(EventRequirement eventRequirement)
         {
             if (eventRequirement == null)
             {
@@ -41,7 +41,7 @@ namespace dotnetapp.Services
         }
 
         // Update existing event requirement
-        public async Task<bool> UpdateEventRequirementAsync(int eventRequirementId, EventRequirement updatedRequirement)
+        public async Task<bool> UpdateEventRequirement(int eventRequirementId, EventRequirement updatedRequirement)
         {
             var existingRequirement = await _context.EventRequirements.FindAsync(eventRequirementId);
             if (existingRequirement == null)
@@ -61,7 +61,7 @@ namespace dotnetapp.Services
         }
 
         // Delete event requirement by ID
-        public async Task<bool> DeleteEventRequirementAsync(int eventRequirementId)
+        public async Task<bool> DeleteEventRequirement(int eventRequirementId)
         {
             var existingRequirement = await _context.EventRequirements.FindAsync(eventRequirementId);
             if (existingRequirement == null)
