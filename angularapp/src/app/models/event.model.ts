@@ -1,6 +1,5 @@
-export interface Event 
-{
-    EventId?: number;
+export interface Event {
+    EventId?: number; // Optional property
     Title: string;
     Description: string;
     Location: string;

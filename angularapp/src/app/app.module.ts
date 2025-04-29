@@ -19,7 +19,9 @@ import { UserNavbarComponent } from './components/user-navbar/user-navbar.compon
 import { UserViewEventComponent } from './components/user-view-event/user-view-event.component';
 import { UserViewFeedbackComponent } from './components/user-view-feedback/user-view-feedback.component';
 import { UserViewRequirementComponent } from './components/user-view-requirement/user-view-requirement.component';
-
+import {HttpClientModule} from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,10 +41,15 @@ import { UserViewRequirementComponent } from './components/user-view-requirement
     UserViewEventComponent,
     UserViewFeedbackComponent,
     UserViewRequirementComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
