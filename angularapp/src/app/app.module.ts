@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AdminAddEventComponent } from './components/admin-navbar/admin-add-event/admin-add-event.component';
+import { AdminAddEventComponent } from './components/admin-add-event/admin-add-event.component';
 import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.component';
 import { AdminViewEventComponent } from './components/admin-view-event/admin-view-event.component';
 import { AdminViewFeedbackComponent } from './components/admin-view-feedback/admin-view-feedback.component';
