@@ -8,7 +8,7 @@ import { Event } from 'src/app/models/event.model';
   styleUrls: ['./admin-add-event.component.css'],
 })
 export class AdminAddEventComponent {
-   event : Event = {
+   event : any = {
     EventId: 0,
     Title: '',
     Description: '',
@@ -17,8 +17,9 @@ export class AdminAddEventComponent {
     OrganizerName: '',
     ContactInfo: '',
     PostedDate: new Date(),
-    Status: 'Active',
+    Status: '',
   };
+  name: ''
   
 
   constructor(private eventService: EventService) {}

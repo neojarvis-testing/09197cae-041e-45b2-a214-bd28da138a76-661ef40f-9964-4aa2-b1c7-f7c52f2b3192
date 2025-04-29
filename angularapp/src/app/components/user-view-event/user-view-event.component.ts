@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';  // assuming you have a service
+import { Event } from 'src/app/models/event.model';
  
 @Component({
   selector: 'app-user-view-event',
