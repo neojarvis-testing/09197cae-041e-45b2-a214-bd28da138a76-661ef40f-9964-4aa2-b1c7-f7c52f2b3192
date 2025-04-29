@@ -5,7 +5,7 @@ export interface Event
     Description: string;
     Location: string;
     Date: Date;
-    OrganizerName: string;
+    OrganizerName: string;  
     ContactInfo: string;
     PostedDate: Date;
     Status: string;
