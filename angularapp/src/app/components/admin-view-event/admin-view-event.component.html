@@ -1,1 +1,30 @@
-<p>admin-view-event works!</p>
+<div>
+    <h2>Events</h2>
+    <input [(ngModel)]="searchTitle" placeholder="Search by Title" />
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Location</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of filteredEvents()">
+          <td>{{ event.title }}</td>
+          <td>{{ event.description }}</td>
+          <td>{{ event.location }}</td>
+          <td>{{ event.date | date }}</td>
+          <td>{{ event.status }}</td>
+          <td>
+            <button (click)="editEvent(event)">Edit</button>
+            <button (click)="deleteEvent(event.eventId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

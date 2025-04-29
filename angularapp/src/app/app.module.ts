@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AdminAddEventComponent } from './components/admin-navbar/admin-add-event/admin-add-event.component';
+import { AdminAddEventComponent } from './components/admin-add-event/admin-add-event.component';
 import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.component';
 import { AdminViewEventComponent } from './components/admin-view-event/admin-view-event.component';
 import { AdminViewFeedbackComponent } from './components/admin-view-feedback/admin-view-feedback.component';
@@ -19,9 +19,9 @@ import { UserNavbarComponent } from './components/user-navbar/user-navbar.compon
 import { UserViewEventComponent } from './components/user-view-event/user-view-event.component';
 import { UserViewFeedbackComponent } from './components/user-view-feedback/user-view-feedback.component';
 import { UserViewRequirementComponent } from './components/user-view-requirement/user-view-requirement.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
+import {HttpClientModule} from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,12 +41,15 @@ import { FormsModule } from '@angular/forms';
     UserViewEventComponent,
     UserViewFeedbackComponent,
     UserViewRequirementComponent
+
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
