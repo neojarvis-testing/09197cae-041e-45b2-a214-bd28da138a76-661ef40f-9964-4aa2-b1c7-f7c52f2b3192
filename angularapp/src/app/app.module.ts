@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AdminAddEventComponent } from './components/admin-add-event/admin-add-event.component';
 import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.component';
 import { AdminViewEventComponent } from './components/admin-view-event/admin-view-event.component';
 import { AdminViewFeedbackComponent } from './components/admin-view-feedback/admin-view-feedback.component';
@@ -21,9 +22,6 @@ import { UserViewRequirementComponent } from './components/user-view-requirement
 import {HttpClientModule} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AdminAddEventComponent } from './components/admin-add-event/admin-add-event.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +41,7 @@ import { AdminAddEventComponent } from './components/admin-add-event/admin-add-e
     UserViewEventComponent,
     UserViewFeedbackComponent,
     UserViewRequirementComponent
+
   ],
   imports: [
     BrowserModule,

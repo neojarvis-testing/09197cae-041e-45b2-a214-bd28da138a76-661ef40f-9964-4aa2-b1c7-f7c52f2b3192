@@ -34,4 +34,9 @@ export class AdminAddEventComponent {
       error: (err) => alert(err.message),
     });
   }
+=======
+  styleUrls: ['./admin-add-event.component.css']
+})
+export class AdminAddEventComponent {
+  
 }

@@ -11,7 +11,6 @@ describe('AdminAddEventComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, RouterTestingModule, HttpClientTestingModule, FormsModule],
       declarations: [ AdminAddEventComponent ]
     })
     .compileComponents();
@@ -28,4 +27,7 @@ describe('AdminAddEventComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
