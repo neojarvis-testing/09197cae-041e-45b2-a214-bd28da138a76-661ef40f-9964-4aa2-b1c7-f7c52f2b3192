@@ -1,37 +1,91 @@
-<div class="form-container">
-  <h2>Add New Event</h2>
-  <form (ngSubmit)="onSubmit()"  #eventForm="ngForm">
-      <div>
-          <label>Title:</label>
-          <input type="text" name="title" [(ngModel)]="event.Title" #title="ngModel" required />
-          <div class="error-message" *ngIf="title.touched && title.invalid">Title is Required</div>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="form-group">
+      <label>Title*</label>
+      <input 
+        type="text" 
+        name="title" 
+        class="form-control"
+        [(ngModel)]="newEvent.Title" 
+        #titleField="ngModel"
+        required />
+      <div *ngIf="titleField.touched && !newEvent.Title" class="text-danger">
+        Title is required
       </div>
-      <div>
-          <label>Description:</label>
-          <input type="text" name="description" [(ngModel)]="event.Description" #desc="ngModel"   required />
-          <div class="error-message" *ngIf="desc.touched && desc.invalid">Description is Required</div>
+    </div>
+  
+    <div class="form-group">
+      <label>Description*</label>
+      <textarea 
+        name="description" 
+        class="form-control"
+        [(ngModel)]="newEvent.Description"
+        #descriptionField="ngModel"
+        required></textarea>
+      <div *ngIf="descriptionField.touched && !newEvent.Description" class="text-danger">
+        Description is required
       </div>
-      <div>
-          <label>Location:</label>
-          <input type="text" name="location" [(ngModel)]="event.Location" #loc="ngModel" required />
-          <div class="error-message" *ngIf="loc.touched && loc.invalid">Location is Required</div>
+    </div>
+  
+    <div class="form-group">
+      <label>Location*</label>
+      <input 
+        type="text" 
+        name="location" 
+        class="form-control"
+        [(ngModel)]="newEvent.Location" 
+        #locationField="ngModel"
+        required />
+      <div *ngIf="locationField.touched && !newEvent.Location" class="text-danger">
+        Location is required
       </div>
-      <div>
-          <label>Date:</label>
-          <input type="date" name="date" [(ngModel)]="event.Date" #da="ngModel" required />
-          <div class="error-message" *ngIf="da.touched && da.invalid">Date is Required</div>
+    </div>
+  
+    <div class="form-group">
+      <label>Date*</label>
+      <input 
+        type="date" 
+        name="date" 
+        class="form-control"
+        [(ngModel)]="newEvent.Date" 
+        #dateField="ngModel"
+        required />
+      <div *ngIf="dateField.touched && !newEvent.Date" class="text-danger">
+        Date is required
       </div>
-      <div>
-          <label>Organizer Name:</label>
-          <input type="text" name="organizerName" [(ngModel)]="event.OrganizerName" #Onam="ngModel" required />
-          <div class="error-message" *ngIf="Onam.touched && Onam.invalid">Organizer Name is Required</div>
+    </div>
+  
+    <div class="form-group">
+      <label>Organizer Name*</label>
+      <input 
+        type="text" 
+        name="organizerName" 
+        class="form-control"
+        [(ngModel)]="newEvent.OrganizerName" 
+        #OName="ngModel"
+        required />
+      <div *ngIf="OName.touched && !newEvent.OrganizerName" class="text-danger">
+        Organizer Name is required
       </div>
-      <div>
-          <label>Contact Info:</label>
-          <input type="text" name="contactInfo" [(ngModel)]="event.ContactInfo" #cinfo="ngModel" required />
-          <div class="error-message" *ngIf="cinfo.touched && cinfo.invalid">Contact Info is Required</div>
+    </div>
+  
+    <div class="form-group">
+      <label>Contact Info*</label>
+      <input 
+        type="text" 
+        name="contactInfo" 
+        class="form-control"
+        [(ngModel)]="newEvent.ContactInfo" 
+        #cinfo="ngModel"
+        required />
+      <div *ngIf="cinfo.touched && !newEvent.ContactInfo" class="text-danger">
+        Contact Info is required
       </div>
-      <button type="submit" class="green-button">Submit</button>
-     
+    </div>
+  
+    <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+  
+    <button type="submit" class="btn btn-success mt-3">
+      {{ isEditMode ? 'Update' : 'Submit' }}
+    </button>
   </form>
-</div>
+  
