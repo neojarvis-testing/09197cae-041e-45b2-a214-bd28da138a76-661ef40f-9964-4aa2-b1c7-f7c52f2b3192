@@ -1,8 +1,6 @@
-// registration.component.ts
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user.model';
 
 @Component({
@@ -10,61 +8,35 @@ import { User } from 'src/app/models/user.model';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
-  registrationForm: FormGroup;
-  submitted = false;
+export class RegistrationComponent {
+  user: User = {
+    UserId: 0,
+    Username: '',
+    Email: '',
+    MobileNumber: '',
+    Password: '',
+    UserRole: ''
+  };
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-    this.registrationForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      Number: ['', Validators.required],
-      password: ['', Validators.required],
-      userRole: ['', Validators.required]
-    });
-  }
-
-  get f() {
-    return this.registrationForm.controls;
-  }
-
-  onSubmit(form: NgForm): void {
-    this.submitted = true;
-
-    console.log(form.value);
-
-    if (this.registrationForm.invalid) {
-      return;
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      console.log("User passed is: "+this.user.Email);
+      console.log("User passed is: "+this.user.Password);
+      console.log("User passed is: "+this.user.MobileNumber);
+      console.log("User passed is: "+this.user.UserRole);
+      console.log("User passed is: "+this.user.Username);
+      this.authService.register(this.user).subscribe(
+        response => {
+          console.log("the user is" + this.user);
+          alert('Registration successful!');
+          form.reset();
+        },
+        error => {
+          alert('Registration failed. User already exists.');
+        }
+      );
     }
-
-
-    const u: User = {
-      UserId: 0,
-      Email: form.value.email,
-      Password: form.value.password,
-      Username: form.value.username,
-      MobileNumber: form.value.mobilenumber,
-      UserRole: form.value.userrole
-    }
-
-
-    // this.authService.register(this.registrationForm.value).subscribe(
-
-    this.authService.register(u).subscribe(
-      data => {
-        console.log('Registration successful', data);
-        this.router.navigate(['/login']);
-      },
-      error => {
-        console.error('Registration error', error);
-      }
-    );
   }
-  
 }

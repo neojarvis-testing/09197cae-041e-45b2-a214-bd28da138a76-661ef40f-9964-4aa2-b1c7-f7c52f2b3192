@@ -106,8 +106,9 @@ namespace dotnetapp.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(User model, string role)
+        public async Task<IActionResult> Register(User model)
         {
+            string role = model.UserRole;
             var (status, message) = await _authService.Registration(model, role);
 
             if (status == 400)

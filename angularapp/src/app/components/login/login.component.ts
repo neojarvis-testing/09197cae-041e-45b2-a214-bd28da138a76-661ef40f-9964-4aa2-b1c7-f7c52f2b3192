@@ -1,52 +1,31 @@
-// login.component.ts
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  submitted = false;
+export class LoginComponent {
+  login = {
+    email: '',
+    password: ''
+  };
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    });
-  }
-
-  get f() {
-    return this.loginForm.controls;
-  }
-
-  onSubmit(): void {
-    
-    this.submitted = true;
-
-    if (this.loginForm.invalid) {
-      return;
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      this.authService.login(this.login).subscribe(
+        response => {
+          alert('Login successful!');
+          form.reset();
+        },
+        error => {
+          alert('Invalid email or password.');
+        }
+      );
     }
-
-    this.authService.login(this.loginForm.value).subscribe(
-      data => {
-        console.log('Login successful', data);
-        this.router.navigate(['/dashboard']);
-      },
-      error=> {
-        console.error('Login error', error);
-      }
-    );
   }
 }
