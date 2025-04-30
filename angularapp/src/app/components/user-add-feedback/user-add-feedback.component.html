@@ -1,0 +1,31 @@
+<app-user-navbar></app-user-navbar>
+
+<div class="feedback-page-container">
+    <div class="feedback-container">
+        <h1>Add Feedback</h1>
+        <form #feedbackForm="ngForm">
+            <!-- Feedback Input -->
+            <div class="form-group">
+                <label for="feedback">Feedback <span class="required">*</span>:</label>
+                <textarea placeholder="Every feedback counts" id="feedback" name="feedback" rows="10" [(ngModel)]="feedbackText" #feedbackField="ngModel" required></textarea>
+                
+                <!-- Validation Error Message (Add this here) -->
+                <div *ngIf="showValidationError" class="error">
+                    Please enter your feedback.
+                </div>
+            </div>
+        
+            <!-- Submit Button -->
+            <button type="button" (click)="onSubmit()">Submit</button>
+        </form>
+        
+    </div>
+</div>
+
+<!-- Popup for success message -->
+<div *ngIf="successMessage" class="popup">
+    <div class="popup-content">
+        <p>Successfully Added!</p>
+        <button (click)="closePopup()">OK</button>
+    </div>
+</div>

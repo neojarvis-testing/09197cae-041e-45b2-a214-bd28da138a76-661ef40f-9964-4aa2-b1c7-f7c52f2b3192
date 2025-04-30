@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-add-feedback',
@@ -8,6 +9,28 @@ import { Component, OnInit } from '@angular/core';
 export class UserAddFeedbackComponent implements OnInit {
 
   constructor() { }
+  feedbackText: string = '';
+  submitted: boolean = false;
+  successMessage: string = '';
+  showValidationError: boolean = false;
+ 
+  onSubmit(): void {
+    this.submitted = true;
+  
+    if (!this.feedbackText || !this.feedbackText.trim()) { 
+      this.showValidationError = true;
+      this.successMessage = 'Failed to add feedback!';
+    } else {
+      this.showValidationError = false;  // ✅ Reset error flag when valid feedback is submitted
+      this.successMessage = 'Successfully Added!';
+      this.feedbackText = ''; // ✅ Clears input field after submission
+      this.submitted = false;
+    }
+  }
+  
+  closePopup(): void {
+    this.successMessage = '';
+  }
 
   ngOnInit(): void {
   }
