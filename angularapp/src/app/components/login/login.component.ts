@@ -1,4 +1,3 @@
-import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
@@ -24,6 +23,11 @@ export class LoginComponent implements OnInit {
 
   }
 
+  login:Login = {
+    email: '',
+    password: ''
+  }
+
 
   onSubmit(form: NgForm): void {
 
@@ -32,8 +36,8 @@ export class LoginComponent implements OnInit {
     console.log(form.value);
 
     const newLogin: Login = {
-      Email: form.value.email,
-      Password: form.value.password
+      email: form.value.email,
+      password: form.value.password
 
     }
 
