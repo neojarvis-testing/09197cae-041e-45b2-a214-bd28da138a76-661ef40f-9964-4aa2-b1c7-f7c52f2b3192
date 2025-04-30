@@ -1,59 +1,45 @@
+// auth.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { Login } from '../models/login.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  // BehaviorSubjects to keep track of user details
-  private userRole = new BehaviorSubject<string | null>(null);
-  private userId = new BehaviorSubject<number | null>(null);
+  private apiUrl = 'https://ide-bafecbaccefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080';
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
 
-  // Method to register a new user
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
+
   register(user: User): Observable<any> {
-    return this.http.post('/api/register', user);
+    return this.http.post<any>(`${this.apiUrl}/api/register`, user);
   }
 
-  // Method for user login
   login(login: Login): Observable<any> {
-    return new Observable((observer) => {
-      this.http.post('/api/login', login).subscribe({
-        next: (response: any) => {
-          // Store the JWT token in localStorage
-          localStorage.setItem('token', response.token);
-
-          // Update BehaviorSubjects with user role and ID
-          this.userRole.next(response.role);
-          this.userId.next(response.userId);
-
-          observer.next(response);
-        },
-        error: (err) => {
-          observer.error(err);
-        },
-      });
-    });
+    return this.http.post<any>(`${this.apiUrl}/api/login`, login)
+      .pipe(map(user => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+        return user;
+      }));
   }
 
-  // Getter for userRole BehaviorSubject
-  getUserRole(): Observable<string | null> {
-    return this.userRole.asObservable();
-  }
-
-  // Getter for userId BehaviorSubject
-  getUserId(): Observable<number | null> {
-    return this.userId.asObservable();
-  }
-
-  // Method to log out the user
   logout(): void {
-    localStorage.removeItem('token');
-    this.userRole.next(null);
-    this.userId.next(null);
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
   }
 }
