@@ -10,7 +10,7 @@ import { Login } from '../models/login.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://8080-bfddacbabacefdfceabfeefceffaabcfcfb.premiumproject.examly.io';
+  private apiUrl = 'https://ide-bafecbaccefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080';
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -30,6 +30,7 @@ export class AuthService {
   login(login: Login): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/api/login`, login)
       .pipe(map(user => {
+        console.log(user.role);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
