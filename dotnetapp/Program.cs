@@ -8,6 +8,7 @@ using dotnetapp.Models;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+var MyAllowSpecificOrigin="urls";
 
 // Add services to the container.
 
@@ -25,20 +26,29 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddCors(opttions=>{
+// builder.Services.AddCors(name:MyAllowSpecificOrigin, opttions=>{
 
-    opttions.AddDefaultPolicy(builder=>{
+//     opttions.AddDefaultPolicy(builder=>{
 
+//         builder.AllowAnyOrigin()
+
+//         .AllowAnyHeader()
+
+//         .AllowAnyMethod();
+
+//     });
+
+// });
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(MyAllowSpecificOrigin, builder =>
+    {
         builder.AllowAnyOrigin()
-
-        .AllowAnyHeader()
-
-        .AllowAnyMethod();
-
+               .AllowAnyHeader()
+               .AllowAnyMethod();
     });
-
 });
-
 
 
 // var key=Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);

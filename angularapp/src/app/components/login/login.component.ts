@@ -1,10 +1,11 @@
-// login.component.ts
+import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 
 import { Router } from '@angular/router';
 import { Login } from 'src/app/models/login.model';
+
 
 @Component({
   selector: 'app-login',
