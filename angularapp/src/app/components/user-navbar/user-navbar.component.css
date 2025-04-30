@@ -6,13 +6,13 @@
     color: white;
     padding: 10px 20px;
 }
-
+ 
 .navbar-brand {
     color: #fff;
     font-size: 15px;
     font-weight: bold;
 }
-
+ 
 .navbar-links a {
     margin-left: 15px;
     color: #fff;
@@ -32,8 +32,22 @@
 
 .navbar-links a:last-child:hover {
     background-color: #ffe5e5;
-}
 
+}
+ 
+.navbar-links a:last-child {
+    background-color: white;
+    color: red;
+ 
+    border:1px solid red ;
+}
+ 
+ 
+.navbar-links a:last-child:hover {
+    background-color: #ffe5e5;
+}
+ 
 .navbar-links a:hover {
     text-decoration: underline;
 }
+ 
