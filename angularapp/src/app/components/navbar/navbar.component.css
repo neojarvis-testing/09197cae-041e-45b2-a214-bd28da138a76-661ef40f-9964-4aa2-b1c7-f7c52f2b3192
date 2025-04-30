@@ -2,21 +2,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
-    padding: 10px;
+    background: linear-gradient(to right, #1e3c72, #2a9861);
+    color: white;
+    padding: 10px 20px;
 }
 
-.navbar-brand {
-    color: #fff;
+.logo {
+    margin: 0;
     font-size: 24px;
+    font-weight: bold;
 }
 
-.navbar-links a {
-    color: #fff;
+.nav-links a {
+    margin-left: 15px;
+    color: white;
     text-decoration: none;
-    margin: 0 10px;
+    font-weight: 500;
 }
 
-.navbar-links a:hover {
+.nav-links a:hover {
     text-decoration: underline;
 }
