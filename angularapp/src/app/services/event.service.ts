@@ -1,52 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Event } from '../models/event.model';// Assuming Event interface is defined in Event.ts
+import { Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Event } from '../models/event.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventService {
-  // Public property to store backend URL
-  public apiUrl = "https://8080-bfddacbabacefdfceabfeefceffaabcfcfb.premiumproject.examly.io"; // Replace '<your-workspace-port-8080-URL>' with your actual URL
+  public apiUrl: string = 'https://8080-bfddacbabacefdfceabfeefceffaabcfcfb.premiumproject.examly.io';
 
   constructor(private http: HttpClient) {}
 
-  // Helper method to get Authorization header
-  private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('authToken'); // Retrieve token from localStorage
-    return new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-  }
-
-  // Retrieve all events
   getAllEvents(): Observable<Event[]> {
-    const url = `${this.apiUrl}/events`;
-    return this.http.get<Event[]>(url, { headers: this.getHeaders() });
+    return this.http.get<Event[]>(`${this.apiUrl}/api/events`);
   }
 
-  // Retrieve an event by ID
   getEventById(eventId: number): Observable<Event> {
-    const url = `${this.apiUrl}/events/${eventId}`;
-    return this.http.get<Event>(url, { headers: this.getHeaders() });
+    return this.http.get<Event>(`${this.apiUrl}/api/events/${eventId}`);
   }
 
-  // Add a new event
   addEvent(event: Event): Observable<any> {
-    const url = `${this.apiUrl}/events`;
-    return this.http.post<any>(url, event, { headers: this.getHeaders() });
+    return this.http.post<any>(`${this.apiUrl}/api/events`, event);
   }
 
-  // Update an existing event
   updateEvent(eventId: number, event: Event): Observable<any> {
-    const url = `${this.apiUrl}/events/${eventId}`;
-    return this.http.put<any>(url, event, { headers: this.getHeaders() });
+    return this.http.put<any>(`${this.apiUrl}/api/events/${eventId}`, event);
   }
 
-  // Delete an event
   deleteEvent(eventId: number): Observable<any> {
-    const url = `${this.apiUrl}/events/${eventId}`;
-    return this.http.delete<any>(url, { headers: this.getHeaders() });
+    return this.http.delete<any>(`${this.apiUrl}/api/events/${eventId}`);
   }
 }

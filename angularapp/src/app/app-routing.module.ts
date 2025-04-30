@@ -8,6 +8,7 @@ import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.com
 import { UserNavbarComponent } from './components/user-navbar/user-navbar.component';
 import { ErrorComponent } from './components/error/error.component';
 const routes: Routes = [
+  {path:"",component:AdminViewEventComponent}
 ];
 
 @NgModule({
