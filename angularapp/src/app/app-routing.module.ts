@@ -9,10 +9,7 @@ import { UserNavbarComponent } from './components/user-navbar/user-navbar.compon
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-const routes: Routes = [
-  { path: "login", component: LoginComponent },
-  { path: "home", component: HomeComponent },
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

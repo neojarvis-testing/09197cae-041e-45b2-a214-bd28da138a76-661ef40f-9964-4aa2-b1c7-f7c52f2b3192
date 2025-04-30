@@ -49,7 +49,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    CommonModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
