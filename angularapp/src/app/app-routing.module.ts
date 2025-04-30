@@ -11,14 +11,13 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { LoginComponent } from './components/login/login.component';
 import { Feedback } from './models/feedback.model';
 import { UserViewFeedbackComponent } from './components/user-view-feedback/user-view-feedback.component';
-const routes: Routes = [
-  // {path:'',component:RegistrationComponent},
-  // {path:'',component:LoginComponent},
-     {path:"", component:UserViewFeedbackComponent}
-];
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

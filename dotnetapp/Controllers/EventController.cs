@@ -6,7 +6,7 @@ using dotnetapp.Services;
 
 namespace Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/events")]
     [ApiController]
     public class EventController : ControllerBase
     {

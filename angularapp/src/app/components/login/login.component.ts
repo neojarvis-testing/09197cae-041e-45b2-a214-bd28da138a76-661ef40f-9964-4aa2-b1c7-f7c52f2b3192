@@ -1,31 +1,50 @@
-import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+
+import { Router } from '@angular/router';
+import { Login } from 'src/app/models/login.model';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  login = {
-    email: '',
-    password: ''
-  };
+export class LoginComponent implements OnInit {
+  submitted = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      this.authService.login(this.login).subscribe(
-        response => {
-          alert('Login successful!');
-          form.reset();
-        },
-        error => {
-          alert('Invalid email or password.');
-        }
-      );
+  ngOnInit(): void {
+
+  }
+
+
+  onSubmit(form: NgForm): void {
+
+    this.submitted = true;
+
+    console.log(form.value);
+
+    const newLogin: Login = {
+      Email: form.value.email,
+      Password: form.value.password
+
     }
+
+    this.authService.login(newLogin).subscribe(
+      data => {
+        console.log('Login successful', data);
+        this.router.navigate(['/home']);
+      },
+      error => {
+        console.error('Login error', error);
+      }
+    );
   }
 }

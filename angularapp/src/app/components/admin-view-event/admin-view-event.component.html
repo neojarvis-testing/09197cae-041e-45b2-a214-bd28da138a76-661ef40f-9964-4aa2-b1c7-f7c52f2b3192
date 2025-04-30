@@ -22,16 +22,16 @@
     <tbody>
       <tr *ngFor="let event of events;let i=index">
         <td>{{i + 1}}</td>
-        <td>{{event.Title}}</td>
-        <td>{{event.Description}}</td>
-        <td>{{event.Location}}</td>
-        <td>{{event.Date}}</td>
-        <td>{{event.Organizer}}</td>
-        <td>{{event.ContactInfo}}</td>
-        <td>{{event.Status}}</td>
+        <td>{{event.title}}</td>
+        <td>{{event.description}}</td>
+        <td>{{event.location}}</td>
+        <td>{{event.date | date}}</td>
+        <td>{{event.organizerName}}</td>
+        <td>{{event.contactInfo}}</td>
+        <td>{{event.status}}</td>
         <td class="actions">
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
+          <button class="edit-btn" (click)="editEvent(event)">Edit</button>
+          <button class="delete-btn" (click)="deleteEvent(event.eventId)">Delete</button>
           <button class="close-btn">Mark as Closed</button>
         </td>
       </tr>

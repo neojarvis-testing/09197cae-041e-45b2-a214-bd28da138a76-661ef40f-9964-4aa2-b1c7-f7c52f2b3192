@@ -41,7 +41,7 @@ namespace dotnetapp.Services
             if(requirement != null)
             {
                 throw new RequirementException("A requirement with the title already exists");
-                return false;
+                // return false;
             }
 
             await _context.EventRequirements.AddAsync(eventRequirement);
