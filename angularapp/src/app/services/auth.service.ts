@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { Login } from '../models/login.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
