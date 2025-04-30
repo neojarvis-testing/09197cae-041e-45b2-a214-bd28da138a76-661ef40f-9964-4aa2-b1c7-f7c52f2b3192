@@ -1,6 +1,4 @@
-// registration.component.ts
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
@@ -10,59 +8,34 @@ import { User } from 'src/app/models/user.model';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
-  registrationForm: FormGroup;
+export class RegistrationComponent {
   submitted = false;
+  user: User = {
+    UserId: 0,
+    Email: '',
+    Password: '',
+    Username: '',
+    MobileNumber: '',
+    UserRole: ''
+  };
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.registrationForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      Number: ['', Validators.required],
-      password: ['', Validators.required],
-      userRole: ['', Validators.required]
-    });
-  }
-
-  get f() {
-    return this.registrationForm.controls;
-  }
-
-  onSubmit(form: NgForm): void {
+  calling(): void {
     this.submitted = true;
 
-    console.log(form.value);
-
-    if (this.registrationForm.invalid) {
+    if (!this.user.Email || !this.user.Password || !this.user.Username || !this.user.MobileNumber || !this.user.UserRole) {
+      alert('All fields are required.');
       return;
     }
 
-
-    const u: User = {
-      UserId: 0,
-      Email: form.value.email,
-      Password: form.value.password,
-      Username: form.value.username,
-      MobileNumber: form.value.mobilenumber,
-      UserRole: form.value.userrole
-    }
-
-
-    // this.authService.register(this.registrationForm.value).subscribe(
-
-    this.authService.register(u).subscribe(
+    this.authService.register(this.user, this.user.UserRole).subscribe(
       data => {
-        console.log('Registration successful', data);
+        alert('Registration successful');
         this.router.navigate(['/login']);
       },
       error => {
-        console.error('Registration error', error);
+        console.log('Registration error', error);
       }
     );
   }

@@ -106,17 +106,17 @@ namespace dotnetapp.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(User model, string role)
+        public async Task<IActionResult> Register([FromBody] User model, [FromQuery] string role)
         {
             var (status, message) = await _authService.Registration(model, role);
-
+        
             if (status == 400)
                 return BadRequest(message);
             if (status == 409)
                 return Conflict(message);
-
-            // return Created("api/auth/register", message);
+        
             return Ok(message);
         }
+        
     }
 }

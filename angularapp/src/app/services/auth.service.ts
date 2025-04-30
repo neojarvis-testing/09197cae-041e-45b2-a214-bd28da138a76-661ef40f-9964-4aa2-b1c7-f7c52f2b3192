@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { Login } from '../models/login.model';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +24,12 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  register(user: User): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/api/register`, user);
+  register(user: User, role: string): Observable<any> {
+    let params = new HttpParams().set("role", role);
+  
+    return this.http.post<any>(`${this.apiUrl}/api/register`, { params });
   }
+  
 
   login(login: Login): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/api/login`, login)
