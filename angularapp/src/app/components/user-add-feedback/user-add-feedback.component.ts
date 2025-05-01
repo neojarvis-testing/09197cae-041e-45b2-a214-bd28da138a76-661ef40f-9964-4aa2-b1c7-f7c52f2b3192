@@ -21,9 +21,9 @@ export class UserAddFeedbackComponent implements OnInit {
       this.showValidationError = true;
       this.successMessage = 'Failed to add feedback!';
     } else {
-      this.showValidationError = false;  // ✅ Reset error flag when valid feedback is submitted
+      this.showValidationError = false;  // Reset error flag when valid feedback is submitted
       this.successMessage = 'Successfully Added!';
-      this.feedbackText = ''; // ✅ Clears input field after submission
+      this.feedbackText = ''; // Clears input field after submission
       this.submitted = false;
     }
   }

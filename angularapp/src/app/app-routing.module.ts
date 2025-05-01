@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { RegistrationComponent } from './components/registration/registration.component'; 
+import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.component';
@@ -10,7 +10,11 @@ import { ErrorComponent } from './components/error/error.component';
 import { Feedback } from './models/feedback.model';
 import { UserViewFeedbackComponent } from './components/user-view-feedback/user-view-feedback.component';
 const routes: Routes = [
-  {path:"",component:LoginComponent}
+  { path: "login", component: LoginComponent },
+  { path: "home", component: HomeComponent },
+  { path: "error", component: ErrorComponent },
+  { path: "register", component: RegistrationComponent },
+  { path: "view-feedback", component: UserViewFeedbackComponent }
 ];
 
 @NgModule({
@@ -18,5 +22,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
- 
+export class AppRoutingModule { }
+
