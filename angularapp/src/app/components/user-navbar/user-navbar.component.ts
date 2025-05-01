@@ -8,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 export class UserNavbarComponent implements OnInit {
 
   constructor() { }
-  
 
   ngOnInit(): void {
+  }
+
+  isDropDown: boolean = false;
+
+  showDropdown() {
+    this.isDropDown = true;
+  }
+
+  hideDropdown() {
+    this.isDropDown = false;
   }
 
 }

@@ -9,9 +9,10 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'angularapp';
 
-  constructor(private service:AuthService){}
+  constructor(private service: AuthService) {
+    this.service.isAdmin() ? this.role = "Admin" : this.role = "User";
+  }
 
-  role:string='';
+  role: string = '';
 
-  
 }

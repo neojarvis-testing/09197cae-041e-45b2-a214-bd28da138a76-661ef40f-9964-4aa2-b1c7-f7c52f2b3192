@@ -9,12 +9,21 @@ import { UserNavbarComponent } from './components/user-navbar/user-navbar.compon
 import { ErrorComponent } from './components/error/error.component';
 import { Feedback } from './models/feedback.model';
 import { UserViewFeedbackComponent } from './components/user-view-feedback/user-view-feedback.component';
+import { AdminViewEventComponent } from './components/admin-view-event/admin-view-event.component';
+import { UserViewRequirementComponent } from './components/user-view-requirement/user-view-requirement.component';
+import { UserAddFeedbackComponent } from './components/user-add-feedback/user-add-feedback.component';
+import { AdminViewFeedbackComponent } from './components/admin-view-feedback/admin-view-feedback.component';
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "home", component: HomeComponent },
   { path: "error", component: ErrorComponent },
   { path: "register", component: RegistrationComponent },
-  { path: "view-feedback", component: UserViewFeedbackComponent }
+  { path: "view-feedback", component: UserViewFeedbackComponent },
+  { path: "add-feedback", component: UserAddFeedbackComponent },
+  { path: "events", component: AdminViewEventComponent },
+  { path: "error", component: ErrorComponent },
+  { path: "user-view-requirement", component: UserViewRequirementComponent },
+  {path:"admin-view-feedbacks",component:AdminViewFeedbackComponent}
 ];
 
 @NgModule({
