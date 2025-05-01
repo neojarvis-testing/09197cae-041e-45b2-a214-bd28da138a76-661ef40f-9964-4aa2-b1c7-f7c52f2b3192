@@ -13,17 +13,20 @@ export class UserAddFeedbackComponent implements OnInit {
   submitted: boolean = false;
   successMessage: string = '';
   showValidationError: boolean = false;
+  userId: 0;
  
-  onSubmit(): void {
+  onSubmit(): void 
+  {
     this.submitted = true;
   
     if (!this.feedbackText || !this.feedbackText.trim()) { 
       this.showValidationError = true;
       this.successMessage = 'Failed to add feedback!';
-    } else {
-      this.showValidationError = false;  // ✅ Reset error flag when valid feedback is submitted
+    } 
+    else {
+      this.showValidationError = false;  
       this.successMessage = 'Successfully Added!';
-      this.feedbackText = ''; // ✅ Clears input field after submission
+      this.feedbackText = ''; 
       this.submitted = false;
     }
   }
