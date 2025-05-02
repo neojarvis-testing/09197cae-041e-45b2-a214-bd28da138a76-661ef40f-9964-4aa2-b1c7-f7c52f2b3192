@@ -17,11 +17,11 @@ export class FeedbackService {
   }
 
   getAllFeedbackByUserId(userId: string): Observable<any> {
-    return this.http.get<Feedback>(this.apiUrl + "api/feedback/" + userId);
+    return this.http.get<any[]>(this.apiUrl + "api/feedback/user/" + userId);
   }
 
   deleteFeedback(feedbackId: string): Observable<any> {
-    return this.http.delete<void>(this.apiUrl + "api/feedback/" + feedbackId);
+    return this.http.delete<void>(this.apiUrl + "api/feedback/user/" + feedbackId);
   }
 
   getFeedbacks(): Observable<Feedback[]> {

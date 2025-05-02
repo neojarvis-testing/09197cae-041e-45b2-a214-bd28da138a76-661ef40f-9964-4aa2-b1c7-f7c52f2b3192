@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Feedback } from 'src/app/models/feedback.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { FeedbackService } from 'src/app/services/feedback.service';
 
 @Component({
   selector: 'app-user-add-feedback',
@@ -8,29 +11,42 @@ import { NgForm } from '@angular/forms';
 })
 export class UserAddFeedbackComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: FeedbackService, private authservice: AuthService) {
+    this.authservice.currentUser.subscribe(user => {
+      this.userId = user.UserId;
+    });
+  }
+
+  userId: number = 0;
+
   feedbackText: string = '';
   submitted: boolean = false;
   successMessage: string = '';
   showValidationError: boolean = false;
-  userId: 0;
- 
-  onSubmit(): void 
-  {
+
+  onSubmit(): void {
     this.submitted = true;
-  
-    if (!this.feedbackText || !this.feedbackText.trim()) { 
+
+    if (!this.feedbackText || !this.feedbackText.trim()) {
       this.showValidationError = true;
       this.successMessage = 'Failed to add feedback!';
-    } 
-    else {
-      this.showValidationError = false;  
+    } else {
+
+      const feedback: Feedback = {
+        UserId: this.userId,
+        FeedbackText: this.feedbackText,
+        Date: new Date()
+      }
+
+      this.service.sendFeedback(feedback).subscribe();
       this.successMessage = 'Successfully Added!';
-      this.feedbackText = ''; 
+
+      this.showValidationError = false;  // Reset error flag when valid feedback is submitted
+      this.feedbackText = ''; // Clears input field after submission
       this.submitted = false;
     }
   }
-  
+
   closePopup(): void {
     this.successMessage = '';
   }

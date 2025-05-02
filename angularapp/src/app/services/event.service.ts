@@ -7,7 +7,8 @@ import { Event } from '../models/event.model';
   providedIn: 'root',
 })
 export class EventService {
-  public apiUrl: string = 'https://8080-bfddacbabacefdfceabfeefceffaabcfcfb.premiumproject.examly.io';
+  public apiUrl: string = 'https://ide-bafecbaccefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080';
+
 
   constructor(private http: HttpClient) {}
 
@@ -20,7 +21,9 @@ export class EventService {
   }
 
   addEvent(event: Event): Observable<any> {
+
     return this.http.post<any>(`${this.apiUrl}/api/events`, event);
+
   }
 
   updateEvent(eventId: number, event: Event): Observable<any> {
@@ -29,5 +32,6 @@ export class EventService {
 
   deleteEvent(eventId: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/api/events/${eventId}`);
+
   }
 }
