@@ -16,6 +16,7 @@ import { AdminViewEventComponent } from './components/admin-view-event/admin-vie
 import { UserAddFeedbackComponent } from './components/user-add-feedback/user-add-feedback.component';
 import { AdminViewFeedbackComponent } from './components/admin-view-feedback/admin-view-feedback.component';
 import { AdminAddEventComponent } from './components/admin-add-event/admin-add-event.component';
+import { UserViewEventComponent } from './components/user-view-event/user-view-event.component';
 const routes: Routes = [
  
   { path: "login", component: LoginComponent },
@@ -31,6 +32,11 @@ const routes: Routes = [
   { path: "add-event", component: AdminAddEventComponent},
   { path: "view-event", component: AdminViewEventComponent},
   { path: "home", component: HomeComponent},
+  {path: "admin-view-feedbacks",component:AdminViewFeedbackComponent},
+  {path: "admin-add-event",component:AdminAddEventComponent},
+  {path: "admin-add-event/:id",component:AdminAddEventComponent},
+  {path: "admin-view-event",component:AdminViewEventComponent},
+  {path: "user-view-event",component:UserViewEventComponent}
 ];
 
 
