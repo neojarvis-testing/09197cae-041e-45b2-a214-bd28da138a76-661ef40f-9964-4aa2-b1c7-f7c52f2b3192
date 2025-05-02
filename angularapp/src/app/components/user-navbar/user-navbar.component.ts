@@ -16,23 +16,12 @@ export class UserNavbarComponent implements OnInit {
 
 
   showLogoutModal :boolean=false;
-  isDropDown: boolean = false;
-
+  
   logout(){
     this.showLogoutModal = true;
   }
 
-  showDropdown() {
-    this.isDropDown = true;
-  }
-
-  hideDropdown() {
-    this.isDropDown = false;
-  }
-
-
   confirmLogout(){}
-
-  cancelDelete(){}
+  cancelLogout(){}
 
 }

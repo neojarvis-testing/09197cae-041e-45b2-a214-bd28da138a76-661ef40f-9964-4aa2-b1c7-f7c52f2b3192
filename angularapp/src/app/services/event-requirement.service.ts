@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 })
 
 export class EventRequirementService {
-  private apiUrl: string = 'https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io'; 
+  private apiUrl: string = 'https://8080-bdbdfbfdadcfaefdfceabfeefceffaabcfcfb.premiumproject.examly.io'; 
 
   constructor(private http: HttpClient) {}
 
