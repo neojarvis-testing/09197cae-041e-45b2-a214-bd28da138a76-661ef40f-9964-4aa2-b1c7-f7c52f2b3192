@@ -14,7 +14,7 @@ export class EventRequirementService {
   constructor(private http: HttpClient) {}
 
   getAllEventRequirements(): Observable<EventRequirement[]> {
-    return this.http.get<EventRequirement[]>(`${this.apiUrl}/api/EventRequirements`);
+    return this.http.get<EventRequirement[]>(`${this.apiUrl}/api/EventRequirement`);
   }
 
   getEventRequirementById(eventRequirementId: number): Observable<EventRequirement> {

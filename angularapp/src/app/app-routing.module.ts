@@ -7,10 +7,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.component';
 import { UserNavbarComponent } from './components/user-navbar/user-navbar.component';
 import { ErrorComponent } from './components/error/error.component';
+import { AdminViewRequirementComponent } from './components/admin-view-requirement/admin-view-requirement.component';
+import { UserViewRequirementComponent } from './components/user-view-requirement/user-view-requirement.component';
+import { UserAddRequirementComponent } from './components/user-add-requirement/user-add-requirement.component';
 import { Feedback } from './models/feedback.model';
 import { UserViewFeedbackComponent } from './components/user-view-feedback/user-view-feedback.component';
 import { AdminViewEventComponent } from './components/admin-view-event/admin-view-event.component';
-import { UserViewRequirementComponent } from './components/user-view-requirement/user-view-requirement.component';
 import { UserAddFeedbackComponent } from './components/user-add-feedback/user-add-feedback.component';
 import { AdminViewFeedbackComponent } from './components/admin-view-feedback/admin-view-feedback.component';
 const routes: Routes = [

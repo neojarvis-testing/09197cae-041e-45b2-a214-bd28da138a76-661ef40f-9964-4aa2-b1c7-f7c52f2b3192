@@ -1,3 +1,16 @@
+<div class="events-container">
+    <h2>Requirements</h2>
+
+        <!-- Horizontal Line -->
+        <hr class="line">
+    
+
+   
+    <div class="search-bar">
+      <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" />
+    </div>
+   
+
 <table class="table table-striped table-bordered table-hover">
     <thead class="thead-dark">
         <tr>
@@ -16,19 +29,15 @@
             <td>{{eventRequirement.Title}}</td>
             <td>{{eventRequirement.Description}}</td>
             <td>{{eventRequirement.Location}}</td>
-            <td>{{eventRequirement.Date | date:'mediumDate'}}</td>
+            <td>{{eventRequirement.date | date:'mediumDate'}}</td>
             <td>
-                <span class="badge" [ngClass]="{
-    'bg-success': eventRequirement.Status === 'Approved',
-    'bg-danger': eventRequirement.Status === 'Rejected',
-    'bg-warning text-dark': eventRequirement.Status !== 'Approved' && eventRequirement.Status !== 'Rejected'
-    }">
+                <span>
                     {{eventRequirement.Status}}
                 </span>
             </td>
             <td>
-                <button type="button" class="btn btn-success btn-sm me-2" (click)="approveButton()">Approve</button>
-                <button type="button" class="btn btn-danger btn-sm" (click)="rejectButton()">Reject</button>
+                <button type="button" (click)="approveButton(eventRequirement)">Approve</button>
+                <button type="button" (click)="rejectButton(eventRequirement)">Reject</button>
             </td>
         </tr>
     </tbody>
