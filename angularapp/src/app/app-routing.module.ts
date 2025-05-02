@@ -11,7 +11,7 @@ import { AdminViewRequirementComponent } from './components/admin-view-requireme
 import { UserViewRequirementComponent } from './components/user-view-requirement/user-view-requirement.component';
 import { UserAddRequirementComponent } from './components/user-add-requirement/user-add-requirement.component';
 const routes: Routes = [
-  {path:"",component:UserAddRequirementComponent}
+  {path:"",component:AdminAddEventComponent}
 ];
 
 @NgModule({

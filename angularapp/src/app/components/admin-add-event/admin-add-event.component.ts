@@ -2,24 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { Event } from 'src/app/models/event.model'; // Replace with the correct path
+import { Event } from 'src/app/models/event.model'; 
 
 @Component({
   selector: 'app-admin-add-event',
   templateUrl: './admin-add-event.component.html',
   styleUrls: ['./admin-add-event.component.css']
 })
+
 export class AdminAddEventComponent implements OnInit {
   newEvent: Event = {
     EventId: 0, // Default ID for new event
     Title: '',
     Description: '',
     Location: '',
-    Date: new Date(),
+    Date: null,
     OrganizerName: '',
     ContactInfo: '',
     PostedDate: new Date(),
-    Status: ''
+    Status: 'Pending'
   };
 
   isEditMode = false; // Determines if it's edit or add mode
@@ -57,10 +58,11 @@ export class AdminAddEventComponent implements OnInit {
     if (form.invalid) return;
 
     // Check if the title already exists
-    const exists = this.tempEvents.some(
-      event => event.Title.toLowerCase() === this.newEvent.Title.toLowerCase()
+    const exists = this.tempEvents.some(e => 
+      (e.Title ?? '').toLowerCase() === (this.newEvent.Title ?? '').toLowerCase()
     );
-
+    console.log(this.tempEvents);
+    
     if (exists) {
       this.errorMessage = 'Event title already exists!';
       return;
@@ -74,7 +76,7 @@ export class AdminAddEventComponent implements OnInit {
     // Handle success or error response
     request.subscribe({
       next: () => {
-        alert(this.isEditMode ? 'Event Updated Successfully!' : 'Event Added Successfully!');
+        alert(this.isEditMode ? 'Event Updated Successfully!': 'Event Added Successfully!');
         form.resetForm(); // Reset form after success
         this.router.navigate(['/']); // Redirect to homepage or event list
       },

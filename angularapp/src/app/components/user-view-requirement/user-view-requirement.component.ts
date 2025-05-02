@@ -7,6 +7,7 @@ import { EventRequirementService } from 'src/app/services/event-requirement.serv
   templateUrl: './user-view-requirement.component.html',
   styleUrls: ['./user-view-requirement.component.css']
 })
+
 export class UserViewRequirementComponent implements OnInit {
 
   eventRequirements: EventRequirement[] = [];

@@ -8,7 +8,7 @@ import { Event } from '../models/event.model';// Assuming Event interface is def
 })
 export class EventService {
   // Public property to store backend URL
-  public apiUrl = "https://8080-bfddacbabacefdfceabfeefceffaabcfcfb.premiumproject.examly.io"; // Replace '<your-workspace-port-8080-URL>' with your actual URL
+  public apiUrl = "https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io"; // Replace '<your-workspace-port-8080-URL>' with your actual URL
 
   constructor(private http: HttpClient) {}
 
@@ -22,31 +22,31 @@ export class EventService {
 
   // Retrieve all events
   getAllEvents(): Observable<Event[]> {
-    const url = `${this.apiUrl}/events`;
+    const url = `${this.apiUrl}/api/Event`;
     return this.http.get<Event[]>(url, { headers: this.getHeaders() });
   }
 
   // Retrieve an event by ID
   getEventById(eventId: number): Observable<Event> {
-    const url = `${this.apiUrl}/events/${eventId}`;
+    const url = `${this.apiUrl}/api/Event/${eventId}`;
     return this.http.get<Event>(url, { headers: this.getHeaders() });
   }
 
   // Add a new event
   addEvent(event: Event): Observable<any> {
-    const url = `${this.apiUrl}/events`;
+    const url = `${this.apiUrl}/api/Event`;
     return this.http.post<any>(url, event, { headers: this.getHeaders() });
   }
 
   // Update an existing event
   updateEvent(eventId: number, event: Event): Observable<any> {
-    const url = `${this.apiUrl}/events/${eventId}`;
+    const url = `${this.apiUrl}/api/Event/${eventId}`;
     return this.http.put<any>(url, event, { headers: this.getHeaders() });
   }
 
   // Delete an event
   deleteEvent(eventId: number): Observable<any> {
-    const url = `${this.apiUrl}/events/${eventId}`;
+    const url = `${this.apiUrl}/api/Event/${eventId}`;
     return this.http.delete<any>(url, { headers: this.getHeaders() });
   }
 }
