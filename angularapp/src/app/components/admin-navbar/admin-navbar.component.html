@@ -1,17 +1,25 @@
 <nav class="navbar">
     <div class="navbar-brand">EVENTMASTER</div>
     <div class="navbar-links">
-        <a routerLink="/admin-profile">DemoAdmin / Admin</a>
-        <a routerLink="/home">Home</a>
+        <a routerLink="/admin-profile"> DemoAdmin/ Admin</a>
+        <a routerLink="/admin/home">Home</a>
         <div class="dropdown">
             <button class="dropbtn">Event</button>
             <div class="dropdown-content">
-              <a href="/add-event">Add Event</a>
-              <a href="/view-event">View Event</a>
+              <a href="/admin/add-event">Add Event</a>
+              <a href="/admin/view-event">View Event</a>
             </div>
           </div>
-        <a routerLink="/event-requirements">Event Requirements</a>
-        <a routerLink="/feedback">Feedback</a>
+        <a routerLink="/admin/event-requirements">Event Requirements</a>
+        <a routerLink="/admin/feedback">Feedback</a>
         <button (click)="logout()">Log Out</button>
     </div>
 </nav>
+
+<div *ngIf="showLogoutModal" class="modal">
+  <div class="modal-content">
+      <p>Are you sure you want to logout?</p>
+      <button (click)="confirmLogout()" class="btn logout-btn">Yes, Logout</button>
+      <button (click)="cancelLogout()" class="btn btn-secondary">Cancel</button>
+  </div>
+</div>

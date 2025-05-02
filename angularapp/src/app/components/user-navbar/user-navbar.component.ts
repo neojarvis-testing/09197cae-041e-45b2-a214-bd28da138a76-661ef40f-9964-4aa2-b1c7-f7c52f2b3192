@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserNavbarComponent implements OnInit {
 
-  constructor(private authservice:AuthService,private router:Router) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -21,7 +21,9 @@ export class UserNavbarComponent implements OnInit {
     this.showLogoutModal = true;
   }
 
-  confirmLogout(){}
+  confirmLogout(){
+    this.router.navigate([`/login`]);
+  }
   cancelLogout(){}
 
 }
