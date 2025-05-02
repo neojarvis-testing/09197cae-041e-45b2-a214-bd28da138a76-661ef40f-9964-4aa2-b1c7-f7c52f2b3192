@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,8 +9,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./admin-navbar.component.css']
 })
 export class AdminNavbarComponent implements OnInit {
+  public User_name: string = '';
 
-  constructor(private authservice:AuthService,private router:Router) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -17,7 +19,13 @@ export class AdminNavbarComponent implements OnInit {
   showLogoutModal :boolean=false;
   logout(){
     this.showLogoutModal = true;
+      this.router.navigate(['/login']);
+   }
+
+  confirmLogout(){
+    this.router.navigate([`/login`]);
   }
+  cancelLogout(){}
 }
 
 
