@@ -37,7 +37,7 @@ export class UserAddRequirementComponent implements OnInit {
       this.requirementId = +id;
       this.isEditMode = true;
       this.requirementService.getEventRequirementById(this.requirementId).subscribe((data) => {
-        this.newRequirement = data;
+        this.newRequirement = data["data"];
       });
     }
   }

@@ -28,6 +28,10 @@ const routes: Routes = [
   { path: "events", component: AdminViewEventComponent },
   { path: "error", component: ErrorComponent },
   { path: "user-view-requirement", component: UserViewRequirementComponent },
+  {path: "admin-view-feedbacks",component: AdminViewFeedbackComponent},
+  {path: "user-add-requirement", component: UserAddRequirementComponent},
+  {path: "user-add-requirement/:id", component: UserAddRequirementComponent},
+  {path: "admin-view-requirement", component: AdminViewRequirementComponent}
   { path: "admin-view-feedbacks",component:AdminViewFeedbackComponent},
   { path: "add-event", component: AdminAddEventComponent},
   { path: "view-event", component: AdminViewEventComponent},
