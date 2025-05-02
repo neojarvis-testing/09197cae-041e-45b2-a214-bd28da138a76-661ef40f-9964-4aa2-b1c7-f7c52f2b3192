@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Event } from '../models/event.model';
 
@@ -7,8 +7,7 @@ import { Event } from '../models/event.model';
   providedIn: 'root',
 })
 export class EventService {
-  public apiUrl: string = 'https://ide-bafecbaccefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080';
-
+  public apiUrl: string = 'https://ide-bfddacbabacefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080';
 
   constructor(private http: HttpClient) {}
 

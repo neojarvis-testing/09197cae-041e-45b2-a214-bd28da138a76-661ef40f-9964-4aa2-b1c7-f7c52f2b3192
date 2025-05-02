@@ -15,6 +15,8 @@ import { UserViewFeedbackComponent } from './components/user-view-feedback/user-
 import { AdminViewEventComponent } from './components/admin-view-event/admin-view-event.component';
 import { UserAddFeedbackComponent } from './components/user-add-feedback/user-add-feedback.component';
 import { AdminViewFeedbackComponent } from './components/admin-view-feedback/admin-view-feedback.component';
+import { AdminAddEventComponent } from './components/admin-add-event/admin-add-event.component';
+import { UserViewEventComponent } from './components/user-view-event/user-view-event.component';
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "home", component: HomeComponent },
@@ -25,7 +27,11 @@ const routes: Routes = [
   { path: "events", component: AdminViewEventComponent },
   { path: "error", component: ErrorComponent },
   { path: "user-view-requirement", component: UserViewRequirementComponent },
-  {path:"admin-view-feedbacks",component:AdminViewFeedbackComponent}
+  {path: "admin-view-feedbacks",component:AdminViewFeedbackComponent},
+  {path: "admin-add-event",component:AdminAddEventComponent},
+  {path: "admin-add-event/:id",component:AdminAddEventComponent},
+  {path: "admin-view-event",component:AdminViewEventComponent},
+  {path: "user-view-event",component:UserViewEventComponent}
 ];
 
 @NgModule({
