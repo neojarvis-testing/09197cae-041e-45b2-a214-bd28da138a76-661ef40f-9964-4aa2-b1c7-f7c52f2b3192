@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EventRequirement } from 'src/app/models/event-requirement.model';
 import { EventRequirementService } from 'src/app/services/event-requirement.service';
 
@@ -7,17 +8,29 @@ import { EventRequirementService } from 'src/app/services/event-requirement.serv
   templateUrl: './user-view-requirement.component.html',
   styleUrls: ['./user-view-requirement.component.css']
 })
-
 export class UserViewRequirementComponent implements OnInit {
-
   eventRequirements: EventRequirement[] = [];
   filteredEventRequirements: EventRequirement[] = [];
   searchTerm: string = '';
   selectedRequirement!: EventRequirement;
+  showDeleteModal: boolean = false;
 
-  constructor(private erService: EventRequirementService) {}
+  constructor(private r: Router, private erService: EventRequirementService) {}
 
   ngOnInit(): void {
+    this.loadRequirementsPeriodically();
+  }
+  
+  loadRequirementsPeriodically(): void {
+    this.load_requirements(); // Initial load
+  
+    setTimeout(() => {
+      this.loadRequirementsPeriodically(); // Recursively call to fetch updated data
+    }, 5000); // Refresh every 5 seconds
+  }
+  
+
+  load_requirements(): void{
     this.erService.getAllEventRequirements().subscribe((response) => {
       this.eventRequirements = response["data"];
       this.filteredEventRequirements = response["data"];
@@ -30,20 +43,28 @@ export class UserViewRequirementComponent implements OnInit {
     );    
   }
 
-  
   deleteRequirement(eventRequirement: EventRequirement): void {
     this.selectedRequirement = eventRequirement;
-    const modal = document.getElementById('deleteModal');
-    if (modal) modal.style.display = 'block'; // Show modal
+    this.showDeleteModal = true;
   }
 
   confirmDelete(): void {
-    console.log('Deleting:', this.selectedRequirement);
-    this.closeModal();
+    this.erService.deleteEventRequirement(this.selectedRequirement.EventRequirementId).subscribe(() => {
+      console.log('Deleting:', this.selectedRequirement);
+      this.erService.getAllEventRequirements().subscribe((response) => {
+        this.eventRequirements = response["data"];
+        this.filteredEventRequirements = response["data"];
+      });
+    });
+    this.showDeleteModal = false;
+  }
+  
+  editRequirement(erId: number)
+  {
+    this.r.navigate([`/user-add-requirement/${erId}`])
   }
 
-  closeModal(): void {
-    const modal = document.getElementById('deleteModal');
-    if (modal) modal.style.display = 'none'; // Hide modal
+  cancelDelete(): void {
+    this.showDeleteModal = false;
   }
 }

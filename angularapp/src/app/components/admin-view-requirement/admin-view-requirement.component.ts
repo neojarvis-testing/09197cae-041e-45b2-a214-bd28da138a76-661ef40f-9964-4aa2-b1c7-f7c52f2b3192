@@ -1,44 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 import { EventRequirement } from 'src/app/models/event-requirement.model';
 import { EventRequirementService } from 'src/app/services/event-requirement.service';
-import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-admin-view-requirement',
   templateUrl: './admin-view-requirement.component.html',
   styleUrls: ['./admin-view-requirement.component.css']
 })
-
 export class AdminViewRequirementComponent implements OnInit {
-
   eventRequirements: EventRequirement[] = [];
   filteredEventRequirements: EventRequirement[] = [];
   searchTerm: string = '';
 
-  constructor(private erService: EventRequirementService, private cdRef: ChangeDetectorRef) {}
+  constructor(private erService: EventRequirementService) {}
 
-  
   ngOnInit(): void {
+    this.loadRequirements();
+  }
+
+  loadRequirements(): void {
     this.erService.getAllEventRequirements().subscribe((response) => {
       this.eventRequirements = response["data"];
-      this.filteredEventRequirements = response["data"]; // Creating a new array reference
+      this.filteredEventRequirements = response["data"]; 
     });
   }
 
   searchByName(): void {
-    this.filteredEventRequirements = this.eventRequirements.filter(a => 
-      a.Title.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );    
+    const searchTermLower = this.searchTerm.toLowerCase().trim();
+    this.filteredEventRequirements = this.eventRequirements.filter(a =>
+      a.Title.toLowerCase().includes(searchTermLower)
+    );
   }
 
   approveButton(eventRequirement: EventRequirement): void {
     eventRequirement.Status = "Approved";
-    this.filteredEventRequirements = [...this.filteredEventRequirements]; // Forces Angular to detect change
+    this.erService.updateEventRequirement(eventRequirement.EventRequirementId, eventRequirement).subscribe(() => {
+      this.loadRequirements(); // Refresh the list to reflect changes
+    });
   }
   
   rejectButton(eventRequirement: EventRequirement): void {
     eventRequirement.Status = "Rejected";
-    this.filteredEventRequirements = [...this.filteredEventRequirements]; // Forces Angular to detect change
+    this.erService.updateEventRequirement(eventRequirement.EventRequirementId, eventRequirement).subscribe(() => {
+      this.loadRequirements(); // Refresh the list to reflect changes
+    });
   }
-
+  
 }

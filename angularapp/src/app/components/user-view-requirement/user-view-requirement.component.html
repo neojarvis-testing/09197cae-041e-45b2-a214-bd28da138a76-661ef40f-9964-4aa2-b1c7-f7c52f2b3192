@@ -1,8 +1,6 @@
 <div class="events-container">
     <h2>Event Requirements</h2>
-
-     <!-- Horizontal Line -->
-     <hr class="line">
+    <hr class="line">
     
     <!-- Search Bar -->
     <div class="search-bar">
@@ -26,12 +24,12 @@
         <tbody>
             <tr *ngFor="let eventRequirement of filteredEventRequirements; let i = index">
                 <td>{{ i + 1 }}</td>
-                <td>{{ eventRequirement.title }}</td>
-                <td>{{ eventRequirement.description }}</td>
-                <td>{{ eventRequirement.location }}</td>
-                <td>{{ eventRequirement.date | date:'mediumDate' }}</td>
-                <td>{{ eventRequirement.postedDate }}</td>
-                <td>{{ eventRequirement.status }}</td>
+                <td>{{ eventRequirement.Title }}</td>
+                <td>{{ eventRequirement.Description }}</td>
+                <td>{{ eventRequirement.Location }}</td>
+                <td>{{ eventRequirement.Date | date:'mediumDate' }}</td>
+                <td>{{ eventRequirement.PostedDate }}</td>
+                <td>{{ eventRequirement.Status }}</td>
                 <td>
                     <button (click)="editRequirement(eventRequirement.EventRequirementId)">Edit</button>
                     <button (click)="deleteRequirement(eventRequirement)">Delete</button>
@@ -39,18 +37,15 @@
             </tr>
         </tbody>
     </table>
-    
-   
-    
+
     <!-- Delete Confirmation Pop-up -->
-    <div id="deleteModal" class="modal">
+    <div *ngIf="showDeleteModal" class="modal">
         <div class="modal-content">
-            <span class="close" (click)="closeModal()">&times;</span>
-            <h2 class="text-center">Confirm Deletion</h2>
-            <p class="text-center">Are you sure you want to delete <strong>{{ selectedRequirement?.Title }}</strong>?</p>
-            <div class="text-center">
-                <button (click)="confirmDelete()">Delete</button>
-                <button (click)="closeModal()">Cancel</button>
+            <h2>Confirm Delete</h2>
+            <p>Are you sure you want to delete <strong>{{ selectedRequirement?.title }}</strong>?</p>
+            <div class="button-container">
+                <button (click)="confirmDelete()" class="btn btn-danger">Yes, Delete</button>
+                <button (click)="cancelDelete()" class="btn btn-secondary">Cancel</button>
             </div>
         </div>
     </div>
