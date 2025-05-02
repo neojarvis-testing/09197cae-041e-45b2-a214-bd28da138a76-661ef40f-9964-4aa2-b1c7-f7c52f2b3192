@@ -9,30 +9,21 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserNavbarComponent implements OnInit {
 
-  constructor(private authservice:AuthService,private router:Router) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
 
 
   showLogoutModal :boolean=false;
-  isDropDown: boolean = false;
-
+  
   logout(){
     this.showLogoutModal = true;
   }
 
-  showDropdown() {
-    this.isDropDown = true;
+  confirmLogout(){
+    this.router.navigate([`/login`]);
   }
-
-  hideDropdown() {
-    this.isDropDown = false;
-  }
-
-
-  confirmLogout(){}
-
-  cancelDelete(){}
+  cancelLogout(){}
 
 }

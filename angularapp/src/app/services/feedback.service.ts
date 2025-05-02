@@ -10,7 +10,7 @@ export class FeedbackService {
 
   constructor(private http: HttpClient) { }
 
-  public apiUrl = "https://ide-bafecbaccefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080/";
+  public apiUrl = "https://8080-bdbdfbfdadcfaefdfceabfeefceffaabcfcfb.premiumproject.examly.io";
 
   sendFeedback(feedback: Feedback): Observable<any> {
     return this.http.post<Feedback>(this.apiUrl + "api/feedback", feedback);
@@ -24,7 +24,7 @@ export class FeedbackService {
     return this.http.delete<void>(this.apiUrl + "api/feedback/user/" + feedbackId);
   }
 
-  getFeedbacks(): Observable<Feedback[]> {
+  getFeedbacks(): Observable<any> {
     return this.http.get<Feedback[]>(this.apiUrl + "api/feedback");
   }
 

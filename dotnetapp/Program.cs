@@ -95,6 +95,7 @@ builder.Services.AddAuthentication(options =>
 // Registers application services with dependency injection for scoped lifetime
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<FeedbackService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<EventService>();
 builder.Services.AddScoped<EventRequirementService>();
  
