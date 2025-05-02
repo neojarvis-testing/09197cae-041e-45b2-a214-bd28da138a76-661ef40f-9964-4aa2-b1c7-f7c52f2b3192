@@ -1,52 +1,45 @@
-<!-- registration.component.html -->
-<div class="registration-container">
+<div class="container">
   <h2>Registration</h2>
   <form #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)">
     <div class="form-group">
       <label for="username">Username *</label>
-      <input type="text" id="username" name="username" ngModel required />
-      <div *ngIf="registrationForm.controls.username?.touched && registrationForm.controls.username?.invalid" class="error">
-        <div *ngIf="registrationForm.controls.username?.errors?.required">Username is required</div>
+      <input type="text" id="username" name="username" class="form-control" required [(ngModel)]="user.Username" #username="ngModel">
+      <div *ngIf="username.invalid && username.touched" class="text-danger">
+        Username is required.
       </div>
     </div>
-
     <div class="form-group">
       <label for="email">Email *</label>
-      <input type="email" id="email" name="email" ngModel required email />
-      <div *ngIf="registrationForm.controls.email?.touched && registrationForm.controls.email?.invalid" class="error">
-        <div *ngIf="registrationForm.controls.email?.errors?.required">Email is required</div>
-        <div *ngIf="registrationForm.controls.email?.errors?.email">Please enter a valid email address</div>
+      <input type="email" id="email" name="email" class="form-control" required email [(ngModel)]="user.Email" #email="ngModel">
+      <div *ngIf="email.invalid && email.touched" class="text-danger">
+        Please enter a valid email address.
       </div>
     </div>
-
     <div class="form-group">
       <label for="mobileNumber">Mobile Number *</label>
-      <input type="text" id="mobileNumber" name="mobileNumber" ngModel required />
-      <div *ngIf="registrationForm.controls.mobileNumber?.touched && registrationForm.controls.mobileNumber?.invalid" class="error">
-        <div *ngIf="registrationForm.controls.mobileNumber?.errors?.required">Mobile Number is required</div>
+      <input type="text" id="mobileNumber" name="mobileNumber" class="form-control" required [(ngModel)]="user.MobileNumber" #mobileNumber="ngModel">
+      <div *ngIf="mobileNumber.invalid && mobileNumber.touched" class="text-danger">
+        Mobile number is required.
       </div>
     </div>
-
     <div class="form-group">
       <label for="password">Password *</label>
-      <input type="password" id="password" name="password" ngModel required />
-      <div *ngIf="registrationForm.controls.password?.touched && registrationForm.controls.password?.invalid" class="error">
-        <div *ngIf="registrationForm.controls.password?.errors?.required">Password is required</div>
+      <input type="password" id="password" name="password" class="form-control" required [(ngModel)]="user.Password" #password="ngModel">
+      <div *ngIf="password.invalid && password.touched" class="text-danger">
+        Password is required.
       </div>
     </div>
-
     <div class="form-group">
       <label for="userRole">User Role *</label>
-      <select id="userRole" name="userRole" ngModel required>
+      <select id="userRole" name="userRole" class="form-control" required [(ngModel)]="user.UserRole" #userRole="ngModel">
+        <option value="" disabled>Select Role</option>
         <option value="Admin">Admin</option>
         <option value="User">User</option>
       </select>
-      <div *ngIf="registrationForm.controls.userRole?.touched && registrationForm.controls.userRole?.invalid" class="error">
-        <div *ngIf="registrationForm.controls.userRole?.errors?.required">User Role is required</div>
+      <div *ngIf="userRole.invalid && userRole.touched" class="text-danger">
+        User role is required.
       </div>
     </div>
-
-    <button type="submit" [disabled]="!registrationForm.valid">Register</button>
+    <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
   </form>
 </div>
-

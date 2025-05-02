@@ -11,21 +11,21 @@ import { Event } from 'src/app/models/event.model'; // Replace with the correct 
 })
 export class AdminAddEventComponent implements OnInit {
   newEvent: Event = {
-    EventId: 0, // Default ID for new event
+    EventId: 0,
     Title: '',
     Description: '',
     Location: '',
-    Date: new Date(),
+    Date: null,
     OrganizerName: '',
     ContactInfo: '',
     PostedDate: new Date(),
     Status: ''
   };
 
-  isEditMode = false; // Determines if it's edit or add mode
-  eventId!: number; // Stores event ID for editing
-  tempEvents: Event[] = []; // Temporary storage for all events
-  errorMessage = ''; // Error message for validation
+  isEditMode = false;
+  eventId!: number;
+  tempEvents: Event[] = [];
+  errorMessage = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -34,31 +34,27 @@ export class AdminAddEventComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Fetch all events to check for duplicate titles
     this.eventService.getAllEvents().subscribe((data) => {
-      this.tempEvents = data;
+      this.tempEvents = data || []; // Prevents undefined issues
     });
 
-    // Check if the route has an ID (Edit Mode)
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.eventId = +id;
       this.isEditMode = true;
 
-      // Fetch event details by ID and pre-fill form
       this.eventService.getEventById(this.eventId).subscribe((data) => {
-        this.newEvent = data;
+        this.newEvent = data || this.newEvent; // Ensures valid object assignment
       });
     }
   }
 
   onSubmit(form: NgForm): void {
-    // Prevent submission if form is invalid
     if (form.invalid) return;
 
-    // Check if the title already exists
-    const exists = this.tempEvents.some(
-      event => event.Title.toLowerCase() === this.newEvent.Title.toLowerCase()
+    // Enhanced check with safeguards
+    const exists = this.tempEvents.find(
+      event => event.Title?.toLowerCase() === (this.newEvent.Title || '').toLowerCase()
     );
 
     if (exists) {
@@ -66,21 +62,18 @@ export class AdminAddEventComponent implements OnInit {
       return;
     }
 
-    // Determine if adding or updating the event
     const request = this.isEditMode
       ? this.eventService.updateEvent(this.eventId, this.newEvent)
       : this.eventService.addEvent(this.newEvent);
 
-    // Handle success or error response
     request.subscribe({
       next: () => {
-        alert(this.isEditMode ? 'Event Updated Successfully!' : 'Event Added Successfully!');
-        form.resetForm(); // Reset form after success
-        this.router.navigate(['/']); // Redirect to homepage or event list
+        form.resetForm();
+        this.router.navigate(['/']);
       },
-      error: () => {
-        this.errorMessage = 'An error occurred while submitting the event.';
-      }
+      // error: () => {
+      //   this.errorMessage = 'An error occurred while submitting the event.';
+      // }
     });
   }
 }
