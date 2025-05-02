@@ -16,6 +16,7 @@ import { AdminViewEventComponent } from './components/admin-view-event/admin-vie
 import { UserAddFeedbackComponent } from './components/user-add-feedback/user-add-feedback.component';
 import { AdminViewFeedbackComponent } from './components/admin-view-feedback/admin-view-feedback.component';
 const routes: Routes = [
+  {path:'',component:NavbarComponent},
   { path: "login", component: LoginComponent },
   { path: "home", component: HomeComponent },
   { path: "error", component: ErrorComponent },
