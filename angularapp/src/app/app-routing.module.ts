@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { UserViewEventComponent } from './components/user-view-event/user-view-event.component';
-import { AdminAddEventComponent } from './components/admin-add-event/admin-add-event.component';
-import { AdminViewEventComponent } from './components/admin-view-event/admin-view-event.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.component';
-import { UserNavbarComponent } from './components/user-navbar/user-navbar.component';
-import { ErrorComponent } from './components/error/error.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
-import { Feedback } from './models/feedback.model';
-import { UserViewFeedbackComponent } from './components/user-view-feedback/user-view-feedback.component';
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-const routes: Routes = [];
-
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { UserAddFeedbackComponent } from './components/user-add-feedback/user-add-feedback.component';
+ 
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'register', component: RegistrationComponent },
+  { path: 'login', component: LoginComponent },
+  {path: '',component:NavbarComponent},
+  {path:'',component:UserAddFeedbackComponent}
+];
+ 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-
-export class AppRoutingModule { }
+export class AppRoutingModule {}
+ 
+ 
