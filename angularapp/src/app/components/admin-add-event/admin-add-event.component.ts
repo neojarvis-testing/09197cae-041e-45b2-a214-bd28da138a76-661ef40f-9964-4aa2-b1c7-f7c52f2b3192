@@ -23,6 +23,8 @@ export class AdminAddEventComponent implements OnInit {
     Status: 'Pending'
   };
 
+  dateProperty:any;
+
   isEditMode = false;
   eventId!: number;
   tempEvents: Event[] = [];
@@ -46,6 +48,11 @@ export class AdminAddEventComponent implements OnInit {
 
       this.eventService.getEventById(this.eventId).subscribe((data) => {
         this.newEvent = data || this.newEvent; // Ensures valid object assignment
+
+        this.newEvent.Date = new Date(this.newEvent.Date);
+
+        console.log(new Date(this.newEvent.Date));
+
       });
     }
   }
@@ -57,6 +64,7 @@ export class AdminAddEventComponent implements OnInit {
     const exists = this.tempEvents.find(
       event => event.Title?.toLowerCase() === (this.newEvent.Title || '').toLowerCase()
     );
+    
     console.log(this.tempEvents);
     
     if (exists) {
@@ -74,7 +82,7 @@ export class AdminAddEventComponent implements OnInit {
         this.router.navigate(['/']);
       },
       error: () => {
-        this.router.navigate(['/error']);
+        this.router.navigate(['/admin-view-event']);
       }
     });
   }
