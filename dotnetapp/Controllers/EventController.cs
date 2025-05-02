@@ -6,8 +6,8 @@ using dotnetapp.Services;
 
 namespace Controllers
 {
-    [Route("api/events")]
     [ApiController]
+    [Route("api/events")]
     public class EventController : ControllerBase
     {
         private readonly EventService _eventService;

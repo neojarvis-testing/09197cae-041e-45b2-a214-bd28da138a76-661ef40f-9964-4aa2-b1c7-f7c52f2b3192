@@ -63,3 +63,38 @@ thead {
   color: white;
 }
  
+/* Modal styling */
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 10% auto; /* Reduced margin to bring modal higher */
+  padding: 25px; /* Slightly increased padding */
+  border: 1px solid #888;
+  width: 60%; /* Changed width for a more balanced modal */
+  max-width: 400px; /* Reduced max width to make it smaller */
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Button styling within modal */
+.modal-content .button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modal-content button {
+  display: block;
+  margin-bottom: 0;
+}
