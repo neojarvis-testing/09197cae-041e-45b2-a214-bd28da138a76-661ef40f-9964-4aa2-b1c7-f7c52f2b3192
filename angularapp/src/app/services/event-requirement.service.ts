@@ -9,12 +9,12 @@ import { catchError } from 'rxjs/operators';
 })
 
 export class EventRequirementService {
-  private apiUrl: string = 'https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io'; 
+  private apiUrl: string = 'https://ide-bafecbaccefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080'; 
 
   constructor(private http: HttpClient) {}
 
   getAllEventRequirements(): Observable<EventRequirement[]> {
-    return this.http.get<EventRequirement[]>(`${this.apiUrl}/api/EventRequirements`);
+    return this.http.get<EventRequirement[]>(`${this.apiUrl}/api/EventRequirement`);
   }
 
   getEventRequirementById(eventRequirementId: number): Observable<EventRequirement> {

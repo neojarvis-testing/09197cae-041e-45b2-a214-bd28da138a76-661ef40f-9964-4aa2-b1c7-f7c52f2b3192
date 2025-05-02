@@ -1,1 +1,57 @@
-<h2>Event Requirements</h2>
+<div class="events-container">
+    <h2>Event Requirements</h2>
+
+     <!-- Horizontal Line -->
+     <hr class="line">
+    
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Search events..." [(ngModel)]="searchTerm" (input)="searchByName()">
+    </div>
+    
+    <!-- Event Requirement Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Posted Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let eventRequirement of filteredEventRequirements; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ eventRequirement.title }}</td>
+                <td>{{ eventRequirement.description }}</td>
+                <td>{{ eventRequirement.location }}</td>
+                <td>{{ eventRequirement.date | date:'mediumDate' }}</td>
+                <td>{{ eventRequirement.postedDate }}</td>
+                <td>{{ eventRequirement.status }}</td>
+                <td>
+                    <button (click)="editRequirement(eventRequirement.EventRequirementId)">Edit</button>
+                    <button (click)="deleteRequirement(eventRequirement)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+   
+    
+    <!-- Delete Confirmation Pop-up -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" (click)="closeModal()">&times;</span>
+            <h2 class="text-center">Confirm Deletion</h2>
+            <p class="text-center">Are you sure you want to delete <strong>{{ selectedRequirement?.Title }}</strong>?</p>
+            <div class="text-center">
+                <button (click)="confirmDelete()">Delete</button>
+                <button (click)="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

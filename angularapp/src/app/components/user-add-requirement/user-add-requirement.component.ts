@@ -60,10 +60,11 @@ export class UserAddRequirementComponent implements OnInit {
       next: () => {
         alert(this.isEditMode ? 'Requirement Updated Successfully!' : 'Requirement Added Successfully!');
         form.resetForm();
-        this.router.navigate(['/']); 
+        this.router.navigate(['/user-view-requirement']); 
       },
       error: () => {
         this.errorMessage = 'An error occurred while submitting the requirement.';
+        this.router.navigate(['/error']);
       }
     });
   }
