@@ -10,7 +10,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { Feedback } from './models/feedback.model';
 import { UserViewFeedbackComponent } from './components/user-view-feedback/user-view-feedback.component';
 const routes: Routes = [
-  {path:"",component:LoginComponent}
+  {path:"",component:AdminNavbarComponent}
 ];
 
 @NgModule({

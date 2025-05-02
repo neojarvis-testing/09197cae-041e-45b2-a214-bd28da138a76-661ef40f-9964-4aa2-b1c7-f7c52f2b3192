@@ -35,12 +35,13 @@ export class AdminViewEventComponent implements OnInit {
 
   editEvent(event: Event) {
     alert(`Navigating to edit event: ${event.Title}`);
+    //routing
   }
 
   deleteEvent(eventId: number) {
     console.log('Deleting event with ID:', eventId); // Log the ID
- 
-    if (confirm('Are you sure you want to delete this event?')) {
+
+      //pop up
       this.eventService.deleteEvent(eventId).subscribe({
         next: () => {
           alert('Event Deleted Successfully!');
@@ -51,10 +52,7 @@ export class AdminViewEventComponent implements OnInit {
           alert(err.message);
         },
       });
-    }
   }
-  
-
 
   
 }
