@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user.model';
 
 @Component({
@@ -9,34 +10,34 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
-  submitted = false;
   user: User = {
     UserId: 0,
-    Email: '',
-    Password: '',
     Username: '',
+    Email: '',
     MobileNumber: '',
+    Password: '',
     UserRole: ''
   };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService) { }
 
-  calling(): void {
-    this.submitted = true;
-
-    if (!this.user.Email || !this.user.Password || !this.user.Username || !this.user.MobileNumber || !this.user.UserRole) {
-      alert('All fields are required.');
-      return;
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      console.log("User passed is: "+this.user.Email);
+      console.log("User passed is: "+this.user.Password);
+      console.log("User passed is: "+this.user.MobileNumber);
+      console.log("User passed is: "+this.user.UserRole);
+      console.log("User passed is: "+this.user.Username);
+      this.authService.register(this.user).subscribe(
+        response => {
+          console.log("the user is" + this.user);
+          alert('Registration successful!');
+          form.reset();
+        },
+        error => {
+          alert('Registration failed. User already exists.');
+        }
+      );
     }
-
-    this.authService.register(this.user, this.user.UserRole).subscribe(
-      data => {
-        alert('Registration successful');
-        this.router.navigate(['/login']);
-      },
-      error => {
-        console.log('Registration error', error);
-      }
-    );
   }
 }

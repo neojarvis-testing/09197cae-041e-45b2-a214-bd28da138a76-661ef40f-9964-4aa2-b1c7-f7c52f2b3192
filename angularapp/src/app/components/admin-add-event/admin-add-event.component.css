@@ -1,69 +1,58 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-}
- 
-.form-container {
-  width: 100%;
-  max-width: 400px;
+form {
+  max-width: 500px;
   margin: 40px auto;
-  background-color: white;
-  padding: 30px 25px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
  
 h2 {
   text-align: center;
-  margin-bottom: 25px;
-  font-weight: 600;
+  margin-bottom: 20px;
 }
  
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 15px;
 }
  
 label {
+  font-weight: 600;
   display: block;
-  margin-bottom: 6px;
-  font-weight: bold;
-  font-size: 14px;
+  margin-bottom: 5px;
 }
  
-input,
-textarea {
+input.form-control,
+textarea.form-control {
   width: 100%;
-  padding: 10px 12px;
+  padding: 8px 10px;
   font-size: 14px;
+  border-radius: 4px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
 }
  
-textarea {
+textarea.form-control {
   resize: vertical;
-  min-height: 60px;
+  height: 80px;
 }
  
-.submit-btn {
+.text-danger {
+  font-size: 13px;
+  margin-top: 5px;
+  color: #dc3545;
+}
+ 
+.btn-success {
   width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px;
+  padding: 10px;
+  font-weight: bold;
   font-size: 16px;
+  background-color: #28a745;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
 }
  
-.green-button {
-  background-color: green;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
+.btn-success:hover {
+  background-color: #218838;
 }
  

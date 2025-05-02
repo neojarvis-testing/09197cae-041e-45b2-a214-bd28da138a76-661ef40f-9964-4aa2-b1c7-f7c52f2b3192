@@ -1,84 +1,59 @@
-
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Threading.Tasks;
-// using dotnetapp.Models;
-// using dotnetapp.Data;
 // using Microsoft.AspNetCore.Mvc;
-// using Microsoft.EntityFrameworkCore;
+// using dotnetapp.Services;
+// using dotnetapp.Models;
+
 // namespace dotnetapp.Controllers
 // {
 //     [ApiController]
-//     [Route("api/users")]
-//     public class UserController : ControllerBase
+//     [Route("api")]
+//     public class AuthenticationController : ControllerBase
 //     {
-//         private readonly ApplicationDbContext db;
-//         private readonly List<string> validRoles=new(){"Admin","User"};
+//         private readonly IAuthService _authService;
 
-//         public UserController(ApplicationDbContext db1)
+//         public AuthenticationController(IAuthService authService)
 //         {
-//             db=db1;
-//         }
-
-//         [HttpPost("register")]
-//         public async Task<ActionResult<User>> Register(User user)
-//         {
-//             try{
-//             if(await db.Users.AnyAsync(u=>u.Username==user.Username))
-//             {
-//                 return Conflict("Username already exists.");
-//             }
-
-//             if(!IsValidRole(user.UserRole))
-//             {
-//                 return BadRequest("Invalid role.");
-//             }
-
-//             db.Users.Add(user);
-//             await db.SaveChangesAsync();
-//             return CreatedAtAction(nameof(Register),new {id=user.UserId},user);
-//             }
-//             catch (Exception e)
-//             {
-//                 return StatusCode(500, e.Message);
-//             }
-
+//             _authService = authService;
 //         }
 
 //         [HttpPost("login")]
-//         public async Task<ActionResult<object>> Login(LoginModel loginModel)
+//         public async Task<IActionResult> Login(LoginModel model)
 //         {
-//             try{
-//             var user=await db.Users.FirstOrDefaultAsync(u=>u.Username==loginModel.Email && u.Password==loginModel.Password);
+//             var (status, result) = await _authService.Login(model);
 
-//             if(user==null)
-//             {
-//                 return BadRequest();
-//             }
+//             if (status == 404)
+//                 return NotFound("Invalid email.");
+//             if (status == 401)
+//                 return Unauthorized("Invalid password.");
 
-            
-//             return Ok(new {Message="Login successful",User=user});
-//             }
-//             catch (Exception e)
-//             {
-//                 return StatusCode(500, e.Message);
-//             }
+//             return Ok(new { Token = result });
 //         }
 
-//         private bool IsValidRole(string role)
+//         [HttpPost("register")]
+//         public async Task<IActionResult> Register(User model, string role)
 //         {
-//             return validRoles.Contains(role);   
+//             var (status, message) = await _authService.Registration(model, role);
+
+//             if (status == 400)
+//                 return BadRequest(message);
+//             if (status == 409)
+//                 return Conflict(message);
+
+//             return Ok(message);
 //         }
 //     }
 // }
 
 
-
-using Microsoft.AspNetCore.Mvc;
-using dotnetapp.Services;
+using System;
+using System.Threading.Tasks;
 using dotnetapp.Models;
-
+using dotnetapp.Data;
+using dotnetapp.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using log4net;
+using System.Reflection;
+ 
 namespace dotnetapp.Controllers
 {
     [ApiController]
@@ -86,37 +61,84 @@ namespace dotnetapp.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthService _authService;
-
-        public AuthenticationController(IAuthService authService)
+        private readonly ApplicationDbContext _context;
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
+ 
+        public AuthenticationController(ApplicationDbContext context, IAuthService authService)
         {
             _authService = authService;
+            _context = context;
         }
-
+ 
+        // Handles user login and returns a JWT token upon successful authentication.
+        // Login credentials provided by the user
+        // Returns a JWT token if login is successful, otherwise an error message.
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            var (status, result) = await _authService.Login(model);
-
-            if (status == 404)
-                return NotFound("Invalid email.");
-            if (status == 401)
-                return Unauthorized("Invalid password.");
-
-            return Ok(new { Token = result });
+            log.Info($"Login attempt initiated for user: {model.Email}"); // Logging login attempt
+           
+            try
+            {
+                var result = await _authService.Login(model);
+ 
+                if (result.Item1 == 0)
+                {
+                    log.Warn($"Login failed for user: {model.Email}. Reason: {result.Item2}");
+                    return BadRequest(new { Message = result.Item2 });
+                }
+ 
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                if (user == null)
+                {
+                    log.Error($"User not found after successful login for: {model.Email}");
+                    return BadRequest(new { Message = "User details not found." });
+                }
+ 
+                log.Info($"Login successful for user: {model.Email}");
+                return Ok(new { Token = result.Item2, User = user });
+            }
+            catch (Exception ex)
+            {
+                log.Error($"Unexpected error during login for user: {model.Email}", ex);
+                return StatusCode(500, new { Message = "An unexpected error occurred. Please try again later." });
+            }
         }
-
+ 
+        // Handles new user registration.
+        // User details for registration.
+        // Returns success or failure message.
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] User model, [FromQuery] string role)
+        public async Task<IActionResult> Register(User model)
         {
-            var (status, message) = await _authService.Registration(model, role);
-        
-            if (status == 400)
-                return BadRequest(message);
-            if (status == 409)
-                return Conflict(message);
-        
-            return Ok(message);
+            log.Info($"Registration attempt initiated for user: {model.Email}");
+ 
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    log.Warn($"Registration failed due to invalid model state for user: {model.Email}");
+                    return BadRequest(ModelState);
+                }
+ 
+                var result = await _authService.Registration(model, model.UserRole);
+ 
+                if (result.Item1 == 0)
+                {
+                    log.Warn($"Registration failed for user: {model.Email}. Reason: {result.Item2}");
+                    return BadRequest(new { Message = result.Item2 });
+                }
+ 
+                log.Info($"Registration successful for user: {model.Email}");
+                return Ok(new { Message = result.Item2 });
+            }
+            catch (Exception ex)
+            {
+                log.Error($"Unexpected error during registration for user: {model.Email}", ex);
+                return StatusCode(500, new { Message = "An unexpected error occurred. Please try again later." });
+            }
         }
         
     }
 }
+ 

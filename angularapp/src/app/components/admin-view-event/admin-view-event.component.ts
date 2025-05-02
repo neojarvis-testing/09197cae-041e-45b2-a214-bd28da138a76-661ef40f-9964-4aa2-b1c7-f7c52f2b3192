@@ -15,13 +15,22 @@ export class AdminViewEventComponent implements OnInit {
 
   ngOnInit() {
     this.eventService.getAllEvents().subscribe({
-      next: (data) => (this.events = data),
-      error: (err) => alert(err.message),
+      next: (data) => {
+        console.log('Fetched events:', data); // Log API response to verify data
+        this.events = data; // Assign data to events array
+        console.log(this.events);
+      },
+      error: (err) => {
+        console.error('Error fetching events:', err); // Log any errors
+        alert(err.message);
+      },
     });
   }
 
   filteredEvents() {
-    return this.events.filter((event) => event.Title.toLowerCase().includes(this.searchTitle.toLowerCase()));
+    return this.events.filter((event) =>
+      event.Title?.toLowerCase().includes(this.searchTitle.toLowerCase())
+    );
   }
 
   editEvent(event: Event) {
@@ -29,14 +38,23 @@ export class AdminViewEventComponent implements OnInit {
   }
 
   deleteEvent(eventId: number) {
+    console.log('Deleting event with ID:', eventId); // Log the ID
+ 
     if (confirm('Are you sure you want to delete this event?')) {
       this.eventService.deleteEvent(eventId).subscribe({
         next: () => {
           alert('Event Deleted Successfully!');
-          this.events = this.events.filter((event) => event.EventId !== eventId);
+          // this.events = this.events.filter((event) => event.EventId !== eventId);
         },
-        error: (err) => alert(err.message),
+        error: (err) => {
+          // console.error('Error deleting event:', err);
+          alert(err.message);
+        },
       });
     }
   }
+  
+
+
+  
 }

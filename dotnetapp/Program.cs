@@ -4,17 +4,16 @@ using dotnetapp.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+using dotnetapp.Models;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+var MyAllowSpecificOrigin="urls";
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddScoped<FeedbackService>();
-builder.Services.AddScoped<EventRequirementService>();
-builder.Services.AddScoped<EventService>();
-
 builder.Services.AddScoped<IAuthService, AuthService>();//changes made using copilot
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -22,23 +21,34 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("myConnection")));
 
+//code changed by searching : 30-4
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
+// builder.Services.AddCors(name:MyAllowSpecificOrigin, opttions=>{
 
+//     opttions.AddDefaultPolicy(builder=>{
 
-builder.Services.AddCors(opttions=>{
+//         builder.AllowAnyOrigin()
 
-    opttions.AddDefaultPolicy(builder=>{
+//         .AllowAnyHeader()
 
+//         .AllowAnyMethod();
+
+//     });
+
+// });
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(MyAllowSpecificOrigin, builder =>
+    {
         builder.AllowAnyOrigin()
-
-        .AllowAnyHeader()
-
-        .AllowAnyMethod();
-
+               .AllowAnyHeader()
+               .AllowAnyMethod();
     });
-
 });
-
 
 
 // var key=Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
