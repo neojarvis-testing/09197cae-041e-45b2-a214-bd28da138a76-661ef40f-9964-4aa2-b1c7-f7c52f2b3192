@@ -19,18 +19,14 @@ export class RegistrationComponent {
     UserRole: ''
   };
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private router:Router) { }
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-      console.log("User passed is: "+this.user.Email);
-      console.log("User passed is: "+this.user.Password);
-      console.log("User passed is: "+this.user.MobileNumber);
-      console.log("User passed is: "+this.user.UserRole);
-      console.log("User passed is: "+this.user.Username);
       this.authService.register(this.user).subscribe(
         response => {
           console.log("the user is" + this.user);
+          this.router.navigate(['/login']);
           alert('Registration successful!');
           form.reset();
         },

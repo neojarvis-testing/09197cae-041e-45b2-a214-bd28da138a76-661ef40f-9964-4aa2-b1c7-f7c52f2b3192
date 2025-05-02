@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { RegistrationComponent } from './components/registration/registration.component'; 
+import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.component';
@@ -12,12 +12,26 @@ import { UserViewRequirementComponent } from './components/user-view-requirement
 import { UserAddRequirementComponent } from './components/user-add-requirement/user-add-requirement.component';
 import { Feedback } from './models/feedback.model';
 import { UserViewFeedbackComponent } from './components/user-view-feedback/user-view-feedback.component';
-const routes: Routes = [];
+import { AdminViewEventComponent } from './components/admin-view-event/admin-view-event.component';
+import { UserAddFeedbackComponent } from './components/user-add-feedback/user-add-feedback.component';
+import { AdminViewFeedbackComponent } from './components/admin-view-feedback/admin-view-feedback.component';
+const routes: Routes = [
+  { path: "login", component: LoginComponent },
+  { path: "home", component: HomeComponent },
+  { path: "error", component: ErrorComponent },
+  { path: "register", component: RegistrationComponent },
+  { path: "view-feedback", component: UserViewFeedbackComponent },
+  { path: "add-feedback", component: UserAddFeedbackComponent },
+  { path: "events", component: AdminViewEventComponent },
+  { path: "error", component: ErrorComponent },
+  { path: "user-view-requirement", component: UserViewRequirementComponent },
+  {path:"admin-view-feedbacks",component:AdminViewFeedbackComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
- 
+export class AppRoutingModule { }
+

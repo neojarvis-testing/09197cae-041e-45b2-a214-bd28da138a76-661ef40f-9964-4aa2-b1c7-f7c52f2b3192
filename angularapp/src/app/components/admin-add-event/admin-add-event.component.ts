@@ -73,9 +73,9 @@ export class AdminAddEventComponent implements OnInit {
         form.resetForm();
         this.router.navigate(['/']);
       },
-      // error: () => {
-      //   this.errorMessage = 'An error occurred while submitting the event.';
-      // }
+      error: () => {
+        this.router.navigate(['/error']);
+      }
     });
   }
 }
