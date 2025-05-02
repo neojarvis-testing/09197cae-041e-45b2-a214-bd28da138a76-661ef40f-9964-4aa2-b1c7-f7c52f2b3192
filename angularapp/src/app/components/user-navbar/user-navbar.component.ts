@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user-navbar',
@@ -7,12 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authservice:AuthService,private router:Router) { }
 
   ngOnInit(): void {
   }
 
+
+  showLogoutModal :boolean=false;
   isDropDown: boolean = false;
+
+  logout(){
+    this.showLogoutModal = true;
+  }
 
   showDropdown() {
     this.isDropDown = true;
@@ -21,5 +29,10 @@ export class UserNavbarComponent implements OnInit {
   hideDropdown() {
     this.isDropDown = false;
   }
+
+
+  confirmLogout(){}
+
+  cancelDelete(){}
 
 }
