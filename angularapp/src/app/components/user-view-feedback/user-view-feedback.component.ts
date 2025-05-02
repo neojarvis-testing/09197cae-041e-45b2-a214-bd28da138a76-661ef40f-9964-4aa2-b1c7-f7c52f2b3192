@@ -23,7 +23,16 @@ export class UserViewFeedbackComponent implements OnInit {
     });
   }
 
-  user: User;
+  UserId:number=12;
+
+  user: User = {
+    UserId: 0,
+    Email: "",
+    Password: "",
+    Username: "",
+    MobileNumber: "",
+    UserRole: ""
+  };
 
   ngOnInit(): void {
     this.loadFeedbacks();
@@ -61,7 +70,7 @@ export class UserViewFeedbackComponent implements OnInit {
         console.error('Error deleting feedback', error);
         this.router.navigate(['/view-feedback'])
       }
-      );
+    );
   }
 
   logout(): void {
