@@ -24,7 +24,7 @@ export class FeedbackService {
     return this.http.delete<void>(this.apiUrl + "api/feedback/user/" + feedbackId);
   }
 
-  getFeedbacks(): Observable<Feedback[]> {
+  getFeedbacks(): Observable<any> {
     return this.http.get<Feedback[]>(this.apiUrl + "api/feedback");
   }
 
