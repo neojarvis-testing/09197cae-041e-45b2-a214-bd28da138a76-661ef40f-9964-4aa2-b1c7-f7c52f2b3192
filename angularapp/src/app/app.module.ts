@@ -22,6 +22,8 @@ import { UserViewRequirementComponent } from './components/user-view-requirement
 import {HttpClientModule} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,8 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserNavbarComponent,
     UserViewEventComponent,
     UserViewFeedbackComponent,
-    UserViewRequirementComponent
-
+    UserViewRequirementComponent,
   ],
   imports: [
     BrowserModule,

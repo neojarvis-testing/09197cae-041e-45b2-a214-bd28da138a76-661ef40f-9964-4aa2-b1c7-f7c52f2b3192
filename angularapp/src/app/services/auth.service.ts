@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { Login } from '../models/login.model';
+import { HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -18,6 +19,7 @@ export class AuthService {
   register(user: User): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
+  
 
   login(login: Login): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/api/login`, login)
