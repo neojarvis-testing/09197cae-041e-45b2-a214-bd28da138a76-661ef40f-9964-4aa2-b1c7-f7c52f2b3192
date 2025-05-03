@@ -175,75 +175,52 @@ button {
 
 }
 
-
-/* Modal styling */
-
-.modal{
-
-  display: block;
-
-  position: fixed;
-
-  z-index: 1;
-
-  left: 0;
-
-  top: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  overflow: auto;
-
-  background-color: rgba(0, 0, 0, 0.4);
-
-}
-
-.modal-content{
-
-  background-color: white;
-
-  margin: 15% auto;
-
-  padding: 20px;
-
-  border: 1px solid #888;
-
-  width: 80%;
-
-  max-width: 500px;
-
-  border-radius: 10px;
-
-  text-align: center;
-
-}
-
-/* Button styling within modal */
-
-.btn{
-padding: 10px 20px;
-border: none;
-color: white;
-font-weight: bold;
-cursor: pointer;
-border-radius: 5px;
-}
-
-
-.logout-btn{
-background-color: #d9534f; /* Red */
-}
-
-.btn-secondary {
-background-color: #c7c3c0; /* Brown */
-}
-
-.modal-content p {
-
-  margin-bottom: 15px; /* Equal margin bottom */
-
-}
-
-
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .modal-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .logout-btn {
+    background: red;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .btn-secondary {
+    background: gray;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .btn:hover {
+    opacity: 0.8;
+  }
+  

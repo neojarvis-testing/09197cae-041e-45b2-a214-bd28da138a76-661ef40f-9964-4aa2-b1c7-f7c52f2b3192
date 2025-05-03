@@ -15,8 +15,17 @@ export class AdminViewRequirementComponent implements OnInit {
   constructor(private erService: EventRequirementService) {}
 
   ngOnInit(): void {
-    this.loadRequirements();
+    this.loadRequirementsPeriodically();
   }
+  
+  loadRequirementsPeriodically(): void {
+    this.loadRequirements(); // Initial load
+  
+    setTimeout(() => {
+      this.loadRequirementsPeriodically(); // Recursively call to fetch updated data
+    }, 5000); // Refresh every 5 seconds
+  }
+
 
   loadRequirements(): void {
     this.erService.getAllEventRequirements().subscribe((response) => {

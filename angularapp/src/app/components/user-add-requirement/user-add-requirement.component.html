@@ -39,6 +39,13 @@
 
     <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
 
+    <label for="dropdownevent">Event*</label><br>
+    <select class="form-group" name="dropdownevent" [(ngModel)]="selectedEvent" required>
+      <option *ngFor="let event of temp_Events" [value]="event.EventId">
+        {{event.Title}}
+      </option>
+    </select>
+    
     <button type="submit" class="btn btn-success mt-3">{{ isEditMode ? 'Update' : 'Submit' }}</button>
   </form>
 </div>

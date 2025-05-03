@@ -36,4 +36,8 @@ export class EventRequirementService {
   deleteEventRequirement(eventRequirementId: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/api/EventRequirement/${eventRequirementId}`);
   }
+
+  getEventRequirementByUserId(userId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api/EventRequirement/user/${userId}`);
+  }
 }
