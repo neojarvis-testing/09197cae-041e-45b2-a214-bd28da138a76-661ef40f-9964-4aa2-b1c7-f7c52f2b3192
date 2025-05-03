@@ -40,7 +40,8 @@ export class UserViewFeedbackComponent implements OnInit {
   }
 
   loadFeedbacks(): void {
-    const userId = this.user.UserId; // Assuming userId is stored in localStorage
+    console.log(this.user);
+    const userId = this.user?.UserId; // Assuming userId is stored in localStorage
     if (userId) {
       this.feedbackService.getAllFeedbackByUserId(userId.toString()).subscribe(
         (data) => {
@@ -71,7 +72,7 @@ export class UserViewFeedbackComponent implements OnInit {
         console.error('Error deleting feedback', error);
         this.router.navigate([`/user/app-user-view-feedback`]);
       }
-      );
+    );
   }
 
   logout(): void {
