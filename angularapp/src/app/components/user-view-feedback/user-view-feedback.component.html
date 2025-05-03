@@ -1,7 +1,7 @@
+<h1>My Feedback</h1>
 <div class="view-feedback">
 
     <div class="container">
-        <h1>My Feedback</h1>
         <div class="sub-cont">
             <table class="feed-table">
                 <thead>
@@ -13,7 +13,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let feedback of feedbacks">
-                        <td>{{ feedback.UserId }}</td>
+                        <td>{{ feedback?.UserId }}</td>
                         <td>{{ feedback.FeedbackText }}</td>
                         <td>
                             <button (click)="confirmDelete(feedback.FeedbackId)" class="btn btn-danger">Delete</button>
