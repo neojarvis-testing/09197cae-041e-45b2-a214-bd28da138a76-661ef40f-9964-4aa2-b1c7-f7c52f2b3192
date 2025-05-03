@@ -8,7 +8,7 @@ import { Event } from '../models/event.model';
 })
 export class EventService {
 
-  public apiUrl: string = 'https://ide-bfddacbabacefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080';
+  public apiUrl: string = 'https://ide-ecbaabcdcedcfefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080';
 
   constructor(private http: HttpClient) {}
 

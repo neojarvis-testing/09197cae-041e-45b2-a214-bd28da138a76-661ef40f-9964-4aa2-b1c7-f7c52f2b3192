@@ -31,7 +31,7 @@ const routes: Routes = [
   {path: "admin-view-feedbacks",component: AdminViewFeedbackComponent},
   {path: "user-add-requirement", component: UserAddRequirementComponent},
   {path: "user-add-requirement/:id", component: UserAddRequirementComponent},
-  {path: "admin-view-requirement", component: AdminViewRequirementComponent}
+  {path: "admin-view-requirement", component: AdminViewRequirementComponent},
   { path: "admin-view-feedbacks",component:AdminViewFeedbackComponent},
   { path: "add-event", component: AdminAddEventComponent},
   { path: "view-event", component: AdminViewEventComponent},
