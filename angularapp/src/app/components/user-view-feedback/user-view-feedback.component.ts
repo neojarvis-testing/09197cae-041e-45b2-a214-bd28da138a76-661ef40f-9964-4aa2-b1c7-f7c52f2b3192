@@ -16,17 +16,26 @@ export class UserViewFeedbackComponent implements OnInit {
   showLogoutModal: boolean;
   showDeleteModal: boolean = false;
   feedbackId: number;
+  user: User = {
+    UserId: 0,
+    Email: '',
+    Password: '',
+    Username: '',
+    MobileNumber: '',
+    UserRole: ''
+  };
 
 
-  constructor(private feedbackService: FeedbackService, private router: Router, private service: AuthService) {
-    this.service.currentUser.subscribe(user => {
-      this.user = user;
-    });
-  }
+  constructor(private feedbackService: FeedbackService, private router: Router, private service: AuthService) {}
 
-  user: User;
 
   ngOnInit(): void {
+    this.service.currentUser.subscribe(user => {
+      if (user) {
+        this.user = user;
+      }
+    });
+  
     this.loadFeedbacks();
   }
 
