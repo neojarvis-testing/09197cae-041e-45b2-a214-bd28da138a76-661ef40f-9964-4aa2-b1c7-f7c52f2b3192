@@ -2,12 +2,25 @@
     <div class="navbar-brand">EVENTMASTER</div>
     <div class="navbar-links">
         <a routerLink="/user-profile">DemoUser / User</a>
-        <a routerLink="/home">Home</a>
-        <a routerLink="/event-requirements">Event Requirements</a>
-        
-        <a routerLink="/events">Events</a>
+        <a routerLink="/user/home">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Event Requirement
+            </button>
+            <div class="dropdown-content">
+              <a href="/user/add-requirement">Add Requirement</a>
+              <a href="/user/view-requirement">View Requirement</a>
+            </div>
+        </div>
+        <a routerLink="/user/events">Events</a>
 
-        <a routerLink="/feedback">Feedback</a>
+        <div class="dropdown">
+            <button class="dropbtn">Feedback
+            </button>
+            <div class="dropdown-content">
+            <a href="/user/post-feedback">Post Feedback</a>
+              <a href="/user/my-feedbacks">My Feedback</a>
+            </div>
+        </div>
 
         <button (click)="logout()">Log Out</button>
     </div>
@@ -16,9 +29,8 @@
 
 <div *ngIf="showLogoutModal" class="modal">
     <div class="modal-content">
-        <h2 class="confirm-delete">Confirm Logout</h2>
-        <p class="sure-delete">Are you sure you want to logout?</p>
-        <button (click)="confirmLogout()" class="btn btn-danger logout-btn">Yes, Logout</button>
+        <p>Are you sure you want to logout?</p>
+        <button (click)="confirmLogout()" class="btn logout-btn">Yes, Logout</button>
         <button (click)="cancelLogout()" class="btn btn-secondary">Cancel</button>
     </div>
 </div>

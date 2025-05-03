@@ -1,53 +1,134 @@
+/* Events Container */
 .events-container {
-    padding: 30px 50px;
-    font-family: Arial, sans-serif;
-  }
-   
-  .events-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: 600;
-  }
-   
-  .search-bar {
-    margin-bottom: 15px;
-    text-align: left;
-  }
-   
-  .search-bar input {
-    padding: 8px 10px;
-    width: 250px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-   
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-  }
-   
-  th, td {
-    padding: 12px 10px;
-    border: 1px solid #ccc;
-    text-align: left;
-    font-size: 14px;
-  }
-   
-  thead {
-    background-color: #1a4a73;
-    color: white;
-  }
+  padding: 30px 50px;
+  font-family: Arial, sans-serif;
+}
+ 
+.events-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+ 
+.search-bar {
+  margin-bottom: 15px;
+  text-align: left;
+}
+ 
+.search-bar input {
+  padding: 8px 10px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+ 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+ 
+th, td {
+  padding: 12px 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+  font-size: 14px;
+}
+ 
+thead {
+  background-color: #1a4a73;
+  color: white;
+}
 
-  .text-center {
-    text-align: center;
-  }
+.text-center {
+  text-align: center;
+}
 
-  .line {
-    margin: 10px 0; /* Adds one line space (10px top and bottom) */
-    border: 0;
-    height: 1px;
-    background-color: #ccc; /* Line color */
-  }
-  
-   
+.line {
+  margin: 10px 0; /* Adds one line space (10px top and bottom) */
+  border: 0;
+  height: 1px;
+  background-color: #ccc; /* Line color */
+}
+
+/* Modal Styling */
+.modal {
+  display: none; /* Initially hidden */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Slightly darker overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+  text-align: center;
+}
+
+/* Close Button */
+.close {
+  color: #1a4a73;
+  float: right;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: red;
+}
+
+/* Modal Heading */
+.modal-content h2 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Delete Button */
+.btn-danger {
+  background-color: #d9534f;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-danger:hover {
+  background-color: #c9302c;
+}
+
+/* Cancel Button */
+.btn-secondary {
+  background-color: #ccc;
+  border: none;
+  color: black;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-secondary:hover {
+  background-color: #b3b3b3;
+}

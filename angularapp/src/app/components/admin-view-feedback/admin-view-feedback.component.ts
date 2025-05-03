@@ -4,6 +4,7 @@ import { Feedback } from 'src/app/models/feedback.model';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { FeedbackService } from 'src/app/services/feedback.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-admin-view-feedback',
@@ -12,11 +13,13 @@ import { FeedbackService } from 'src/app/services/feedback.service';
 })
 export class AdminViewFeedbackComponent implements OnInit {
 
-  constructor(private authservice: AuthService, private router: Router, private feedbackservice: FeedbackService) {
-    this.authservice.currentUser.subscribe(user => {
-      this.user = user;
-    });
+  constructor(private userService: UserService, private authservice: AuthService, private router: Router, private feedbackservice: FeedbackService) {
+    // this.authservice.currentUser.subscribe(user => {
+    //   this.user = user;
+    // });
   }
+
+  userDetailsToDisplay: User;
 
   ngOnInit(): void {
     this.loadFeedbacks();
@@ -28,26 +31,27 @@ export class AdminViewFeedbackComponent implements OnInit {
 
   viewDetailsModal: boolean = false;
 
-  viewDetails() {
-    this.viewDetailsModal = !this.viewDetailsModal;
+  viewDetails(userId: number) {
+    this.viewDetailsModal = true;
+    this.userService.getDetails(userId).subscribe(data => {
+      this.user = data;
+    })
+  }
+
+  close() {
+    this.viewDetailsModal = false;
   }
 
 
-loadFeedbacks(): void {
-    const userId = this.user.UserId; // Assuming userId is stored in localStorage
-    if (userId) {
-      this.feedbackservice.getAllFeedbackByUserId(userId.toString()).subscribe(
+  loadFeedbacks(): void {
+      this.feedbackservice.getFeedbacks().subscribe(
         (data) => {
           this.feedbacks = data.Result;
-          console.log(data.Result);
         },
         error => {
           console.error('Error fetching feedbacks', error);
           this.router.navigate(['/error'])
         }
       );
-    }
   }
-
-
 }

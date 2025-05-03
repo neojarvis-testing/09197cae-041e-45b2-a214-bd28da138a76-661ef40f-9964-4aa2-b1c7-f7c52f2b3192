@@ -17,7 +17,7 @@
                         <td>{{feedback.Date | date}}</td>
                         <td>{{ feedback.FeedbackText }}</td>
                         <td>
-                            <button (click)="viewDetails()" class="btn btn-danger">View Details</button>
+                            <button (click)="viewDetails(feedback.UserId)" class="btn btn-danger">View Details</button>
                         </td>
                     </tr>
                 </tbody>
@@ -31,7 +31,7 @@
                 <p>Username: {{user.Username}}</p>
                 <p>Mobile Number: {{user.MobileNumber}}</p>
                 <div class="button-container">
-                    <button (click)="viewDetails()" class="btn btn-danger">Ok</button>
+                    <button (click)="close()" class="btn btn-danger">Ok</button>
                 </div>
             </div>
         </div>

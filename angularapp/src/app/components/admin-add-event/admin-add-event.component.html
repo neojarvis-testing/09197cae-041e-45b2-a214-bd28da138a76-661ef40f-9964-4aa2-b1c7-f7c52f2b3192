@@ -1,4 +1,4 @@
-<h2>{{isEditMode ? 'Edit' : 'Add New Event'}}</h2>
+<h2>{{isEditMode ? 'Edit Event' : 'Add New Event'}}</h2>
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <div class="form-group">
     <label>Title*</label>
@@ -47,7 +47,7 @@
       type="date" 
       name="date" 
       class="form-control"
-      [(ngModel)]="newEvent.Date" 
+      [(ngModel)]="dateProperty" 
       #dateField="ngModel"
       required />
     <div *ngIf="dateField.touched && !newEvent.Date" class="text-danger">

@@ -27,7 +27,7 @@ export class RegistrationComponent {
         response => {
           console.log("the user is" + this.user);
           this.router.navigate(['/login']);
-          alert('Registration successful!');
+          // alert('Registration successful!');
           form.reset();
         },
         error => {

@@ -10,6 +10,7 @@ import { User } from 'src/app/models/user.model';
   templateUrl: './user-view-feedback.component.html',
   styleUrls: ['./user-view-feedback.component.css']
 })
+
 export class UserViewFeedbackComponent implements OnInit {
   feedbacks: Feedback[] = [];
   showLogoutModal: boolean;
