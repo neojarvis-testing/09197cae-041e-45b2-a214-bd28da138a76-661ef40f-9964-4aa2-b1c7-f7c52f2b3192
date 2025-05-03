@@ -10,7 +10,7 @@ export class FeedbackService {
 
   constructor(private http: HttpClient) { }
 
-  public apiUrl = "https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io";
+  public apiUrl = "https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io/";
 
   sendFeedback(feedback: Feedback): Observable<any> {
     return this.http.post<Feedback>(this.apiUrl + "/api/feedback", feedback);
