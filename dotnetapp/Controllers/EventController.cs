@@ -20,6 +20,7 @@ namespace Controllers
         }
 
         // Retrieve all events
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Event>>> GetAllEvents()
         {

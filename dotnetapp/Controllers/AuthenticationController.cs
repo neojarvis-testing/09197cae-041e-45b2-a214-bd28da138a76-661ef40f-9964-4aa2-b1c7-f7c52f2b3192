@@ -100,6 +100,7 @@ namespace dotnetapp.Controllers
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Hello"+ex.Message);
                 log.Error($"Unexpected error during login for user: {model.Email}", ex);
                 return StatusCode(500, new { Message = "An unexpected error occurred. Please try again later." });
             }
@@ -134,6 +135,8 @@ namespace dotnetapp.Controllers
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Hello"+ex.Message);
                 log.Error($"Unexpected error during registration for user: {model.Email}", ex);
                 return StatusCode(500, new { Message = "An unexpected error occurred. Please try again later." });
             }
