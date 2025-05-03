@@ -24,6 +24,8 @@ export class UserNavbarComponent implements OnInit {
   confirmLogout(){
     this.router.navigate([`/login`]);
   }
-  cancelLogout(){}
+  cancelLogout(){
+    this.showLogoutModal = false;
+  }
 
 }

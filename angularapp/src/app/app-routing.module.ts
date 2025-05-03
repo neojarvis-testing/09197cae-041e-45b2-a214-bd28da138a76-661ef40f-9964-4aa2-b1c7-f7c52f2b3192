@@ -20,7 +20,7 @@ import { UserViewEventComponent } from './components/user-view-event/user-view-e
 const routes: Routes = [
 
   { path: "login", component: LoginComponent },
-  { path: "", component: HomeComponent },
+  { path: "", component: LoginComponent},
   { path: "error", component: ErrorComponent },
   { path: "register", component: RegistrationComponent },
   { path: "view-feedback", component: UserViewFeedbackComponent },

@@ -14,6 +14,5 @@ export class UserService {
   getDetails(userId: number): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/users/userDetails/" + userId);
   }
-
-
+  
 }
