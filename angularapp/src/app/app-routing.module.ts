@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: "home", component: HomeComponent},
   { path: "admin/app-admin-add-event",component:AdminAddEventComponent},
   { path: "admin/app-admin-add-event/:id",component:AdminAddEventComponent},
-  { path: "user/app-user-view-event",component:UserViewEventComponent}
+  { path: "user/app-user-view-event",component:UserViewEventComponent},
   { path: "view-feedback", component: UserViewFeedbackComponent },
   { path: "add-feedback", component: UserAddFeedbackComponent },
   { path: "admin-view-event", component: AdminViewEventComponent },

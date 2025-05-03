@@ -20,6 +20,14 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+
+  
+/* Style for the placeholder text */
+.search-bar input::placeholder {
+ color: #999;
+  opacity: 1; /* Ensure the placeholder is fully visible */
+  }
+  
    
   table {
     width: 100%;

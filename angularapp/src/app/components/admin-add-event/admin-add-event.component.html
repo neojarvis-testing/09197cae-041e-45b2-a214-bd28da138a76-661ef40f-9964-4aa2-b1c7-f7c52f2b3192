@@ -47,7 +47,7 @@
       type="date" 
       name="date" 
       class="form-control"
-      [(ngModel)]="dateProperty" 
+      [(ngModel)]="newEvent.Date" 
       #dateField="ngModel"
       required />
     <div *ngIf="dateField.touched && !newEvent.Date" class="text-danger">

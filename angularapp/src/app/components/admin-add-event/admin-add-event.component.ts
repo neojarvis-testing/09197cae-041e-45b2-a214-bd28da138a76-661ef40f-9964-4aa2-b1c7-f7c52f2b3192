@@ -79,7 +79,7 @@ export class AdminAddEventComponent implements OnInit {
     request.subscribe({
       next: () => {
         form.resetForm();
-        this.router.navigate(['/']);
+        this.router.navigate(['/admin-view-even']);
       },
       error: () => {
         this.router.navigate(['/admin-view-event']);
