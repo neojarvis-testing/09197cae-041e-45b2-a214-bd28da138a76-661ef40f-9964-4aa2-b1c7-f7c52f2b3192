@@ -21,9 +21,7 @@ export class EventService {
   }
 
   addEvent(event: Event): Observable<any> {
-
     return this.http.post<any>(`${this.apiUrl}/api/events`, event);
-
   }
 
   updateEvent(eventId: number, event: Event): Observable<any> {

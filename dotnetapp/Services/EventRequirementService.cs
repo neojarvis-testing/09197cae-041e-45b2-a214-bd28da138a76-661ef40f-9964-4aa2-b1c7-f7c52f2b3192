@@ -82,5 +82,13 @@ namespace dotnetapp.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<IEnumerable<EventRequirement>> GetEventRequirementByUserId(int userId)
+        {
+            return await _context.EventRequirements
+                .Where(r => r.UserId == userId)
+                .ToListAsync();
+        }
+
     }
 }

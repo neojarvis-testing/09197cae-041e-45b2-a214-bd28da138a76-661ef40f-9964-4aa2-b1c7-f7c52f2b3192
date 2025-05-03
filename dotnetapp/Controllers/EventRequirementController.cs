@@ -122,5 +122,27 @@ namespace dotnetapp.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<IEnumerable<EventRequirement>>> GetEventRequirementsByUserId(int userId)
+        {
+            try
+            {
+                // Fetch event requirements for the specific user
+                var eventRequirements = await _eventRequirementService.GetEventRequirementByUserId(userId);
+                
+                if (eventRequirements == null || !eventRequirements.Any())
+                {
+                    return NotFound(new { message = "No event requirements found for this user." });
+                }
+        
+                return Ok(new { message = "Successfully fetched event requirements.", data = eventRequirements });
+            }
+            catch (Exception ex)
+            {
+                // Catch and display exceptions securely
+                return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
+            }
+        }
     }
 }

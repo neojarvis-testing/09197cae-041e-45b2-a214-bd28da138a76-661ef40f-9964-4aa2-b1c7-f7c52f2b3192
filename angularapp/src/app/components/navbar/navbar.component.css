@@ -6,20 +6,21 @@
     color: white;
     padding: 10px 20px;
 }
-
+ 
 .logo {
     margin: 0;
     font-size: 24px;
     font-weight: bold;
 }
-
+ 
 .nav-links a {
     margin-left: 15px;
     color: white;
     text-decoration: none;
     font-weight: 500;
 }
-
+ 
 .nav-links a:hover {
     text-decoration: underline;
 }
+ 
