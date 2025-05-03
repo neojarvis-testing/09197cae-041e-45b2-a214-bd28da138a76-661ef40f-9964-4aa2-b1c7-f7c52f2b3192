@@ -4,8 +4,21 @@
         <a routerLink="/user-profile">DemoUser / User</a>
         <a routerLink="/home">Home</a>
         <a routerLink="/event-requirements">Event Requirements</a>
+        
         <a routerLink="/events">Events</a>
-        <a routerLink="/logout">Logout</a>
+
+        <a routerLink="/feedback">Feedback</a>
+
+        <button (click)="logout()">Log Out</button>
     </div>
 </nav>
-    
+
+
+<div *ngIf="showLogoutModal" class="modal">
+    <div class="modal-content">
+        <h2 class="confirm-delete">Confirm Logout</h2>
+        <p class="sure-delete">Are you sure you want to logout?</p>
+        <button (click)="confirmLogout()" class="btn btn-danger logout-btn">Yes, Logout</button>
+        <button (click)="cancelLogout()" class="btn btn-secondary">Cancel</button>
+    </div>
+</div>

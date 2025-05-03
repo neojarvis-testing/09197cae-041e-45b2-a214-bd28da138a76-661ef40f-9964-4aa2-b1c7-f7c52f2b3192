@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { Event } from 'src/app/models/event.model'; // Replace with the correct path
+import { Event } from 'src/app/models/event.model'; 
 
 @Component({
   selector: 'app-admin-add-event',
   templateUrl: './admin-add-event.component.html',
   styleUrls: ['./admin-add-event.component.css']
 })
+
 export class AdminAddEventComponent implements OnInit {
   newEvent: Event = {
     EventId: 0,
@@ -19,7 +20,7 @@ export class AdminAddEventComponent implements OnInit {
     OrganizerName: '',
     ContactInfo: '',
     PostedDate: new Date(),
-    Status: ''
+    Status: 'Pending'
   };
 
   isEditMode = false;
@@ -56,7 +57,8 @@ export class AdminAddEventComponent implements OnInit {
     const exists = this.tempEvents.find(
       event => event.Title?.toLowerCase() === (this.newEvent.Title || '').toLowerCase()
     );
-
+    console.log(this.tempEvents);
+    
     if (exists) {
       this.errorMessage = 'Event title already exists!';
       return;
@@ -71,9 +73,9 @@ export class AdminAddEventComponent implements OnInit {
         form.resetForm();
         this.router.navigate(['/']);
       },
-      // error: () => {
-      //   this.errorMessage = 'An error occurred while submitting the event.';
-      // }
+      error: () => {
+        this.router.navigate(['/error']);
+      }
     });
   }
 }

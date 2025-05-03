@@ -1,6 +1,7 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace dotnetapp.Models
 {
@@ -10,8 +11,8 @@ namespace dotnetapp.Models
 
         [Required(ErrorMessage = "User ID is required")]
         public int UserId { get; set; }
-
-        public User User { get; set; }
+        [JsonIgnore]
+        public User? User { get; set; }
         [Required(ErrorMessage = "Feedback text is required")]
         public string FeedbackText { get; set; }
 
