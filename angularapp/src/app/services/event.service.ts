@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Event } from '../models/event.model';
 
 @Injectable({
@@ -8,12 +8,14 @@ import { Event } from '../models/event.model';
 })
 export class EventService {
 
-  public apiUrl: string = 'https://ide-bfddacbabacefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080';
+  public apiUrl: string = 'https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io';
 
   constructor(private http: HttpClient) {}
 
   getAllEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.apiUrl}/api/events`);
+    const token = localStorage.getItem('currentUser'); // Get JWT token
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+    return this.http.get<Event[]>(`${this.apiUrl}/api/events`,{headers});
   }
 
   getEventById(eventId: number): Observable<Event> {

@@ -10,22 +10,22 @@ export class FeedbackService {
 
   constructor(private http: HttpClient) { }
 
-  public apiUrl = "https://8080-bdbdfbfdadcfaefdfceabfeefceffaabcfcfb.premiumproject.examly.io";
+  public apiUrl = "https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io";
 
   sendFeedback(feedback: Feedback): Observable<any> {
-    return this.http.post<Feedback>(this.apiUrl + "api/feedback", feedback);
+    return this.http.post<Feedback>(this.apiUrl + "/api/feedback", feedback);
   }
 
   getAllFeedbackByUserId(userId: string): Observable<any> {
-    return this.http.get<any[]>(this.apiUrl + "api/feedback/user/" + userId);
+    return this.http.get<any[]>(this.apiUrl + "/api/feedback/user/" + userId);
   }
 
   deleteFeedback(feedbackId: string): Observable<any> {
-    return this.http.delete<void>(this.apiUrl + "api/feedback/user/" + feedbackId);
+    return this.http.delete<void>(this.apiUrl + "/api/feedback/user/" + feedbackId);
   }
 
   getFeedbacks(): Observable<any> {
-    return this.http.get<Feedback[]>(this.apiUrl + "api/feedback");
+    return this.http.get<Feedback[]>(this.apiUrl + "/api/feedback");
   }
 
 }

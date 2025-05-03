@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dotnetapp.Models;
 using dotnetapp.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Controllers
 {
@@ -19,6 +20,7 @@ namespace Controllers
         }
 
         // Retrieve all events
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Event>>> GetAllEvents()
         {
@@ -73,6 +75,7 @@ namespace Controllers
         }
 
         // Delete an event
+
         [HttpDelete("{eventId}")]
         public async Task<ActionResult> DeleteEvent(int eventId)
         {
