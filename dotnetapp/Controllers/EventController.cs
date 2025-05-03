@@ -75,6 +75,7 @@ namespace Controllers
         }
 
         // Delete an event
+
         [HttpDelete("{eventId}")]
         public async Task<ActionResult> DeleteEvent(int eventId)
         {

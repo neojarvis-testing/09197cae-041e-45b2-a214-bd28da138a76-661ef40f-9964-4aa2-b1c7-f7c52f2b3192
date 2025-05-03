@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Event } from '../models/event.model';
 
 @Injectable({
@@ -13,7 +13,9 @@ export class EventService {
   constructor(private http: HttpClient) {}
 
   getAllEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.apiUrl}/api/events`);
+    const token = localStorage.getItem('currentUser'); // Get JWT token
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+    return this.http.get<Event[]>(`${this.apiUrl}/api/events`,{headers});
   }
 
   getEventById(eventId: number): Observable<Event> {
