@@ -61,7 +61,7 @@ export class UserViewRequirementComponent implements OnInit {
   
   editRequirement(erId: number)
   {
-    this.r.navigate([`/user-add-requirement/${erId}`])
+    this.r.navigate([`user/app-user-add-requirement/${erId}`])
   }
 
   cancelDelete(): void {

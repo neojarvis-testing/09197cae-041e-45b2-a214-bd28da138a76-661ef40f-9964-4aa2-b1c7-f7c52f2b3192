@@ -1,17 +1,17 @@
-<nav class="navbar">
+<nav class="navbar" *ngIf="(aService.currentUser | async)?.UserRole === 'Admin'">
     <div class="navbar-brand">EVENTMASTER</div>
     <div class="navbar-links">
-        <a routerLink="/admin-profile"> DemoAdmin/ Admin</a>
+        <a routerLink="/admin-profile">{{User_name}}/ Admin</a>
         <a routerLink="/admin/home">Home</a>
         <div class="dropdown">
             <button class="dropbtn">Event</button>
             <div class="dropdown-content">
-              <a href="/admin/add-event">Add Event</a>
-              <a href="/admin/view-event">View Event</a>
+              <a href="/admin/app-admin-add-event">Add Event</a>
+              <a href="/admin/app-admin-view-event">View Event</a>
             </div>
           </div>
-        <a routerLink="/admin/event-requirements">Event Requirements</a>
-        <a routerLink="/admin/feedback">Feedback</a>
+        <a routerLink="/admin/app-admin-view-requirement">Event Requirements</a>
+        <a routerLink="/admin/app-admin-view-feedback">Feedback</a>
         <button (click)="logout()">Log Out</button>
     </div>
 </nav>

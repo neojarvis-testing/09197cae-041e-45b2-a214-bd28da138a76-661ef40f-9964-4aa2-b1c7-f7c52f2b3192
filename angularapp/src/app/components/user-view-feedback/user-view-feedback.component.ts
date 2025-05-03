@@ -60,7 +60,7 @@ export class UserViewFeedbackComponent implements OnInit {
       },
       error => {
         console.error('Error deleting feedback', error);
-        this.router.navigate(['/view-feedback'])
+        this.router.navigate([`/user/app-user-view-feedback`]);
       }
       );
   }
