@@ -17,15 +17,19 @@ export class AdminNavbarComponent implements OnInit {
   }
 
   showLogoutModal :boolean=false;
-  logout(){
+  logout(): void {
     this.showLogoutModal = true;
-      this.router.navigate(['/login']);
-   }
-
-  confirmLogout(){
-    this.router.navigate([`/login`]);
   }
-  cancelLogout(){}
+
+  confirmLogout(): void {
+    this.showLogoutModal = false;
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
+
+  cancelLogout(): void {
+    this.showLogoutModal = false;
+  }
 }
 
 

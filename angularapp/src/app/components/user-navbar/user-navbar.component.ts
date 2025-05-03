@@ -16,14 +16,18 @@ export class UserNavbarComponent implements OnInit {
 
 
   showLogoutModal :boolean=false;
-  
-  logout(){
+  logout(): void {
     this.showLogoutModal = true;
   }
 
-  confirmLogout(){
-    this.router.navigate([`/login`]);
+  confirmLogout(): void {
+    this.showLogoutModal = false;
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
-  cancelLogout(){}
+
+  cancelLogout(): void {
+    this.showLogoutModal = false;
+  }
 
 }
