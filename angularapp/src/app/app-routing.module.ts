@@ -18,29 +18,36 @@ import { AdminViewFeedbackComponent } from './components/admin-view-feedback/adm
 import { AdminAddEventComponent } from './components/admin-add-event/admin-add-event.component';
 import { UserViewEventComponent } from './components/user-view-event/user-view-event.component';
 const routes: Routes = [
- 
+
   { path: "login", component: LoginComponent },
   { path: "", component: HomeComponent },
   { path: "error", component: ErrorComponent },
   { path: "register", component: RegistrationComponent },
   { path: "view-feedback", component: UserViewFeedbackComponent },
   { path: "add-feedback", component: UserAddFeedbackComponent },
-  { path: "events", component: AdminViewEventComponent },
+  { path: "admin-view-event", component: AdminViewEventComponent },
+  { path: "admin/admin-view-event", component: AdminViewEventComponent },
+  { path: "admin/add-event", component: AdminAddEventComponent },
   { path: "error", component: ErrorComponent },
   { path: "user-view-requirement", component: UserViewRequirementComponent },
-  {path: "admin-view-feedbacks",component: AdminViewFeedbackComponent},
-  {path: "user-add-requirement", component: UserAddRequirementComponent},
-  {path: "user-add-requirement/:id", component: UserAddRequirementComponent},
-  {path: "admin-view-requirement", component: AdminViewRequirementComponent}
-  { path: "admin-view-feedbacks",component:AdminViewFeedbackComponent},
-  { path: "add-event", component: AdminAddEventComponent},
-  { path: "view-event", component: AdminViewEventComponent},
-  { path: "home", component: HomeComponent},
-  {path: "admin-view-feedbacks",component:AdminViewFeedbackComponent},
-  {path: "admin-add-event",component:AdminAddEventComponent},
-  {path: "admin-add-event/:id",component:AdminAddEventComponent},
-  {path: "admin-view-event",component:AdminViewEventComponent},
-  {path: "user-view-event",component:UserViewEventComponent}
+  { path: "admin/admin-view-feedbacks", component: AdminViewFeedbackComponent },
+  { path: "user-add-requirement", component: UserAddRequirementComponent },
+  { path: "user-add-requirement/:id", component: UserAddRequirementComponent },
+  { path: "admin/admin-view-requirement", component: AdminViewRequirementComponent },
+  { path: "admin/admin-view-feedbacks", component: AdminViewFeedbackComponent },
+  { path: "add-event", component: AdminAddEventComponent },
+  { path: "view-event", component: AdminViewEventComponent },
+  { path: "admin/view-event", component: AdminViewEventComponent },
+  { path: "admin/home", component: HomeComponent },
+  { path: "user/home", component: HomeComponent },
+  {path:"home",component:HomeComponent},
+  { path: "admin-view-feedbacks", component: AdminViewFeedbackComponent },
+  { path: "admin/admin-add-event", component: AdminAddEventComponent },
+  { path: "admin/admin-add-event/:id", component: AdminAddEventComponent },
+  { path: "admin/admin-view-event", component: AdminViewEventComponent },
+  { path: "user-view-event", component: UserViewEventComponent },
+  { path: "user-view-feedback", component: UserViewFeedbackComponent },
+  { path: "admin/app-admin-view-feedback", component: AdminViewFeedbackComponent },
 ];
 
 
