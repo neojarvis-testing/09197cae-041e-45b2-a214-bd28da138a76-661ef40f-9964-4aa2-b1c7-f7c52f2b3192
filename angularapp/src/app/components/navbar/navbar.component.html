@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar" *ngIf="!(aService.currentUser | async)">
     <h2 class="logo">EventMaster</h2>
     <nav class="nav-links">
         <a routerLink="/register">Register</a>

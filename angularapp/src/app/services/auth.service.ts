@@ -9,7 +9,8 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  public baseUrl = 'https://ide-ecbaabcdcedcfefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080';
+  public baseUrl = 'https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io/api';
+
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
  
@@ -33,7 +34,7 @@ export class AuthService {
     return this.http.post<{ token: string; user: User }>(`${this.baseUrl}/login`, loginData).pipe(
       tap(response => {
         console.log('Login API response:', response);
-        const token = response.Token;
+        const token = response.token;
         const user = response.User;
         console.log('Storing token:', token);
         console.log('Storing user:', user);      

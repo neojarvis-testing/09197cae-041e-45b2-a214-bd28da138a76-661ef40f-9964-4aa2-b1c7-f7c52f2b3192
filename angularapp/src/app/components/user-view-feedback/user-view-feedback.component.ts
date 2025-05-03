@@ -16,22 +16,32 @@ export class UserViewFeedbackComponent implements OnInit {
   showLogoutModal: boolean;
   showDeleteModal: boolean = false;
   feedbackId: number;
+  user: User = {
+    UserId: 0,
+    Email: '',
+    Password: '',
+    Username: '',
+    MobileNumber: '',
+    UserRole: ''
+  };
 
 
-  constructor(private feedbackService: FeedbackService, private router: Router, private service: AuthService) {
-    this.service.currentUser.subscribe(user => {
-      this.user = user;
-    });
-  }
+  constructor(private feedbackService: FeedbackService, private router: Router, private service: AuthService) {}
 
-  user: User;
 
   ngOnInit(): void {
+    this.service.currentUser.subscribe(user => {
+      if (user) {
+        this.user = user;
+      }
+    });
+  
     this.loadFeedbacks();
   }
 
   loadFeedbacks(): void {
-    const userId = this.user.UserId; // Assuming userId is stored in localStorage
+    console.log(this.user);
+    const userId = this.user?.UserId; // Assuming userId is stored in localStorage
     if (userId) {
       this.feedbackService.getAllFeedbackByUserId(userId.toString()).subscribe(
         (data) => {
@@ -60,9 +70,9 @@ export class UserViewFeedbackComponent implements OnInit {
       },
       error => {
         console.error('Error deleting feedback', error);
-        this.router.navigate(['/view-feedback'])
+        this.router.navigate([`/user/app-user-view-feedback`]);
       }
-      );
+    );
   }
 
   logout(): void {

@@ -10,6 +10,7 @@ import { Login } from 'src/app/models/login.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
@@ -21,7 +22,6 @@ export class LoginComponent implements OnInit {
   ) {}
  
   ngOnInit(): void {
-
   }
 
   login:Login = {
@@ -33,9 +33,7 @@ export class LoginComponent implements OnInit {
   onSubmit(form: NgForm): void {
 
     this.submitted = true;
-
     console.log(form.value);
-
     const newLogin: Login = {
       email: form.value.email,
       password: form.value.password
