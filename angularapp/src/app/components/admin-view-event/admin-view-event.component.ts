@@ -45,7 +45,7 @@ export class AdminViewEventComponent implements OnInit {
   }
 
   editEvent(eventId: number) {
-    this.router.navigate([`/admin-add-event/${eventId}`]);
+    this.router.navigate([`admin/admin-add-event/${eventId}`]);
   }
 
   deleteEvent(eventId: number) {
@@ -61,14 +61,14 @@ export class AdminViewEventComponent implements OnInit {
     if (this.selectedEventId !== null) {
       this.eventService.deleteEvent(this.selectedEventId).subscribe(() => {
         this.loadEvents();
-        this.router.navigate(['/admin-view-event']);
+        this.router.navigate(['admin/admin-view-event']);
         this.filteredEvents = [...this.events]; // Ensure filtered list updates
         this.showDeleteModal = false;
-        this.router.navigate(['/admin-view-event']);
+        this.router.navigate(['admin/admin-view-event']);
       },
       error=>{
         this.showDeleteModal = false;
-        this.router.navigate(['/admin-view-event'])
+        this.router.navigate(['admin/admin-view-event'])
         this.loadEvents();
       });
     }
