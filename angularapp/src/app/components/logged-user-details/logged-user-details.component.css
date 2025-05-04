@@ -5,13 +5,19 @@
     width: 100%;
     max-width: 400px;
     font-family: Arial, sans-serif;
-    align-content: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
+
 h1 {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 15px;
     text-align: center;
     border-bottom: 2px solid #333; /* Subtle divider */
@@ -20,7 +26,7 @@ h1 {
 }
 
 p {
-    font-size: 18px;
+    font-size: 16px;
     margin: 5px 0;
     color: #444; /* Neutral text color */
 }

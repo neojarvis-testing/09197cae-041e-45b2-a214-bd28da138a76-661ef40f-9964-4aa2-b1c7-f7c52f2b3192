@@ -1,11 +1,9 @@
 <div class="events-container">
-    <h2>Requirements</h2>
-
-        <!-- Horizontal Line -->
-        <hr class="line">
-   
+    <h2>Event Requirements</h2>
+    <hr class="line">
+    
     <div class="search-bar">
-        <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" (input)="searchByName()" />
+        <input type="text" placeholder="Search by title..." [(ngModel)]="searchTerm" (input)="searchByName()" />
     </div>
    
 
@@ -33,9 +31,9 @@
                     {{eventRequirement.Status}}
                 </span>
             </td>
-            <td>
-                <button type="button" (click)="approveButton(eventRequirement)">Approve</button>
-                <button type="button" (click)="rejectButton(eventRequirement)">Reject</button>
+            <td class="actions">
+                <button type="button" class="approve-btn" (click)="approveButton(eventRequirement)">Approve</button>
+                <button type="button" class="reject-btn" (click)="rejectButton(eventRequirement)">Reject</button>
             </td>
         </tr>
     </tbody>
