@@ -82,7 +82,7 @@ export class AdminAddEventComponent implements OnInit {
         this.router.navigate(['/']);
       },
       error: () => {
-        this.router.navigate(['/admin-view-event']);
+        this.router.navigate(['/admin/app-admin-view-event']);
       }
     });
   }
