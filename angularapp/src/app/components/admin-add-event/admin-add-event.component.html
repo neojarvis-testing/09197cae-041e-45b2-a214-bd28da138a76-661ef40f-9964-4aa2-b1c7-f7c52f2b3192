@@ -1,5 +1,5 @@
-<h2>{{isEditMode ? 'Edit Event' : 'Add New Event'}}</h2>
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <h2>{{isEditMode ? 'Edit Event' : 'Add New Event'}}</h2>
   <div class="form-group">
     <label>Title*</label>
     <input 
@@ -85,17 +85,23 @@
 
   <div class="form-group">
     <label>Status*</label>
-    <input 
-      type="text" 
-      name="status" 
-      class="form-control"
-      [(ngModel)]="newEvent.Status" 
-      #sinfo="ngModel"
-      required />
+    <select 
+        name="status" 
+        class="form-control"
+        [(ngModel)]="newEvent.Status" 
+        #sinfo="ngModel"
+        required>
+        <option value="" disabled selected>Select status</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+        <option value="Pending">Pending</option>
+    </select>
+
     <div *ngIf="sinfo.touched && !newEvent.Status" class="text-danger">
-      Status is required
+        Status is required
     </div>
-  </div>
+</div>
+
 
   <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
 

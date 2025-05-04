@@ -1,6 +1,7 @@
-.home-content {
+/* .home-content {
     padding: 30px;
     text-align: center;
+    margin-top: 50px;
 }
 
 .home-content h1 {
@@ -13,4 +14,41 @@
     line-height: 1.6;
     max-width: 800px;
     margin: 0 auto;
+} */
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: #fff; /* Makes text visible */
+}
+
+.home-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    padding-left: 80px;
+}
+
+.home-content {
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for readability */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.home-content h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.home-content p {
+    font-size: 18px;
+    line-height: 1.8;
 }
