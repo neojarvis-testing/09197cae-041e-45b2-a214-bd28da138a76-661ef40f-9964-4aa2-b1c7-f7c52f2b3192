@@ -1,0 +1,26 @@
+.user-details-container {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    font-family: Arial, sans-serif;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+    border-bottom: 2px solid #333; /* Subtle divider */
+    padding-bottom: 10px;
+    color: #222; /* Dark text for readability */
+}
+
+p {
+    font-size: 18px;
+    margin: 5px 0;
+    color: #444; /* Neutral text color */
+}
