@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
 import { Event } from 'src/app/models/event.model';
 import { Router } from '@angular/router';
+import { EventRequirement } from 'src/app/models/event-requirement.model';
 
 @Component({
   selector: 'app-admin-view-event',
@@ -16,6 +17,7 @@ export class AdminViewEventComponent implements OnInit {
   selectedEventId: number | null = null;
   selectedEventTitle: string = '';
   showDeleteModal: boolean = false;
+
 
   constructor(private eventService: EventService, private router: Router) {}
 
@@ -37,6 +39,8 @@ export class AdminViewEventComponent implements OnInit {
     });
   }
 
+  
+
   searchByName() {
     const searchTermLower = this.searchTitle.toLowerCase().trim();
     this.filteredEvents = this.events.filter((event) =>
@@ -45,7 +49,7 @@ export class AdminViewEventComponent implements OnInit {
   }
 
   editEvent(eventId: number) {
-    this.router.navigate([`/admin-add-event/${eventId}`]);
+    this.router.navigate([`admin/admin-add-event/${eventId}`]);
   }
 
   deleteEvent(eventId: number) {
@@ -61,14 +65,14 @@ export class AdminViewEventComponent implements OnInit {
     if (this.selectedEventId !== null) {
       this.eventService.deleteEvent(this.selectedEventId).subscribe(() => {
         this.loadEvents();
-        this.router.navigate(['/admin-view-event']);
+        this.router.navigate(['admin/admin-view-event']);
         this.filteredEvents = [...this.events]; // Ensure filtered list updates
         this.showDeleteModal = false;
-        this.router.navigate(['/admin-view-event']);
+        this.router.navigate(['admin/admin-view-event']);
       },
       error=>{
         this.showDeleteModal = false;
-        this.router.navigate(['/admin-view-event'])
+        this.router.navigate(['admin/admin-view-event'])
         this.loadEvents();
       });
     }

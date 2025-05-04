@@ -44,4 +44,34 @@
     font-size: 14px;
     color: #dc3545;
   }
+
+  .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Focus Effect */
+  .form-group select:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0px 0px 5px rgba(40, 167, 69, 0.5);
+  }
+  
+  /* Dropdown Option Styling */
+  .form-group select option {
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  /* Styling for Better Dropdown Appearance */
+  .form-group select:hover {
+    background-color: #f1f1f1;
+  }
+  
   

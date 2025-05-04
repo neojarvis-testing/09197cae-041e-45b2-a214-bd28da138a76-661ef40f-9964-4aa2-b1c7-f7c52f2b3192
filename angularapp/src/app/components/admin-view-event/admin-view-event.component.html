@@ -1,13 +1,19 @@
 <!-- admin-view-event.component.html -->
 <div class="events-container">
   <h2>Events</h2>
+  <hr class="line">
+
 
   <div class="search-bar">
+<<<<<<< HEAD
     <input type="text" placeholder="Search by Title" [(ngModel)]="searchTitle" (input)="searchByName()">
+=======
+    <input type="text" placeholder="Search by title..." [(ngModel)]="searchTitle" (input)="searchByName()">
+>>>>>>> 70d11dc69fdb41536a0291af6664f4f7f7b41fae
   </div>
 
-  <table>
-    <thead>
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
       <tr>
         <th>S.No</th>
         <th>Title</th>
@@ -26,7 +32,7 @@
         <td>{{ event.Title }}</td>
         <td>{{ event.Description }}</td>
         <td>{{ event.Location }}</td>
-        <td>{{ event.Date }}</td>
+        <td>{{ event.Date | date }}</td>
         <td>{{ event.OrganizerName }}</td>
         <td>{{ event.ContactInfo }}</td>
         <td>{{ event.Status }}</td>

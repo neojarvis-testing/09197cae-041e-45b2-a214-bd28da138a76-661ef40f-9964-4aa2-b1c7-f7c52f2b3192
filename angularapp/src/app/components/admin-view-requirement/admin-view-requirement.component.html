@@ -1,11 +1,13 @@
 <div class="events-container">
-    <h2>Requirements</h2>
-
-        <!-- Horizontal Line -->
-        <hr class="line">
-   
+    <h2>Event Requirements</h2>
+    <hr class="line">
+    
     <div class="search-bar">
+<<<<<<< HEAD
         <input type="text" placeholder="Search by title" [(ngModel)]="searchTerm" (input)="searchByName()" />
+=======
+        <input type="text" placeholder="Search by title..." [(ngModel)]="searchTerm" (input)="searchByName()" />
+>>>>>>> 70d11dc69fdb41536a0291af6664f4f7f7b41fae
     </div>
    
 
@@ -17,6 +19,7 @@
             <th>Description</th>
             <th>Location</th>
             <th>Date</th>
+            <th>Event Name</th>
             <th>Status</th>
             <th>Action</th>
         </tr>
@@ -24,18 +27,19 @@
     <tbody>
         <tr *ngFor="let eventRequirement of filteredEventRequirements; let i = index">
             <td>{{i + 1}}</td>
-            <td>{{eventRequirement.Title}}</td> 
-            <td>{{eventRequirement.Description}}</td>
-            <td>{{eventRequirement.Location}}</td>
-            <td>{{eventRequirement.Date | date:'mediumDate'}}</td>
+            <td>{{eventRequirement?.Title}}</td> 
+            <td>{{eventRequirement?.Description}}</td>
+            <td>{{eventRequirement?.Location}}</td>
+            <td>{{eventRequirement?.Date | date:'mediumDate'}}</td>
+            <td>{{fetch_eventname(eventRequirement)}}</td>
             <td>
                 <span>
                     {{eventRequirement.Status}}
                 </span>
             </td>
-            <td>
-                <button type="button" (click)="approveButton(eventRequirement)">Approve</button>
-                <button type="button" (click)="rejectButton(eventRequirement)">Reject</button>
+            <td class="actions">
+                <button type="button" class="approve-btn" (click)="approveButton(eventRequirement)">Approve</button>
+                <button type="button" class="reject-btn" (click)="rejectButton(eventRequirement)">Reject</button>
             </td>
         </tr>
     </tbody>

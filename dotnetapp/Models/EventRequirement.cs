@@ -1,5 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+
 
 namespace dotnetapp.Models
 {
@@ -24,5 +27,17 @@ namespace dotnetapp.Models
 
         [Required(ErrorMessage = "Status is required")]
         public string Status { get; set; }
+
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public User? User { get; set; }  
+    
+        [ForeignKey("Event")]
+        public int EventId { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public Event? Event { get; set; } 
     }
 }

@@ -1,4 +1,4 @@
-<nav class="navbar" *ngIf="(aService.currentUser | async)?.UserRole === 'Admin'">
+<!-- <nav class="navbar" *ngIf="(aService.currentUser | async)?.UserRole === 'Admin'">
     <div class="navbar-brand">EVENTMASTER</div>
     <div class="navbar-links">
         <a routerLink="/admin-profile">{{User_name}}/ Admin</a>
@@ -23,4 +23,34 @@
       <button (click)="confirmLogout()" class="btn logout-btn">Yes, Logout</button>
       <button (click)="cancelLogout()" class="btn btn-secondary">Cancel</button>
   </div>
+</div> -->
+
+
+
+<nav class="navbar" *ngIf="(aService.currentUser | async)?.UserRole === 'Admin'">
+  <div class="navbar-brand">EVENTMASTER</div>
+  <div class="navbar-links">
+      <a routerLink="/admin-profile">{{User_name}}/Admin</a>
+      <a (click)="navigateWithLoader('/admin/home')">Home</a>
+      <div class="dropdown">
+          <button class="dropbtn">Event</button>
+          <div class="dropdown-content">
+            <a (click)="navigateWithLoader('/admin/app-admin-add-event')">Add Event</a>
+            <a (click)="navigateWithLoader('/admin/app-admin-view-event')">View Event</a>
+          </div>
+        </div>
+      <a (click)="navigateWithLoader('/admin/app-admin-view-requirement')">Event Requirements</a>
+      <a (click)="navigateWithLoader('/admin/app-admin-view-feedback')">Feedback</a>
+
+      <button (click)="logout()">Log Out</button>
+  </div>
+</nav>
+
+<!-- Logout Confirmation Modal -->
+<div *ngIf="showLogoutModal" class="modal">
+<div class="modal-content">
+    <p>Are you sure you want to logout?</p>
+    <button (click)="confirmLogout()" class="btn logout-btn">Yes, Logout</button>
+    <button (click)="cancelLogout()" class="btn btn-secondary">Cancel</button>
+</div>
 </div>
