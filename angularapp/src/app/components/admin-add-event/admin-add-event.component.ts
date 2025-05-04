@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { Event } from 'src/app/models/event.model'; 
+import { Event } from 'src/app/models/event.model';
 
 @Component({
   selector: 'app-admin-add-event',
@@ -23,7 +23,7 @@ export class AdminAddEventComponent implements OnInit {
     Status: 'Pending'
   };
 
-  dateProperty:any;
+  dateProperty: any;
 
   isEditMode = false;
   eventId!: number;
@@ -34,7 +34,7 @@ export class AdminAddEventComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private eventService: EventService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.eventService.getAllEvents().subscribe((data) => {
@@ -49,7 +49,7 @@ export class AdminAddEventComponent implements OnInit {
       this.eventService.getEventById(this.eventId).subscribe((data) => {
         this.newEvent = data || this.newEvent; // Ensures valid object assignment
 
-        this.newEvent.Date = new Date(this.newEvent.Date);
+        this.dateProperty = new Date(this.newEvent.Date).toISOString().split('T')[0];
 
         console.log(new Date(this.newEvent.Date));
 
@@ -61,16 +61,18 @@ export class AdminAddEventComponent implements OnInit {
     if (form.invalid) return;
 
     // Enhanced check with safeguards
-    const exists = this.tempEvents.find(
-      event => event.Title?.toLowerCase() === (this.newEvent.Title || '').toLowerCase()
-    );
-    
+    // const exists = this.tempEvents.find(
+    //   event => event.Title?.toLowerCase() === (this.newEvent.Title || '').toLowerCase()
+    // );
+
     console.log(this.tempEvents);
-    
-    if (exists) {
-      this.errorMessage = 'Event title already exists!';
-      return;
-    }
+
+    // if (exists) {
+    //   this.errorMessage = 'Event title already exists!';
+    //   return;
+    // }
+
+    this.newEvent.Date = new Date(this.dateProperty);
 
     const request = this.isEditMode
       ? this.eventService.updateEvent(this.eventId, this.newEvent)

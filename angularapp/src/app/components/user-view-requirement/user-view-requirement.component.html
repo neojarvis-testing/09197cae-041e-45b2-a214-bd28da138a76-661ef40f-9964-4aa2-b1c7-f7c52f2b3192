@@ -29,7 +29,7 @@
                 <td>{{ eventRequirement.Description }}</td>
                 <td>{{ eventRequirement.Location }}</td>
                 <td>{{ eventRequirement.Date | date:'mediumDate' }}</td>
-                <td>{{ eventRequirement.PostedDate }}</td>
+                <td>{{ eventRequirement.PostedDate | date : 'mediumDate'}}</td>
                 <td>{{ fetch_eventname(eventRequirement)}}</td>
                 <td>{{ eventRequirement.Status }}</td>
                 <td>
