@@ -61,16 +61,16 @@ export class AdminAddEventComponent implements OnInit {
     if (form.invalid) return;
 
     // Enhanced check with safeguards
-    const exists = this.tempEvents.find(
-      event => event.Title?.toLowerCase() === (this.newEvent.Title || '').toLowerCase()
-    );
+    // const exists = this.tempEvents.find(
+    //   event => event.Title?.toLowerCase() === (this.newEvent.Title || '').toLowerCase()
+    // );
 
     console.log(this.tempEvents);
 
-    if (exists) {
-      this.errorMessage = 'Event title already exists!';
-      return;
-    }
+    // if (exists) {
+    //   this.errorMessage = 'Event title already exists!';
+    //   return;
+    // }
 
     this.newEvent.Date = new Date(this.dateProperty);
 

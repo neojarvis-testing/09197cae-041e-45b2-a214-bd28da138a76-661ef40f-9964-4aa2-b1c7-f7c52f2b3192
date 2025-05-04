@@ -30,7 +30,6 @@ export class UserViewRequirementComponent implements OnInit {
       this.userId = u.UserId;
       this.load_requirements();
     });
-  
     interval(100000).subscribe(() => this.load_requirements()); // Poll every 5s
   }
   
@@ -50,7 +49,6 @@ export class UserViewRequirementComponent implements OnInit {
     return this.event.Title;
   }
   
-
   searchByName(): void {
     this.filteredEventRequirements = this.eventRequirements.filter(a => 
       a.Title.toLowerCase().includes(this.searchTerm.toLowerCase())

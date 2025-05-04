@@ -21,26 +21,27 @@ export class UserAddRequirementComponent implements OnInit {
     Date: null,
     PostedDate: new Date(),
     Status: 'Pending',
-    UserId:0,
-    EventId:0
+    UserId: 0,
+    EventId: 0
   };
 
   isEditMode = false;
   requirementId!: number;
   temp_Requirements: EventRequirement[] = [];
-  temp_Events:Event[]=[];
+  temp_Events: Event[] = [];
   errorMessage = '';
   selectedEvent: number = 0;
+  dateProperty: string = "";
 
-  constructor(private eventservice:EventService,private route: ActivatedRoute, private router: Router, private requirementService: EventRequirementService,private authservice:AuthService) {}
+  constructor(private eventservice: EventService, private route: ActivatedRoute, private router: Router, private requirementService: EventRequirementService, private authservice: AuthService) { }
 
   ngOnInit(): void {
     //run 
-    this.authservice.currentUser.subscribe(data=>{
+    this.authservice.currentUser.subscribe(data => {
       this.newRequirement.UserId = data.UserId;
     })
 
-    this.eventservice.getAllEvents().subscribe(data=>{
+    this.eventservice.getAllEvents().subscribe(data => {
       this.temp_Events = data;
     })
 
@@ -55,6 +56,11 @@ export class UserAddRequirementComponent implements OnInit {
       this.isEditMode = true;
       this.requirementService.getEventRequirementById(this.requirementId).subscribe((data) => {
         this.newRequirement = data["data"];
+
+        this.dateProperty = new Date(this.newRequirement.Date).toISOString().split('T')[0];
+        this.eventservice.getEventById(this.newRequirement.EventId).subscribe(data => {
+          this.selectedEvent = data.EventId;
+        })
       });
     }
   }
@@ -69,6 +75,8 @@ export class UserAddRequirementComponent implements OnInit {
       return;
     }
 
+    this.newRequirement.Date = new Date(this.dateProperty);
+
     const request = this.isEditMode
       ? this.requirementService.updateEventRequirement(this.requirementId, this.newRequirement)
       : this.requirementService.addEventRequirement(this.newRequirement);
@@ -80,7 +88,7 @@ export class UserAddRequirementComponent implements OnInit {
       next: () => {
         alert(this.isEditMode ? 'Requirement Updated Successfully!' : 'Requirement Added Successfully!');
         form.resetForm();
-        this.router.navigate([`user/app-user-add-requirement`]); 
+        this.router.navigate([`user/app-user-add-requirement`]);
       },
       error: () => {
         this.errorMessage = 'An error occurred while submitting the requirement.';

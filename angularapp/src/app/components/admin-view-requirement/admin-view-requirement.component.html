@@ -17,6 +17,7 @@
             <th>Description</th>
             <th>Location</th>
             <th>Date</th>
+            <th>Event Name</th>
             <th>Status</th>
             <th>Action</th>
         </tr>
@@ -24,10 +25,11 @@
     <tbody>
         <tr *ngFor="let eventRequirement of filteredEventRequirements; let i = index">
             <td>{{i + 1}}</td>
-            <td>{{eventRequirement.Title}}</td> 
-            <td>{{eventRequirement.Description}}</td>
-            <td>{{eventRequirement.Location}}</td>
-            <td>{{eventRequirement.Date | date:'mediumDate'}}</td>
+            <td>{{eventRequirement?.Title}}</td> 
+            <td>{{eventRequirement?.Description}}</td>
+            <td>{{eventRequirement?.Location}}</td>
+            <td>{{eventRequirement?.Date | date:'mediumDate'}}</td>
+            <td>{{fetch_eventname(eventRequirement)}}</td>
             <td>
                 <span>
                     {{eventRequirement.Status}}
