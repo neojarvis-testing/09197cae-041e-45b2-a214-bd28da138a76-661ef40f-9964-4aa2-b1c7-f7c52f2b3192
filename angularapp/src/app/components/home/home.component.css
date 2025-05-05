@@ -1,4 +1,4 @@
-/* .home-content {
+.home-content {
     padding: 30px;
     text-align: center;
     margin-top: 50px;
@@ -14,8 +14,8 @@
     line-height: 1.6;
     max-width: 800px;
     margin: 0 auto;
-} */
-body {
+} 
+.body-container {
     font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
@@ -52,3 +52,7 @@ body {
     font-size: 18px;
     line-height: 1.8;
 }
+
+
+
+

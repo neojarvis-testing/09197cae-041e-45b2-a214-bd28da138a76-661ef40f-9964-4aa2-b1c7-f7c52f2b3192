@@ -25,5 +25,7 @@ namespace dotnetapp.Models
 
         [Required(ErrorMessage = "User role is required")]
         public string UserRole { get; set; }
+
+        public string? AdminSecretKey { get; set; } // New field
     }
 }

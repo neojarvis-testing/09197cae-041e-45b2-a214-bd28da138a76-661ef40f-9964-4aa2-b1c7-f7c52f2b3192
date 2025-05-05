@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './user-add-requirement.component.html',
   styleUrls: ['./user-add-requirement.component.css']
 })
+
 export class UserAddRequirementComponent implements OnInit {
   newRequirement: EventRequirement = {
     EventRequirementId: 0,
@@ -57,7 +58,7 @@ export class UserAddRequirementComponent implements OnInit {
       this.requirementService.getEventRequirementById(this.requirementId).subscribe((data) => {
         this.newRequirement = data["data"];
 
-        this.dateProperty = new Date(this.newRequirement.Date).toISOString().split('T')[0];
+        // this.dateProperty = new Date(this.newRequirement.Date).toISOString().split('T')[0];
         this.eventservice.getEventById(this.newRequirement.EventId).subscribe(data => {
           this.selectedEvent = data.EventId;
         })
@@ -65,17 +66,19 @@ export class UserAddRequirementComponent implements OnInit {
     }
   }
 
+
+
   onSubmit(form: NgForm): void {
     if (form.invalid) return;
 
     const exists = this.temp_Requirements.find(req => req.Title.toLowerCase() === this.newRequirement.Title.toLowerCase());
 
-    if (exists) {
+    if (exists && !this.isEditMode) {
       this.errorMessage = 'Requirement already exists!';
       return;
     }
 
-    this.newRequirement.Date = new Date(this.dateProperty);
+    // this.newRequirement.Date = new Date(this.dateProperty);
 
     const request = this.isEditMode
       ? this.requirementService.updateEventRequirement(this.requirementId, this.newRequirement)
@@ -88,12 +91,12 @@ export class UserAddRequirementComponent implements OnInit {
       next: () => {
         alert(this.isEditMode ? 'Requirement Updated Successfully!' : 'Requirement Added Successfully!');
         form.resetForm();
-        this.router.navigate([`user/app-user-add-requirement`]);
-      },
-      error: () => {
-        this.errorMessage = 'An error occurred while submitting the requirement.';
-        this.router.navigate(['/error']);
+        this.router.navigate([`user/app-user-view-requirement`]);
       }
+      // error: () => {
+      //   this.errorMessage = 'An error occurred while submitting the requirement.';
+      //   this.router.navigate(['/error']);
+      // }
     });
   }
 }
