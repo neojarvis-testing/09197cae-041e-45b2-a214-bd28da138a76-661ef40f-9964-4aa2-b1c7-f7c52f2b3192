@@ -35,8 +35,8 @@
         <td class="actions">
           <button class="edit-btn" (click)="editEvent(event.EventId)">Edit</button>
           <button class="delete-btn" (click)="deleteEvent(event.EventId)">Delete</button>
-          <button class="close-btn">Mark as Closed</button>
-        </td>
+          <button class="close-btn" (click)="markAsClosed(event.EventId)">Mark as Closed</button>
+        </td> 
       </tr>
     </tbody>
   </table>

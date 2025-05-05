@@ -26,13 +26,13 @@
   <tbody>
     <tr *ngFor="let event of events; let i = index">
       <td>{{ i + 1 }}</td>
-      <td>{{ event.title }}</td>
-      <td>{{ event.description }}</td>
-      <td>{{ event.location }}</td>
-      <td>{{ event.date | date:'mediumDate' }}</td>
-      <td>{{ event.organizerName }}</td>
-      <td>{{ event.contactInfo }}</td>
-      <td>{{ event.postedDate | date:'mediumDate' }}</td>
+      <td>{{ event.Title }}</td>
+      <td>{{ event.Description }}</td>
+      <td>{{ event.Location }}</td>
+      <td>{{ event.Date | date:'mediumDate' }}</td>
+      <td>{{ event.OrganizerName }}</td>
+      <td>{{ event.ContactInfo }}</td>
+      <td>{{ event.PostedDate | date:'mediumDate' }}</td>
     </tr>
   </tbody>
 </table>
