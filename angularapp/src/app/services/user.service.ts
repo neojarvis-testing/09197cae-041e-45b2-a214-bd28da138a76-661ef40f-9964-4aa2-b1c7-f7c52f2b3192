@@ -9,11 +9,10 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  public apiUrl = "https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io/api"
+  public apiUrl = "https://ide-bafecbaccefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080/api"
 
   getDetails(userId: number): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/users/userDetails/" + userId);
   }
-
-
+  
 }

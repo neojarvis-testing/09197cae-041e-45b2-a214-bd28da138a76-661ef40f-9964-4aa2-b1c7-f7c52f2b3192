@@ -17,6 +17,7 @@
                 <th>Location</th>
                 <th>Date</th>
                 <th>Posted Date</th>
+                <th>Event Name</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -28,7 +29,8 @@
                 <td>{{ eventRequirement.Description }}</td>
                 <td>{{ eventRequirement.Location }}</td>
                 <td>{{ eventRequirement.Date | date:'mediumDate' }}</td>
-                <td>{{ eventRequirement.PostedDate }}</td>
+                <td>{{ eventRequirement.PostedDate | date : 'mediumDate'}}</td>
+                <td>{{ fetch_eventname(eventRequirement)}}</td>
                 <td>{{ eventRequirement.Status }}</td>
                 <td>
                     <button (click)="editRequirement(eventRequirement.EventRequirementId)">Edit</button>
@@ -42,7 +44,7 @@
     <div *ngIf="showDeleteModal" class="modal">
         <div class="modal-content">
             <h2>Confirm Delete</h2>
-            <p>Are you sure you want to delete <strong>{{ selectedRequirement?.title }}</strong>?</p>
+            <p>Are you sure you want to delete <strong>{{ selectedRequirement?.Title }}</strong>?</p>
             <div class="button-container">
                 <button (click)="confirmDelete()" class="btn btn-danger">Yes, Delete</button>
                 <button (click)="cancelDelete()" class="btn btn-secondary">Cancel</button>

@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 })
 
 export class EventRequirementService {
-  private apiUrl: string = 'https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io'; 
+  private apiUrl: string = 'https://ide-bafecbaccefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080'; 
 
   constructor(private http: HttpClient) {}
 
@@ -35,5 +35,9 @@ export class EventRequirementService {
 
   deleteEventRequirement(eventRequirementId: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/api/EventRequirement/${eventRequirementId}`);
+  }
+
+  getEventRequirementByUserId(userId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api/EventRequirement/user/${userId}`);
   }
 }

@@ -1,37 +1,38 @@
-<div class="view-feedback">
-    <div class="container">
-        <h1>My Feedback</h1>
-        <div class="sub-cont">
-            <table class="feed-table">
-                <thead>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Feedback</th>
-                        <th>Posted Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let feedback of feedbacks">
-                        <td>{{ feedback.UserId }}</td>
-                        <td>{{feedback.Date | date}}</td>
-                        <td>{{ feedback.FeedbackText }}</td>
-                        <td>
-                            <button (click)="viewDetails(feedback.UserId)" class="btn btn-danger">View Details</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div class="events-container">
+    <h2>My Feedback</h2>
+    <hr class="line">
+    <!-- <div class="sub-cont"> -->
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>User ID</th>
+                    <th>Posted Date</th>
+                    <th>Feedback</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let feedback of feedbacks">
+                    <td>{{ feedback.UserId }}</td>
+                    <td>{{feedback.Date | date}}</td>
+                    <td>{{ feedback.FeedbackText }}</td>
+                    <td>
+                        <button (click)="viewDetails(feedback.UserId)" class="btn btn-danger">View Details</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-        <div *ngIf="viewDetailsModal" class="modal">
-            <div class="modal-content">
-                <p>User Details:</p>
-                <p>Email: {{user.Email}}</p>
-                <p>Username: {{user.Username}}</p>
-                <p>Mobile Number: {{user.MobileNumber}}</p>
-                <div class="button-container">
-                    <button (click)="close()" class="btn btn-danger">Ok</button>
-                </div>
-            </div>
+
+<div *ngIf="viewDetailsModal" class="modal">
+    <div class="modal-content">
+        <p>User Details:</p>
+        <p>Email: {{user.Email}}</p>
+        <p>Username: {{user.Username}}</p>
+        <p>Mobile Number: {{user.MobileNumber}}</p>
+        <div class="button-container">
+            <button (click)="close()" class="btn btn-danger">Ok</button>
         </div>
+    </div>
+</div>

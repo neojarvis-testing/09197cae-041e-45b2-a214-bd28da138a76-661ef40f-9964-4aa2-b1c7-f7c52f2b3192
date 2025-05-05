@@ -90,7 +90,7 @@ button {
 
 /* Modal styling */
 
-.modal {
+.modal{
 
   display: block;
 
@@ -112,7 +112,7 @@ button {
 
 }
 
-.modal-content {
+.modal-content{
 
   background-color: white;
 
@@ -134,7 +134,7 @@ button {
 
 /* Button styling within modal */
 
-.btn {
+.btn{
 padding: 10px 20px;
 border: none;
 color: white;
@@ -144,7 +144,7 @@ border-radius: 5px;
 }
 
 
-.logout-btn {
+.logout-btn{
 background-color: #d9534f; /* Red */
 }
 

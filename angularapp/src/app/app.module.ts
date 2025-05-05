@@ -22,6 +22,9 @@ import { UserViewRequirementComponent } from './components/user-view-requirement
 import {HttpClientModule} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoggedUserDetailsComponent } from './components/logged-user-details/logged-user-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -43,6 +46,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserViewEventComponent,
     UserViewFeedbackComponent,
     UserViewRequirementComponent,
+    LoggedUserDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,4 +7,6 @@ export interface EventRequirement
     Date: Date;
     PostedDate: Date;
     Status: string;
+    EventId:number;
+    UserId:number;
   }
