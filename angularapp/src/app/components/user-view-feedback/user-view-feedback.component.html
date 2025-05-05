@@ -1,10 +1,8 @@
-<h1>My Feedback</h1>
-<div class="view-feedback">
-
-    <div class="container">
-        <div class="sub-cont">
-            <table class="feed-table">
-                <thead>
+<div class="events-container">
+    <h2>My Feedback</h2>
+    <hr class="line">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
                     <tr>
                         <th>User ID</th>
                         <th>Feedback</th>
@@ -21,7 +19,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+</div>
 
         <div *ngIf="showDeleteModal" class="modal">
             <div class="modal-content">
@@ -42,4 +40,3 @@
                 <button (click)="cancelLogout()" class="btn btn-secondary">Cancel</button>
             </div>
         </div>
-    </div>

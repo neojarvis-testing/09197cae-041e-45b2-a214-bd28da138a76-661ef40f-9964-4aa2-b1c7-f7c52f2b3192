@@ -1,4 +1,3 @@
-/* Events Container */
 .events-container {
   padding: 30px 50px;
   font-family: Arial, sans-serif;
@@ -36,20 +35,37 @@ th, td {
 }
  
 thead {
-  background-color: #1a4a73;
+  background-color: #2980b9;
   color: white;
 }
 
-.text-center {
-  text-align: center;
+.actions button {
+  margin-right: 5px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 13px;
+  cursor: pointer;
 }
 
+
+.approve-btn {
+  background-color: #5bc0de;
+  color: white;
+}
+ 
+.reject-btn {
+  background-color: #d9534f;
+  color: white;
+}
+ 
 .line {
-  margin: 10px 0; /* Adds one line space (10px top and bottom) */
+  margin: 10px 0;
   border: 0;
   height: 1px;
-  background-color: #ccc; /* Line color */
+  background-color: #ccc;
 }
+
 
 /* Modal Styling */
 .modal {
