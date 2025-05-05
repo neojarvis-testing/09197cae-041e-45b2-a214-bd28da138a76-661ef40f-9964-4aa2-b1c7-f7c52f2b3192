@@ -19,11 +19,12 @@ export class RegistrationComponent {
     Password: '',
     UserRole: ''
   };
+  confirmPassword:string="";
 
   constructor(private authService: AuthService,private router:Router) { }
 
   onSubmit(form: NgForm) {
-    if (form.valid) {
+    if (form.valid && this.user.Password === this.confirmPassword) {
       Swal.fire({
         title: 'Loading...',
         allowOutsideClick: false,

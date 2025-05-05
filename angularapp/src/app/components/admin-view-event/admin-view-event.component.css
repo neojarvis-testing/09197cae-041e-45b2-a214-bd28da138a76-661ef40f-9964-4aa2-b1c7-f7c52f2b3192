@@ -57,6 +57,21 @@ thead {
   background-color: #d9534f;
   color: white;
 }
+
+.btn-danger {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 7px 7px 7px 7px;
+  border-radius: 5px;
+}
+.btn-secondary{
+  background-color: #5bc0de;
+  color: white;
+  border: none;
+  padding: 7px 7px 7px 7px;
+  border-radius: 5px;
+}
  
 .close-btn {
   background-color: #aaa;

@@ -19,7 +19,7 @@ export class AdminViewEventComponent implements OnInit {
   showDeleteModal: boolean = false;
 
 
-  constructor(private eventService: EventService, private router: Router) {}
+  constructor(private eventService: EventService, private router: Router) { }
 
   ngOnInit() {
     this.loadEvents();
@@ -39,7 +39,7 @@ export class AdminViewEventComponent implements OnInit {
     });
   }
 
-  
+
 
   searchByName() {
     const searchTermLower = this.searchTitle.toLowerCase().trim();
@@ -70,12 +70,25 @@ export class AdminViewEventComponent implements OnInit {
         this.showDeleteModal = false;
         this.router.navigate(['admin/admin-view-event']);
       },
-      error=>{
-        this.showDeleteModal = false;
-        this.router.navigate(['admin/admin-view-event'])
-        this.loadEvents();
-      });
+        error => {
+          this.showDeleteModal = false;
+          this.router.navigate(['admin/admin-view-event'])
+          this.loadEvents();
+        });
     }
+  }
+
+  event: Event;
+  markAsClosed(eventId: number) {
+    this.event = this.events.filter(i => i.EventId == eventId)[0];
+    console.log(this.event.Description);
+
+    this.event.Status = "Closed"
+
+    this.eventService.updateEvent(eventId,this.event).subscribe(()=>{
+      this.loadEvents();
+    });
+
   }
 
   cancelDelete() {

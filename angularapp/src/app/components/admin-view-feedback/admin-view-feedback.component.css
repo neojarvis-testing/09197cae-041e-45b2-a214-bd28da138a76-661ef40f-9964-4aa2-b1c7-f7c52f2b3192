@@ -84,3 +84,11 @@ thead {
   height: 1px;
   background-color: #ccc; 
 }
+
+
+.btn-danger {
+  background-color: #5bc0de;
+  color: white;
+  border: none;
+  padding: 7px 7px 7px 7px;
+}
