@@ -10,10 +10,15 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthService {
 <<<<<<< HEAD
+<<<<<<< HEAD
   public baseUrl = 'https://ide-ecbaabcdcedcfefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080';
 =======
   public baseUrl = 'https://ide-bafecbaccefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080/api';
 >>>>>>> a03234ed92ab63d5a38cd81105838c0432dd3e49
+=======
+  public baseUrl = 'https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io/api';
+  //https://ide-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080/
+>>>>>>> 791073a29e2a26849f8f839fb0f0b4dcae211811
 
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;

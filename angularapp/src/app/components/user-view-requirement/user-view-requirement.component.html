@@ -1,15 +1,13 @@
-<div class="events-container">
+<!-- <div class="events-container">
     <h2>Event Requirements</h2>
     <hr class="line">
     
-    <!-- Search Bar -->
     <div class="search-bar">
         <input type="text" placeholder="Search events..." [(ngModel)]="searchTerm" (input)="searchByName()">
     </div>
     
-    <!-- Event Requirement Table -->
-    <table>
-        <thead>
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th>S.No</th>
                 <th>Title</th>
@@ -32,7 +30,7 @@
                 <td>{{ eventRequirement.PostedDate | date : 'mediumDate'}}</td>
                 <td>{{ fetch_eventname(eventRequirement)}}</td>
                 <td>{{ eventRequirement.Status }}</td>
-                <td>
+                <td class="actions">
                     <button (click)="editRequirement(eventRequirement.EventRequirementId)">Edit</button>
                     <button (click)="deleteRequirement(eventRequirement)">Delete</button>
                 </td>
@@ -40,7 +38,59 @@
         </tbody>
     </table>
 
-    <!-- Delete Confirmation Pop-up -->
+    <div *ngIf="showDeleteModal" class="modal">
+        <div class="modal-content">
+            <h2>Confirm Delete</h2>
+            <p>Are you sure you want to delete <strong>{{ selectedRequirement?.Title }}</strong>?</p>
+            <div class="button-container">
+                <button (click)="confirmDelete()" class="btn btn-danger">Yes, Delete</button>
+                <button (click)="cancelDelete()" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="events-container">
+    <h2>Event Requirements</h2>
+    <hr class="line">
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search events..." [(ngModel)]="searchTerm" (input)="searchByName()">
+    </div>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>S.No</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Posted Date</th>
+                <th>Event Name</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let eventRequirement of filteredEventRequirements; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ eventRequirement.Title }}</td>
+                <td>{{ eventRequirement.Description }}</td>
+                <td>{{ eventRequirement.Location }}</td>
+                <td>{{ eventRequirement.Date | date:'mediumDate' }}</td>
+                <td>{{ eventRequirement.PostedDate | date : 'mediumDate' }}</td>
+                <td>{{ eventNames[eventRequirement.EventId] }}</td>
+                <td>{{ eventRequirement.Status }}</td>
+                <td class="actions">
+                    <button (click)="editRequirement(eventRequirement.EventRequirementId)">Edit</button>
+                    <button (click)="deleteRequirement(eventRequirement)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
     <div *ngIf="showDeleteModal" class="modal">
         <div class="modal-content">
             <h2>Confirm Delete</h2>

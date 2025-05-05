@@ -9,10 +9,14 @@ import { Event } from '../models/event.model';
 export class EventService {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   public apiUrl: string = 'https://ide-ecbaabcdcedcfefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080';
 =======
   public apiUrl: string = 'https://ide-bafecbaccefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080';
 >>>>>>> a03234ed92ab63d5a38cd81105838c0432dd3e49
+=======
+  public apiUrl: string = 'https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io';
+>>>>>>> 791073a29e2a26849f8f839fb0f0b4dcae211811
 
   constructor(private http: HttpClient) {}
 

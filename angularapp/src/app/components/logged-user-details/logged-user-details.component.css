@@ -13,7 +13,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.8); /* Light, semi-transparent background */
 }
+
 
 
 h1 {
@@ -29,4 +31,11 @@ p {
     font-size: 16px;
     margin: 5px 0;
     color: #444; /* Neutral text color */
+}
+
+body {
+    background-image: url('https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
