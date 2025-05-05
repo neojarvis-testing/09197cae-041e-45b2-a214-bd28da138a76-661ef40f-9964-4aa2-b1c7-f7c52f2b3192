@@ -21,6 +21,8 @@ export class RegistrationComponent {
   };
   confirmPassword: string="";
   AdminSecretKey: string = "";
+  successMessage: string = "";
+
 
   constructor(private authService: AuthService,private router:Router) { }
 
@@ -33,24 +35,29 @@ export class RegistrationComponent {
           Swal.showLoading();
           const loader = document.querySelector('.swal2-loader') as HTMLElement;
           if (loader) {
-            loader.style.transform = 'scale(0.7)'; // Adjust the size by scaling down
+            loader.style.transform = 'scale(0.7)';
           }
         }
       });
   
       this.authService.register(this.user).subscribe(
         response => {
-          console.log("The user is:", this.user);
-  
-          Swal.close(); // Close the loading screen only after the registration is successful
-          this.router.navigate(['/login']);
+          Swal.close();
+          this.successMessage = 'Successfully Registered!';
           form.reset();
         },
         error => {
-          Swal.close(); // Close the loading screen if registration fails
+          Swal.close();
           alert('Registration failed. User already exists.');
         }
       );
     }
   }
+  
+
+  closePopup(): void {
+    this.successMessage = '';
+    this.router.navigate(['/login']);
+  }
+
 }

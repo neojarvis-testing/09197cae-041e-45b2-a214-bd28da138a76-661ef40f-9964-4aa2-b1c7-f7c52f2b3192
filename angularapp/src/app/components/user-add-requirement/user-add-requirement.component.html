@@ -48,3 +48,12 @@
     <button type="submit" class="btn btn-success mt-3">{{ isEditMode ? 'Update' : 'Submit' }}</button>
   </form>
 </div>
+
+
+
+<div *ngIf="successMessage" class="popup">
+  <div class="popup-content">
+    <p>{{ successMessage }}</p>
+    <button (click)="closePopup()">OK</button>
+  </div>
+</div>

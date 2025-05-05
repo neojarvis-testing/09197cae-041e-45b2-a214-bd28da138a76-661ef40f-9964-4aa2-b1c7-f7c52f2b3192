@@ -19,7 +19,7 @@ export class UserAddRequirementComponent implements OnInit {
     Title: '',
     Description: '',
     Location: '',
-    Date: null,
+    Date: new Date(),
     PostedDate: new Date(),
     Status: 'Pending',
     UserId: 0,
@@ -33,6 +33,8 @@ export class UserAddRequirementComponent implements OnInit {
   errorMessage = '';
   selectedEvent: number = 0;
   dateProperty: string = "";
+  successMessage: string = '';
+
 
   constructor(private eventservice: EventService, private route: ActivatedRoute, private router: Router, private requirementService: EventRequirementService, private authservice: AuthService) { }
 
@@ -67,7 +69,6 @@ export class UserAddRequirementComponent implements OnInit {
   }
 
 
-
   onSubmit(form: NgForm): void {
     if (form.invalid) return;
 
@@ -89,14 +90,20 @@ export class UserAddRequirementComponent implements OnInit {
 
     request.subscribe({
       next: () => {
-        alert(this.isEditMode ? 'Requirement Updated Successfully!' : 'Requirement Added Successfully!');
+        this.successMessage = this.isEditMode
+          ? 'Requirement Updated Successfully!'
+          : 'Requirement Added Successfully!';
         form.resetForm();
-        this.router.navigate([`user/app-user-view-requirement`]);
+      },
+      error: () => {
+        this.errorMessage = 'An error occurred while submitting the requirement.';
       }
-      // error: () => {
-      //   this.errorMessage = 'An error occurred while submitting the requirement.';
-      //   this.router.navigate(['/error']);
-      // }
     });
+    
+  }
+
+  closePopup(): void {
+    this.successMessage = '';
+    this.router.navigate([`user/app-user-view-requirement`]);
   }
 }
