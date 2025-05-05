@@ -17,12 +17,11 @@ export class RegistrationComponent {
     Email: '',
     MobileNumber: '',
     Password: '',
-    UserRole: ''
+    UserRole: '',
+    AdminSecretKey: ''
   };
   confirmPassword: string="";
-  AdminSecretKey: string = "";
-  successMessage: string = "";
-
+  successMessage: string = '';
 
   constructor(private authService: AuthService,private router:Router) { }
 
@@ -59,5 +58,4 @@ export class RegistrationComponent {
     this.successMessage = '';
     this.router.navigate(['/login']);
   }
-
 }

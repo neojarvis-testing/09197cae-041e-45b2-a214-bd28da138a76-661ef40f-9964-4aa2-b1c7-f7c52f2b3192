@@ -105,7 +105,7 @@
 
     <div class="form-group" *ngIf="user.UserRole === 'Admin'">
       <label for="adminSecretKey">Admin Secret Key *</label>
-      <input type="password" id="adminSecretKey" name="adminSecretKey" class="form-control" required [(ngModel)]="AdminSecretKey" #adminSecretKey="ngModel">
+      <input type="password" id="adminSecretKey" name="adminSecretKey" class="form-control" required [(ngModel)]="user.AdminSecretKey" #adminSecretKey="ngModel">
       <div *ngIf="adminSecretKey.invalid && adminSecretKey.touched" class="text-danger">
         Secret key is required for Admin registration.
       </div>
