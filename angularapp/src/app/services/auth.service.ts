@@ -9,7 +9,8 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  public baseUrl = 'https://ide-bafecbaccefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080/api';
+  public baseUrl = 'https://8080-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io/api';
+  //https://ide-bcbaebddefdfceabfeefceffaabcfcfb.premiumproject.examly.io/proxy/8080/
 
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
