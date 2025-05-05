@@ -26,7 +26,7 @@ export class AdminViewRequirementComponent implements OnInit {
 
     setTimeout(() => {
       this.loadRequirementsPeriodically(); // Recursively call to fetch updated data
-    }, 5000); // Refresh every 5 seconds
+    }, 1000000); // Refresh every 5 seconds
   }
 
   fetch_eventname(eventRequirement: EventRequirement): string {

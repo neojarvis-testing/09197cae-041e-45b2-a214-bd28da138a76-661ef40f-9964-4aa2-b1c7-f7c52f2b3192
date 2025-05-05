@@ -158,4 +158,8 @@ background-color: #c7c3c0; /* Brown */
 
 }
 
+.logout {
+    margin-top: 5px; /* Increase this value to move the button further down */
+  }
+
 

@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'admin/app-admin-add-event', component: AdminAddEventComponent, canActivate: [AuthGuard] },
   { path: 'admin/app-admin-add-event/:id', component: AdminAddEventComponent, canActivate: [AuthGuard] },
   { path: 'admin/admin-add-event/:id', component: AdminAddEventComponent, canActivate: [AuthGuard] },
-  { path: 'admin-profile', component: LoggedUserDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'admin/admin-profile', component: LoggedUserDetailsComponent, canActivate: [AuthGuard] },
 
   // User Routes (Protected)
   { path: 'user/home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -41,6 +41,7 @@ const routes: Routes = [
   { path: 'user/app-user-view-requirement', component: UserViewRequirementComponent, canActivate: [AuthGuard] },
   { path: 'user/app-user-add-requirement', component: UserAddRequirementComponent, canActivate: [AuthGuard] },
   { path: 'user/app-user-add-requirement/:id', component: UserAddRequirementComponent, canActivate: [AuthGuard] },
+  { path: 'user/user-profile', component: LoggedUserDetailsComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
