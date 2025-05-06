@@ -39,7 +39,7 @@
 <nav class="navbar" *ngIf="(aService.currentUser | async)?.UserRole === 'User'">
     <div class="navbar-brand">EVENTMASTER</div>
     <div class="navbar-links">
-        <a routerLink="/user-profile">{{User_name}} / User</a>
+        <a routerLink="/user/user-profile">{{User_name}}/User</a>
         <a (click)="navigateWithLoader('/user/home')">Home</a>
         <div class="dropdown">
             <button class="dropbtn">Event Requirement</button>

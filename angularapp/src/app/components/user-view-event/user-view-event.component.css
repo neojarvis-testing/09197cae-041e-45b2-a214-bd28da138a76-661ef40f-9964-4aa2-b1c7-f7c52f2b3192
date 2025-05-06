@@ -1,53 +1,50 @@
 .events-container {
-    padding: 30px 50px;
-    font-family: Arial, sans-serif;
-  }
-   
-  .events-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: 600;
-  }
-   
-  .search-bar {
-    margin-bottom: 15px;
-    text-align: left;
-  }
-   
-  .search-bar input {
-    padding: 8px 10px;
-    width: 250px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-   
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-  }
-   
-  th, td {
-    padding: 12px 10px;
-    border: 1px solid #ccc;
-    text-align: left;
-    font-size: 14px;
-  }
-   
-  thead {
-    background-color: #1a4a73;
-    color: white;
-  }
+  padding: 30px 50px;
+  font-family: Arial, sans-serif;
+}
+ 
+.events-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+ 
+.search-bar {
+  margin-bottom: 15px;
+  text-align: left;
+}
+ 
+.search-bar input {
+  padding: 8px 10px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+ 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+ 
+th, td {
+  padding: 12px 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+  font-size: 14px;
+}
+ 
+thead {
+  background-color: #2980b9;
+  color: white;
+}
+ 
+ 
 
-  .text-center {
-    text-align: center;
-  }
-
-  .line {
-    margin: 10px 0; /* Adds one line space (10px top and bottom) */
-    border: 0;
-    height: 1px;
-    background-color: #ccc; /* Line color */
-  }
-  
-   
+.line {
+  margin: 10px 0; /* Adds one line space (10px top and bottom) */
+  border: 0;
+  height: 1px;
+  background-color: #ccc; /* Line color */
+}
+ 
