@@ -50,7 +50,7 @@
       [(ngModel)]="dateProperty" 
       #dateField="ngModel"
       required />
-    <div *ngIf="dateField.touched && !newEvent.Date" class="text-danger">
+    <div *ngIf="dateField.touched && !dateProperty" class="text-danger">
       Date is required
     </div>
   </div>

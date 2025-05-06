@@ -33,5 +33,6 @@ namespace dotnetapp.Data
         public DbSet<Event> Events{get;set;}
         public DbSet<Feedback> Feedbacks{get;set;}
         public DbSet<EventRequirement> EventRequirements{get;set;}
+        
     }
 }
