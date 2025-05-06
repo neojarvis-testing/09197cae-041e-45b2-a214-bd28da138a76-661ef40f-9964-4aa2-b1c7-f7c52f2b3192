@@ -57,7 +57,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Location</th>
-                <th>Date</th>
+                <th>User Name</th>
                 <th>Event Name</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -69,7 +69,7 @@
                 <td>{{ eventRequirement?.Title }}</td>
                 <td>{{ eventRequirement?.Description }}</td>
                 <td>{{ eventRequirement?.Location }}</td>
-                <td>{{ eventRequirement?.Date | date:'mediumDate' }}</td>
+                <td>{{ userNames[eventRequirement.UserId] }}</td>
                 <td>{{ eventNames[eventRequirement.EventId] }}</td>
                 <td><span>{{ eventRequirement.Status }}</span></td>
                 <td class="actions">

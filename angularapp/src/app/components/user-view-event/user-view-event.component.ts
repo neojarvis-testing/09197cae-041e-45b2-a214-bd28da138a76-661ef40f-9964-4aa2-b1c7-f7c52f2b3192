@@ -8,18 +8,36 @@ import { Event } from 'src/app/models/event.model';
   styleUrls: ['./user-view-event.component.css']
 })
 export class UserViewEventComponent implements OnInit {
-  events: any[] = [];
-  searchText: string = '';
+  events: Event[] = [];
+  filteredEvents: Event[] = [];
+  searchTitle = '';
  
   constructor(private eventService: EventService) {}
  
   ngOnInit(): void {
     this.loadEvents();
   }
+
+  searchByName() {
+    const searchTermLower = this.searchTitle.toLowerCase().trim();
+    this.filteredEvents = this.events.filter((event) =>
+      event.Title.toLowerCase().includes(searchTermLower)
+    );
+  }
  
-  loadEvents(): void {
-    this.eventService.getAllEvents().subscribe((data: any[]) => {
-this.events = data;
+
+  loadEvents() {
+    this.eventService.getAllEvents().subscribe({
+      next: (data) => {
+        console.log('Fetched events:', data);
+        this.events = data;
+        this.filteredEvents = [...data];
+      },
+      error: (err) => {
+        console.error('Error fetching events:', err);
+        alert('Failed to load events. Please try again.');
+      },
     });
   }
+
 }

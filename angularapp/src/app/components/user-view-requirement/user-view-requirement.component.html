@@ -66,7 +66,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Location</th>
-                <th>Date</th>
+                <!-- <th>User Id:</th> -->
                 <th>Posted Date</th>
                 <th>Event Name</th>
                 <th>Status</th>
@@ -79,7 +79,8 @@
                 <td>{{ eventRequirement.Title }}</td>
                 <td>{{ eventRequirement.Description }}</td>
                 <td>{{ eventRequirement.Location }}</td>
-                <td>{{ eventRequirement.Date | date:'mediumDate' }}</td>
+                <!-- <td>{{ eventRequirement.Date | date:'mediumDate' }}</td> -->
+                <!-- <td>{{ eventRequirement.UserId }}</td> -->
                 <td>{{ eventRequirement.PostedDate | date : 'mediumDate' }}</td>
                 <td>{{ eventNames[eventRequirement.EventId] }}</td>
                 <td>{{ eventRequirement.Status }}</td>

@@ -1,92 +1,60 @@
-h1 {
 
-    color: #003366;
-
-    margin: 25px 1px;
-
-}
- 
-.container {
-
-    background: white;
-
-    text-align: center;
-
-    max-width: 1200px; /* Adjust the width as needed */
-
-    margin: 0 auto; /* Center the container */
-
-    padding: 20px; /* Add padding to the container */
-
-}
- 
-.view-feedback {
-
+.events-container {
+    padding: 30px 50px;
     font-family: Arial, sans-serif;
-
+  }
+   
+  .events-container h2 {
     text-align: center;
-
-    margin: 0;
-
-    padding: 20px;
-
-    color: #333;
-
-}
- 
-/* Center the h1 tag and style it */
-
-.view-feedback h1 {
-
-    text-align: center;
-
-    margin: 20px 0;
-
-}
- 
-/* Style the table */
-
-table {
-
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+   
+  .search-bar {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+   
+  .search-bar input {
+    padding: 8px 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+   
+  table {
     width: 100%;
-
-    max-width: 1000px; /* Adjust the max-width as needed */
-
-    margin: 20px auto;
-
     border-collapse: collapse;
-
-    border-spacing: 0; /* Ensure no space between table cells */
-
-}
- 
-/* Style table headers */
-
-th {
-
-    background-color: #003366; /* Navy blue color */
-
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  }
+   
+  th, td {
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+    font-size: 14px;
+  }
+   
+  thead {
+    background-color: #2980b9;
     color: white;
-
-    padding: 10px 20px; /* Add padding to the headers */
-
-    text-align: left; /* Ensure headers align with the content */
-
-    border-bottom: 2px solid #ddd; /* Add bottom border to headers */
-
-}
- 
-/* Style table rows */
-
-td {
-
-    padding: 10px 20px; /* Add padding to table cells */
-
-    border-bottom: 1px solid #ddd;
-
-    text-align: left; /* Ensure data aligns with headers */
-
-}
+  }
+   
+  .line {
+    margin: 10px 0; 
+    border: 0;
+    height: 1px;
+    background-color: #ccc; 
+  }
+  
+  
+  .btn-danger {
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    padding: 7px 7px 7px 7px;
+  }
+  
  
 /* Style the button */
 
