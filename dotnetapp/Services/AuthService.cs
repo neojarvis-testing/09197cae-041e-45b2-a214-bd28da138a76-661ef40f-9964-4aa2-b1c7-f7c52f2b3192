@@ -262,7 +262,7 @@ namespace dotnetapp.Services
                 audience: _configuration["Jwt:ValidAudience"],
                 expires: DateTime.Now.AddHours(330),
                 claims: claims,
-                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             );
  
             return new JwtSecurityTokenHandler().WriteToken(token);

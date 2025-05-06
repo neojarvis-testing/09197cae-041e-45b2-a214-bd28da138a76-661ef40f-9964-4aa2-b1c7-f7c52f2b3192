@@ -26,7 +26,7 @@ export class UserViewFeedbackComponent implements OnInit {
   };
 
 
-  constructor(private feedbackService: FeedbackService, private router: Router, private service: AuthService) {}
+  constructor(private feedbackService: FeedbackService, private router: Router, private service: AuthService) { }
 
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class UserViewFeedbackComponent implements OnInit {
         this.user = user;
       }
     });
-  
+
     this.loadFeedbacks();
   }
 
@@ -70,7 +70,9 @@ export class UserViewFeedbackComponent implements OnInit {
       },
       error => {
         console.error('Error deleting feedback', error);
+        this.showDeleteModal = false;
         this.router.navigate([`/user/app-user-view-feedback`]);
+        this.loadFeedbacks();
       }
     );
   }

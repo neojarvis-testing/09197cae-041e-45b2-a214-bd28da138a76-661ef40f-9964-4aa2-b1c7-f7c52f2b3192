@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Feedback } from 'src/app/models/feedback.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { FeedbackService } from 'src/app/services/feedback.service';
@@ -11,7 +12,7 @@ import { FeedbackService } from 'src/app/services/feedback.service';
 })
 export class UserAddFeedbackComponent implements OnInit {
 
-  constructor(private service: FeedbackService, private authservice: AuthService) {
+  constructor(private service: FeedbackService, private authservice: AuthService,private router:Router) {
     this.authservice.currentUser.subscribe(user => {
       this.userId = user.UserId;
     });
