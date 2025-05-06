@@ -1,4 +1,4 @@
-<div class="events-container">
+<!-- <div class="events-container">
     <h2>Event Requirements</h2>
     <hr class="line">
     
@@ -43,4 +43,44 @@
             </td>
         </tr>
     </tbody>
-</table>
+</table> -->
+
+
+<div class="events-container">
+    <h2>Event Requirements</h2>
+    <hr class="line">
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search by title..." [(ngModel)]="searchTerm" (input)="searchByName()" />
+    </div>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>S.No</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>User Name</th>
+                <th>Event Name</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let eventRequirement of filteredEventRequirements; let i = index; trackBy: trackById">
+                <td>{{ i + 1 }}</td>
+                <td>{{ eventRequirement?.Title }}</td>
+                <td>{{ eventRequirement?.Description }}</td>
+                <td>{{ eventRequirement?.Location }}</td>
+                <td>{{ userNames[eventRequirement.UserId] }}</td>
+                <td>{{ eventNames[eventRequirement.EventId] }}</td>
+                <td><span>{{ eventRequirement.Status }}</span></td>
+                <td class="actions">
+                    <button type="button" class="approve-btn" (click)="approveButton(eventRequirement)">Approve</button>
+                    <button type="button" class="reject-btn" (click)="rejectButton(eventRequirement)">Reject</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoggedUserDetailsComponent } from './components/logged-user-details/logged-user-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     UserViewFeedbackComponent,
     UserViewRequirementComponent,
     LoggedUserDetailsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

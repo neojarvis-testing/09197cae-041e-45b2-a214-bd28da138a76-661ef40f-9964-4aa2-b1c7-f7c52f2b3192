@@ -30,7 +30,7 @@
 <nav class="navbar" *ngIf="(aService.currentUser | async)?.UserRole === 'Admin'">
   <div class="navbar-brand">EVENTMASTER</div>
   <div class="navbar-links">
-      <a routerLink="/admin-profile">{{User_name}}/Admin</a>
+      <a (click)="navigateWithLoader('/admin/admin-profile')">{{User_name}}/Admin</a>
       <a (click)="navigateWithLoader('/admin/home')">Home</a>
       <div class="dropdown">
           <button class="dropbtn">Event</button>
@@ -42,7 +42,7 @@
       <a (click)="navigateWithLoader('/admin/app-admin-view-requirement')">Event Requirements</a>
       <a (click)="navigateWithLoader('/admin/app-admin-view-feedback')">Feedback</a>
 
-      <button (click)="logout()">Log Out</button>
+      <button class="logout" (click)="logout()">Log Out</button>
   </div>
 </nav>
 

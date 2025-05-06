@@ -20,7 +20,7 @@ export class AdminAddEventComponent implements OnInit {
     OrganizerName: '',
     ContactInfo: '',
     PostedDate: new Date(),
-    Status: 'Pending'
+    Status: 'Scheduled'
   };
 
   dateProperty: any;
@@ -29,6 +29,7 @@ export class AdminAddEventComponent implements OnInit {
   eventId!: number;
   tempEvents: Event[] = [];
   errorMessage = '';
+  minDate: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +38,7 @@ export class AdminAddEventComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.setMinDate();
     this.eventService.getAllEvents().subscribe((data) => {
       this.tempEvents = data || []; // Prevents undefined issues
     });
@@ -55,6 +57,14 @@ export class AdminAddEventComponent implements OnInit {
 
       });
     }
+  }
+
+  setMinDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); 
+    const day = String(today.getDate()).padStart(2, '0'); 
+    this.minDate = `${year}-${month}-${day}`;
   }
 
   onSubmit(form: NgForm): void {
