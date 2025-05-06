@@ -17,7 +17,6 @@
 }
 
 
-
 h1 {
     font-size: 20px;
     margin-bottom: 15px;
@@ -33,7 +32,7 @@ p {
     color: #444; /* Neutral text color */
 }
 
-body {
+.logged-class {
     background-image: url('https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg');
     background-size: cover;
     background-position: center;

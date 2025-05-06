@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: 'admin/admin-profile', component: LoggedUserDetailsComponent, canActivate: [AuthGuard] },
 
   // User Routes (Protected)
+  { path: 'user/user-profile', component: LoggedUserDetailsComponent, canActivate: [AuthGuard] },
   { path: 'user/home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'user/app-user-view-event', component: UserViewEventComponent, canActivate: [AuthGuard] },
   { path: 'user/app-user-view-feedback', component: UserViewFeedbackComponent, canActivate: [AuthGuard] },

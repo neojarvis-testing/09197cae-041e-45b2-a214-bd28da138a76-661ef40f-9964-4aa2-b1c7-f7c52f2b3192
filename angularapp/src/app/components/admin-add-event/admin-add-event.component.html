@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label>Date*</label>
     <input 
       type="date" 
@@ -53,7 +53,27 @@
     <div *ngIf="dateField.touched && !dateProperty" class="text-danger">
       Date is required
     </div>
+  </div> -->
+
+
+
+
+
+  <div class="form-group">
+    <label>Date*</label>
+    <input 
+    type="date" 
+    name="date" 
+    class="form-control"
+    [(ngModel)]="dateProperty" 
+    #dateField="ngModel"
+    required
+    [min]="minDate"/>
+    <div *ngIf="dateField.touched && !dateProperty" class="text-danger">
+      Date is required
+    </div>
   </div>
+
 
   <div class="form-group">
     <label>Organizer Name*</label>
@@ -92,9 +112,9 @@
         #sinfo="ngModel"
         required>
         <option value="" disabled selected>Select status</option>
-        <option value="Approved">Approved</option>
-        <option value="Rejected">Rejected</option>
-        <option value="Pending">Pending</option>
+        <option value="Scheduled">Scheduled</option>
+        <option value="Ongoing">Ongoing</option>
+        <!-- <option value="Pending">Pending</option> -->
     </select>
 
     <div *ngIf="sinfo.touched && !newEvent.Status" class="text-danger">

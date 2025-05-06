@@ -79,10 +79,6 @@
 //     }
 // }
 
-
-
-
-
 using System;
 using dotnetapp.Data;
 using dotnetapp.Models;
@@ -116,28 +112,73 @@ namespace dotnetapp.Services
             _context = context;
         }
  
+        // public async Task<(int, string)> Registration(User model, string role)
+        // {
+        //     var userExists = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+        //     if (userExists != null)
+        //         return (0, "User already exists");
+ 
+        //     var appUser = new ApplicationUser
+        //     {
+        //         Email = model.Email,
+        //         UserName = model.Email,
+        //         Name = model.Username.Length > 30 ? model.Username.Substring(0, 30) : model.Username // Store current user's name
+        //     };
+ 
+        //     var identityResult = await userManager.CreateAsync(appUser, model.Password);
+        //     if (!identityResult.Succeeded)
+        //         return (0, "User creation failed! Please check user details and try again");
+ 
+        //     if (!await roleManager.RoleExistsAsync(role))
+        //         await roleManager.CreateAsync(new IdentityRole(role));
+ 
+        //     await userManager.AddToRoleAsync(appUser, role);
+ 
+        //     var newUser = new User
+        //     {
+        //         Email = model.Email,
+        //         Password = model.Password,
+        //         Username = model.Username,
+        //         MobileNumber = model.MobileNumber,
+        //         UserRole = role
+        //     };
+        //     _context.Users.Add(newUser);
+        //     await _context.SaveChangesAsync();
+ 
+        //     return (1, "User created successfully!");
+        // }
+
         public async Task<(int, string)> Registration(User model, string role)
         {
+            // Check if the role is Admin and validate the secret key
+            if (role == "Admin")
+            {
+                var correctSecretKey = _configuration["AdminSecretKey"];
+                if (model.AdminSecretKey != correctSecretKey)
+                    return (400, "Invalid Admin Secret Key.");
+            }
+        
+            // Check if the user already exists
             var userExists = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
             if (userExists != null)
                 return (0, "User already exists");
- 
+        
             var appUser = new ApplicationUser
             {
                 Email = model.Email,
                 UserName = model.Email,
                 Name = model.Username.Length > 30 ? model.Username.Substring(0, 30) : model.Username // Store current user's name
             };
- 
+        
             var identityResult = await userManager.CreateAsync(appUser, model.Password);
             if (!identityResult.Succeeded)
                 return (0, "User creation failed! Please check user details and try again");
- 
+        
             if (!await roleManager.RoleExistsAsync(role))
                 await roleManager.CreateAsync(new IdentityRole(role));
- 
+        
             await userManager.AddToRoleAsync(appUser, role);
- 
+        
             var newUser = new User
             {
                 Email = model.Email,
@@ -146,11 +187,13 @@ namespace dotnetapp.Services
                 MobileNumber = model.MobileNumber,
                 UserRole = role
             };
+        
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
- 
+        
             return (1, "User created successfully!");
         }
+
  
         public async Task<(int, string)> Login(LoginModel model)
         {
@@ -176,6 +219,39 @@ namespace dotnetapp.Services
             var token = GenerateToken(authClaims);
             return (1, token);
         }
+        // public async Task<(int, string)> Login(LoginModel model)
+        // {
+        //     var user = await userManager.FindByEmailAsync(model.Email);
+        //     if (user == null)
+        //         return (0, "Invalid email");
+        
+        //     if (!await userManager.CheckPasswordAsync(user, model.Password))
+        //         return (0, "Invalid password");
+        
+        //     var userRoles = await userManager.GetRolesAsync(user);
+            
+        //     // If the user is an Admin, validate the Admin Secret Key
+        //     if (userRoles.Contains("Admin"))
+        //     {
+        //         if (string.IsNullOrEmpty(model.AdminSecretKey) || model.AdminSecretKey != _configuration["AdminSecretKey"])
+        //             return (403, "Invalid Admin Secret Key.");
+        //     }
+        
+        //     var authClaims = new List<Claim>
+        //     {
+        //         new Claim(ClaimTypes.Name, user.Name), // Store authenticated user's name
+        //         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        //     };
+        
+        //     foreach (var userRole in userRoles)
+        //     {
+        //         authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+        //     }
+        
+        //     var token = GenerateToken(authClaims);
+        //     return (1, token);
+        // }
+        
  
         private string GenerateToken(IEnumerable<Claim> claims)
         {
